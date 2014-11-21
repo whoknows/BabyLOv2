@@ -1,33 +1,29 @@
 var Reflux = require('reflux');
-var UserActions = require('../actions/UserActions.js');
+var UserActions = require('actions/UserActions.js');
 
-var UserStore = Reflux.createStore({
-    currentUser: null,
-    // Initial setup
-    init: function() {
-        // Register statusUpdate action
-        this.listenTo(UserActions.login, this.login);
-        this.listenTo(UserActions.logout, this.logout);
-        this.listenTo(UserActions.edit, this.edit);
+module.exports = Reflux.createStore({
+    listenables: UserActions,
+    init: function(){
+        UserActions.loadData();
     },
-    login: function(login, password){
-        this.currentUser = {
-            login: login,
-            password: password
-        };
-        this.trigger(this.currentUser);
+    onLoadData: function(){
+        $.ajax({
+            url: 'http://127.0.1.1/Babylov2REST/api/user',
+            type: 'GET',
+            dataType: 'json'
+        }).then(function(response) {
+            UserActions.loadSuccess(response);
+        });
     },
-    logout: function (){
-        this.currentUser = null;
-        this.trigger(this.currentUser);
+    onLoadSuccess: function(users){
+        this.users = users;
+        this.trigger();
     },
-    edit: function(login){
-        this.currentUser.login = login;
-        this.trigger(this.currentUser);
+    onLoadFail: function(){
+        // bzzzzapp!
     },
-    getCurrentUser: function(){
-        return this.currentUser;
-    }
+    getUsers: function() {
+        return this.users;
+    },
+    users: []
 });
-
-module.exports = UserStore;
