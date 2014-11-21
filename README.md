@@ -1,4 +1,4 @@
-fluxbone
+BabyLOv2
 ========
 
-Flux architecture with backbone models
+Front end part for BabyLOv2's project
