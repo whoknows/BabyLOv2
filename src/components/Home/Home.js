@@ -2,13 +2,20 @@
 
 var Reflux = require('reflux');
 var React = require('react');
-var Table = require('components/Table/Table.js');
+var AlertBar = require('./AlertBar.js');
+var UserTable = require('components/Table/UserTable.js');
 var UserStore = require('stores/UserStore.js');
+var GameTable = require('components/Table/GameTable.js');
+var GameStore = require('stores/GameStore.js');
 
 module.exports = React.createClass({
-    mixins: [Reflux.listenTo(UserStore,"onUserChange")],
+    mixins: [
+        Reflux.listenTo(UserStore,"onUserChange"),
+        Reflux.listenTo(GameStore,"onGameChange"),
+    ],
     getInitialState: function() {
         return {
+            games: [],
             users: []
         };
     },
@@ -17,11 +24,23 @@ module.exports = React.createClass({
             users: UserStore.getUsers()
         });
     },
+    onGameChange: function() {
+        this.setState({
+            games: GameStore.getGames()
+        });
+    },
     render: function () {
         return (
             <div>
-                <h1>osef</h1>
-                <Table data={this.state.users}></Table>
+                <AlertBar data={this.state.alerts}></AlertBar>
+                <div className="row">
+                    <div className="col-md-4">
+                        <GameTable data={this.state.games}></GameTable>
+                    </div>
+                    <div className="col-md-4">
+                        <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
+                    </div>
+                </div>
             </div>
         );
     }

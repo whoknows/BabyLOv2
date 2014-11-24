@@ -1,5 +1,3 @@
 var Reflux = require('reflux');
 
-var UserActions = Reflux.createActions(["loadData", "loadSuccess", "loadFail"]);
-
-module.exports = UserActions;
+module.exports = Reflux.createActions(["loadData", "loadSuccess", "loadFail"]);

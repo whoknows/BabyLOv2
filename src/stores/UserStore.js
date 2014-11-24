@@ -7,13 +7,47 @@ module.exports = Reflux.createStore({
         UserActions.loadData();
     },
     onLoadData: function(){
-        $.ajax({
+        /*$.ajax({
             url: 'http://127.0.1.1/Babylov2REST/api/user',
             type: 'GET',
             dataType: 'json'
-        }).then(function(response) {
+        }).then(function(response) {*/
+            var response = [
+                {
+                    username: 'Guillaume',
+                    enabled: 1,
+                    roles: ['ROLE_USER', 'ROLE_ADMIN'],
+                    gravatar: 'tbd',
+                    gameData: {
+                        played: 25,
+                        won: 20,
+                        lost: 5,
+                        total: 30,
+                        playedThisMonth: 5,
+                        wonThisMonth: 5,
+                        lostThisMonth: 0,
+                        totalThisMonth: 10
+                    }
+                },
+                {
+                    username: 'Charlotte',
+                    enabled: 1,
+                    roles: ['ROLE_USER'],
+                    gravatar: 'tbd',
+                    gameData: {
+                        played: 15,
+                        won: 5,
+                        lost: 10,
+                        total: 30,
+                        playedThisMonth: 3,
+                        wonThisMonth: 2,
+                        lostThisMonth: 1,
+                        totalThisMonth: 10
+                    }
+                },
+            ];
             UserActions.loadSuccess(response);
-        });
+        //});
     },
     onLoadSuccess: function(users){
         this.users = users;
