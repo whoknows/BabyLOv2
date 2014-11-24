@@ -1,0 +1,13 @@
+.panel-body {
+    padding: 0;
+}
+
+.panel-body .table {
+    margin: 0;
+}
+
+td, th {
+    font-size: 0.9em;
+    text-align: center;
+    vertical-align: middle!important;
+}

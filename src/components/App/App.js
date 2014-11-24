@@ -4,10 +4,8 @@ var React = require('react');
 var {Navbar, Nav, DropdownButton, MenuItem, Panel, NavItem} = require('react-bootstrap');
 var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
-//var MenuItemLink = require('./MenuItemLink.js');
 
 require('./App.css');
-//require('../external/css/material.min.css')
 
 var App = React.createClass({
     render: function () {

@@ -1,6 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var UserImage = require('components/User/UserImage.js');
+var {Panel, Table} = require('react-bootstrap');
+
+require('components/Table/Table.css');
 
 module.exports = React.createClass({
     header: ['Joueur','Gagnées','Perdues'],
@@ -16,7 +20,9 @@ module.exports = React.createClass({
     getRow: function (rawRow) {
         var p = this.getPeriod();
         return <tr key={rawRow.id}>
-                    <td>{rawRow.username}</td>
+                    <td>
+                        <UserImage user={rawRow}></UserImage>
+                    </td>
                     <td className="success">{rawRow.gameData['won' + p]}</td>
                     <td className="danger">{rawRow.gameData['lost' + p]}</td>
                     <td><b>{this.getScore(rawRow.gameData)}</b></td>
@@ -43,13 +49,17 @@ module.exports = React.createClass({
 
         var header = this.getHeader().map(function(headum, i){
             return <th key={i}>{headum}</th>
-        })
+        });
 
         return (
-            <table className="table table-bordered">
-                <thead><tr>{header}</tr></thead>
-                <tbody>{rows}</tbody>
-            </table>
+            <div>
+                <Panel header={this.props.title}>
+                    <Table bordered>
+                        <thead><tr>{header}</tr></thead>
+                        <tbody>{rows}</tbody>
+                    </Table>
+                </Panel>
+            </div>
         );
     }
 });

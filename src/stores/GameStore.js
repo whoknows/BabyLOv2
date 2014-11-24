@@ -12,7 +12,18 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {*/
-            GameActions.loadSuccess([]);
+            GameActions.loadSuccess([
+                {
+                    id: 1,
+                    date: '19/11/2014',
+                    st1: 10,
+                    st2: 4,
+                    p1t1: 'Guillaume',
+                    p2t1: 'Frederic',
+                    p1t2: 'Alexis',
+                    p2t2: 'Adeline',
+                }
+            ]);
         //});
     },
     onLoadSuccess: function(games){

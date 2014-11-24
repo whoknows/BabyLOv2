@@ -1,0 +1,20 @@
+.alert {
+    color:white;
+    display:inline-block;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.alert div i {
+    font-size: 50px;
+}
+
+.alert .text-container {
+    margin-left: 65px;
+    text-align: center;
+}
+
+.alert .text-container div {
+    font-size:24px;
+    font-weight: bold;
+}

@@ -35,10 +35,13 @@ module.exports = React.createClass({
                 <AlertBar data={this.state.alerts}></AlertBar>
                 <div className="row">
                     <div className="col-md-4">
-                        <GameTable data={this.state.games}></GameTable>
+                        <GameTable data={this.state.games} title="Dernières parties"></GameTable>
                     </div>
                     <div className="col-md-4">
-                        <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
+                        <GameTable data={this.state.games} title="Dernières parties"></GameTable>
+                    </div>
+                    <div className="col-md-4">
+                        <UserTable data={this.state.users} title="Top players" mode="score" period="thismonth"></UserTable>
                     </div>
                 </div>
             </div>
