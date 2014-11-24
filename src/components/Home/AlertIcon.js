@@ -15,7 +15,7 @@ module.exports = React.createClass({
                     </div>
                     <div className="text-container">
                         <div>
-                            <strong>{this.props.value}</strong>
+                            <strong>{this.props.data.name}</strong>
                         </div>
                         {this.props.text}
                     </div>
