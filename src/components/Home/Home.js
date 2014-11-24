@@ -18,8 +18,8 @@ module.exports = React.createClass({
     ],
     getInitialState: function() {
         return {
-            games: [],
-            users: []
+            games: GameStore.getGames(),
+            users: UserStore.getUsers()
         };
     },
     onUserChange: function() {

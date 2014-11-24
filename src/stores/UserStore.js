@@ -30,10 +30,10 @@ module.exports = Reflux.createStore({
                     }
                 },
                 {
-                    username: 'Charlotte',
+                    username: 'Jordan',
                     enabled: 1,
                     roles: ['ROLE_USER'],
-                    gravatar: 'http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=35&d=mm&r=x',
+                    gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x',
                     gameData: {
                         played: 15,
                         won: 5,
