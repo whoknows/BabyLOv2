@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-//var {Panel, Table} = require('react-bootstrap');
 
 require('components/User/UserImage.css');
 
