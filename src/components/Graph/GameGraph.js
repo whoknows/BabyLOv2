@@ -10,10 +10,23 @@ module.exports = React.createClass({
         c3.generate({
             bindto: '#gameChart',
             data: {
-              columns: [
-                ['data1', 30, 200, 100, 400, 150, 250],
-                ['data2', 50, 20, 10, 40, 15, 25]
-              ]
+                x: 'x',
+                columns: [
+                    ['x', '2014-01-12', '2014-01-13', '2014-01-14', '2014-01-15', '2014-01-16', '2014-01-17'],
+                    ['data1', 30, 200, 100, 400, 150, 250]
+                ],
+                types: {
+                    data1: 'bar'
+                }
+            },
+            axis: {
+                x: {
+                    //show:false,
+                    type: 'timeseries',
+                    tick: {
+                        format: '%Y-%m-%d'
+                    }
+                }
             }
         });
     },

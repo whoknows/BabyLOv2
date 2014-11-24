@@ -15,6 +15,11 @@ var App = React.createClass({
                     <Nav>
                         <NavItem brand>BabyLO v2</NavItem>
                         <BabyMenuItem icon="mdi-action-home" dest="home" label="Accueil"></BabyMenuItem>
+                        <BabyMenuItem icon="mdi-action-grade" dest="games" label="Parties"></BabyMenuItem>
+                        <BabyMenuItem icon="mdi-social-person" dest="users" label="Joueurs"></BabyMenuItem>
+                        <BabyMenuItem icon="mdi-action-settings" dest="matchmaker" label="Match Maker"></BabyMenuItem>
+                        <BabyMenuItem icon="mdi-social-whatshot" dest="compare" label="Comparateur"></BabyMenuItem>
+                        <BabyMenuItem icon="mdi-action-event" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav className="navbar-right">
                         <DropdownButton title={'UserName'}>
