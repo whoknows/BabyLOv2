@@ -4,6 +4,17 @@ var React = require('react');
 var AlertIcon = require('./AlertIcon.js');
 
 module.exports = React.createClass({
+    getDefaultProps: function() {
+        return {
+            data:{
+                victory:{},
+                defeat:{},
+                games:{},
+                last:{},
+                worst:{}
+            }
+        };
+    },
     render: function () {
         return (
             <div className="row alertBar">

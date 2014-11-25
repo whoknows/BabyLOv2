@@ -16,7 +16,7 @@ module.exports = React.createClass({
     mixins: [
         Reflux.listenTo(UserStore,"onUserChange"),
         Reflux.listenTo(GameStore,"onGameChange"),
-        Reflux.listenTo(HomeDataStore,"onHomeDataStoreChange")
+        Reflux.listenTo(HomeDataStore,"onHomeDataChange")
     ],
     getInitialState: function() {
         return {
@@ -35,16 +35,15 @@ module.exports = React.createClass({
             games: GameStore.getGames()
         });
     },
-    onHomeDataStoreChange: function() {
+    onHomeDataChange: function() {
         this.setState({
             homeData: HomeDataStore.getHomeDatas()
         });
     },
     render: function () {
-        console.log(this.state.homeData);
         return (
             <div>
-                <AlertBar data={this.state.homeData}></AlertBar>
+                <AlertBar data={this.state.homeData.alertBar}></AlertBar>
                 <div className="row">
                     <div className="col-md-4">
                         <GameTable data={this.state.games} title="Dernières parties"></GameTable>
@@ -59,7 +58,7 @@ module.exports = React.createClass({
                 <div className="row">
                     <div className="col-md-7">
                         <Panel header="Parties jouées par jours">
-                            <GameGraph></GameGraph>
+                            <GameGraph data={this.state.homeData.gameGraph}></GameGraph>
                         </Panel>
                     </div>
                     <div className="col-md-5">

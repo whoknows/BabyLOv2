@@ -6,22 +6,32 @@ var c3 = require('c3');
 require('c3/c3.css');
 
 module.exports = React.createClass({
-    componentDidMount: function() {
+    getDefaultProps: function() {
+        return {
+            data: {
+                datas: [],
+                labels: []
+            }
+        };
+    },
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return nextProps.data.datas.length !== 0;
+    },
+    componentDidUpdate: function() {
         c3.generate({
             bindto: '#gameChart',
             data: {
                 x: 'x',
                 columns: [
-                    ['x', '2014-01-12', '2014-01-13', '2014-01-14', '2014-01-15', '2014-01-16', '2014-01-17'],
-                    ['data1', 30, 200, 100, 400, 150, 250]
+                    ['x'].concat(this.props.data.labels),
+                    ['Parties'].concat(this.props.data.datas)
                 ],
                 types: {
-                    data1: 'bar'
+                    Parties: 'bar'
                 }
             },
             axis: {
                 x: {
-                    //show:false,
                     type: 'timeseries',
                     tick: {
                         format: '%Y-%m-%d'

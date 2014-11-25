@@ -1,50 +1,48 @@
 var Reflux = require('reflux');
-var HomeDataActions = require('actions/HomeDataAction.js');
+var HomeDataAction = require('actions/HomeDataAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: HomeDataActions,
+    listenables: HomeDataAction,
+    homeDatas: [],
     init: function(){
-        HomeDataActions.loadData();
+        HomeDataAction.loadData();
     },
     onLoadData: function(){
-        /*$.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/api/HomeData',
-            type: 'GET',
-            dataType: 'json'
-        }).then(function(response) {*/
-            HomeDataActions.loadSuccess({
-                    victory: {
-                        name:'Guillaume',
-                        value: 8
-                    },
-                    defeat: {
-                        name:'Cedric',
-                        value: 8
-                    },
-                    games: {
-                        name:'8',
-                        value: 8
-                    },
-                    last: {
-                        name:'Joon',
-                        value: 0.1
-                    },
-                    worst: {
-                        name:'Stephane',
-                        value: 9.46
-                    },
-                });
-        //});
+        HomeDataAction.loadSuccess({
+            alertBar: {
+                victory: {
+                    name:'Guillaume',
+                    value: 8
+                },
+                defeat: {
+                    name:'Cedric',
+                    value: 8
+                },
+                games: {
+                    name:'8',
+                    value: 8
+                },
+                last: {
+                    name:'Joon',
+                    value: 0.1
+                },
+                worst: {
+                    name:'Stephane',
+                    value: 9.46
+                }
+            },
+            gameGraph: {
+                datas:[12,8,3,4,1],
+                labels:['2014-11-19','2014-11-20','2014-11-21','2014-11-22','2014-11-23']
+            }
+        });
     },
-    onLoadSuccess: function(HomeDatas){
-        this.HomeDatas = HomeDatas;
+    onLoadSuccess: function(homeDatas){
+        this.homeDatas = homeDatas;
         this.trigger();
     },
-    onLoadFail: function(){
-        // bzzzzapp!
-    },
+    onLoadFail: function(){},
     getHomeDatas: function() {
-        return this.HomeDatas;
-    },
-    HomeDatas: []
+        return this.homeDatas;
+    }
 });

@@ -24,6 +24,7 @@
   "dependencies": {
     "c3": "^0.3.0",
     "css-loader": "^0.9.0",
+    "expose-loader": "^0.6.0",
     "jsx-loader": "^0.11.2",
     "react": "^0.11.2",
     "react-bootstrap": "^0.12.0",
