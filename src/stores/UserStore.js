@@ -14,6 +14,7 @@ module.exports = Reflux.createStore({
         }).then(function(response) {*/
             var response = [
                 {
+                    id:1,
                     username: 'Guillaume',
                     enabled: 1,
                     roles: ['ROLE_USER', 'ROLE_ADMIN'],
@@ -30,6 +31,7 @@ module.exports = Reflux.createStore({
                     }
                 },
                 {
+                    id:2,
                     username: 'Jordan',
                     enabled: 1,
                     roles: ['ROLE_USER'],

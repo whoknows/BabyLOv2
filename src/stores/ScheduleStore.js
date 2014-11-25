@@ -1,4 +1,3 @@
-var Reflux = require('reflux');
 var ScheduleAction = require('actions/ScheduleAction.js');
 
 module.exports = Reflux.createStore({
@@ -10,9 +9,9 @@ module.exports = Reflux.createStore({
     onLoadData: function(){
         ScheduleAction.loadSuccess([
             {
-                creneau: '1510',
+                creneau: '15h10',
                 users: [
-                    {id:1, username:'Guillaume', gravatar: 'http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=35&d=mm&r=x'}
+                    {id:2, username:'Jordan', gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x'}
                 ]
             }
         ]);

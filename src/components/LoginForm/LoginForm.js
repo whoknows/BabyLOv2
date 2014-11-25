@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 
-var React = require('react');
 var UserImage = require('components/User/UserImage.js');
 var {Input,Button} = require('react-bootstrap');
 

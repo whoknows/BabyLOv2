@@ -1,7 +1,5 @@
 /** @jsx React.DOM */
 
-var Reflux = require('reflux');
-var React = require('react');
 var {Panel} = require('react-bootstrap');
 var AlertBar = require('./AlertBar.js');
 var UserTable = require('components/Table/UserTable.js');
