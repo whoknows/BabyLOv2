@@ -39,15 +39,7 @@ module.exports = React.createClass({
             }
         };
     },
-    shouldComponentUpdate: function(nextProps, nextState) {
-        return nextProps.data.datas.length !== 0;
-    },
     componentDidMount: function() {
-        if(this.shouldComponentUpdate(this.props, this.state)){
-            this.generateGraph();
-        }
-    },
-    componentDidUpdate: function() {
         this.generateGraph();
     },
     componentWillUnmount: function() {

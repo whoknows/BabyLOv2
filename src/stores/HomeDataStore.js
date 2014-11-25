@@ -4,6 +4,7 @@ var HomeDataAction = require('actions/HomeDataAction.js');
 module.exports = Reflux.createStore({
     listenables: HomeDataAction,
     homeDatas: [],
+    loaded: false,
     init: function(){
         HomeDataAction.loadData();
     },
@@ -39,10 +40,14 @@ module.exports = Reflux.createStore({
     },
     onLoadSuccess: function(homeDatas){
         this.homeDatas = homeDatas;
+        this.loaded = true;
         this.trigger();
     },
     onLoadFail: function(){},
     getHomeDatas: function() {
         return this.homeDatas;
+    },
+    isLoaded: function(){
+        return this.loaded;
     }
 });

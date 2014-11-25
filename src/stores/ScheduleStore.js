@@ -1,21 +1,28 @@
 var Reflux = require('reflux');
-var HomeDataAction = require('actions/ScheduleAction.js');
+var ScheduleAction = require('actions/ScheduleAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: HomeDataAction,
-    homeDatas: [],
+    listenables: ScheduleAction,
+    schedule: [],
     init: function(){
-        HomeDataAction.loadData();
+        ScheduleAction.loadData();
     },
     onLoadData: function(){
-        HomeDataAction.loadSuccess([]);
+        ScheduleAction.loadSuccess([
+            {
+                creneau: '1510',
+                users: [
+                    {id:1, username:'Guillaume', gravatar: 'http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=35&d=mm&r=x'}
+                ]
+            }
+        ]);
     },
-    onLoadSuccess: function(homeDatas){
-        this.homeDatas = homeDatas;
+    onLoadSuccess: function(schedule){
+        this.schedule = schedule;
         this.trigger();
     },
     onLoadFail: function(){},
-    getHomeDatas: function() {
-        return this.homeDatas;
+    getSchedule: function() {
+        return this.schedule;
     }
 });

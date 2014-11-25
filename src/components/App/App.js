@@ -4,11 +4,21 @@ var React = require('expose?React!react');
 var {Navbar, Nav, DropdownButton, MenuItem, Panel, NavItem} = require('react-bootstrap');
 var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
+var LoginForm = require('components/LoginForm/LoginForm.js');
 
 require('./App.css');
 
 module.exports = React.createClass({
+    getInitialState: function(){
+        return {
+            currentUser:null
+        };
+    },
     render: function () {
+        if(this.state.currentUser === null) {
+            return (<LoginForm/>);
+        }
+
         return (
             <div>
                 <Navbar fluid>
