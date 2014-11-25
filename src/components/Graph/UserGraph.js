@@ -4,16 +4,43 @@ var React = require('react');
 var c3 = require('c3');
 
 require('c3/c3.css');
+require('./Graph.css');
 
 module.exports = React.createClass({
     componentDidMount: function() {
         c3.generate({
             bindto: '#userChart',
             data: {
-              columns: [
-                ['data1', 30, 200, 100, 400, 150, 250],
-                ['data2', 50, 20, 10, 40, 15, 25]
-              ]
+                columns: [
+                    ['Victoires', 3, 2, 1, 4, 1, 2],
+                    ['Defaites', 5, 2, 1, 4, 1, 2],
+                    ['Ratio', 1, 0.8, 0.4, 0.45, 0.68, 0.84]
+                ],
+                colors: {
+                    Victoires: '#2ca02c',
+                    Defaites: '#ff2a0e',
+                    Ratio: '#1f77b4'
+                },
+                axes: {
+                    Ratio: 'y2'
+                },
+                types: {
+                    Victoires:'bar',
+                    Defaites:'bar'
+                },
+                groups: [
+                    ['Victoires', 'Defaites']
+                ]
+            },
+            axis: {
+                y2: {
+                    show: true
+                },
+                x: {
+                    tick: {
+                        format: function(x){ return ''; }
+                    }
+                }
             }
         });
     },

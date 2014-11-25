@@ -17,9 +17,9 @@ module.exports = React.createClass({
 
         return this.header.concat([mode]);
     },
-    getRow: function (rawRow) {
+    getRow: function (rawRow, i) {
         var p = this.getPeriod();
-        return <tr key={rawRow.id}>
+        return <tr key={i}>
                     <td>
                         <UserImage user={rawRow}></UserImage>
                     </td>
@@ -43,8 +43,8 @@ module.exports = React.createClass({
         return this.props.period.toLowerCase() == 'thismonth' ? 'ThisMonth' : '';
     },
     render: function () {
-        var rows = this.props.data.map(function(datum) {
-            return this.getRow(datum);
+        var rows = this.props.data.map(function(datum, i) {
+            return this.getRow(datum, i);
         }.bind(this));
 
         var header = this.getHeader().map(function(headum, i){

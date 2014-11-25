@@ -1,5 +1,5 @@
 var Reflux = require('reflux');
-var UserActions = require('actions/UserActions.js');
+var UserActions = require('actions/UserAction.js');
 
 module.exports = Reflux.createStore({
     listenables: UserActions,

@@ -4,21 +4,12 @@ var React = require('react');
 var c3 = require('c3');
 
 require('c3/c3.css');
+require('./Graph.css');
 
 module.exports = React.createClass({
-    getDefaultProps: function() {
-        return {
-            data: {
-                datas: [],
-                labels: []
-            }
-        };
-    },
-    shouldComponentUpdate: function(nextProps, nextState) {
-        return nextProps.data.datas.length !== 0;
-    },
-    componentDidUpdate: function() {
-        c3.generate({
+    currentGraph: null,
+    generateGraph: function() {
+        this.currentGraph = c3.generate({
             bindto: '#gameChart',
             data: {
                 x: 'x',
@@ -39,6 +30,28 @@ module.exports = React.createClass({
                 }
             }
         });
+    },
+    getDefaultProps: function() {
+        return {
+            data: {
+                datas: [],
+                labels: []
+            }
+        };
+    },
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return nextProps.data.datas.length !== 0;
+    },
+    componentDidMount: function() {
+        if(this.shouldComponentUpdate(this.props, this.state)){
+            this.generateGraph();
+        }
+    },
+    componentDidUpdate: function() {
+        this.generateGraph();
+    },
+    componentWillUnmount: function() {
+        this.currentGraph.destroy();
     },
     render: function () {
         return (

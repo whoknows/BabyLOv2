@@ -13,7 +13,7 @@ module.exports = React.createClass({
             <div>
                 <Navbar fluid>
                     <Nav>
-                        <NavItem brand>BabyLO v2</NavItem>
+                        <NavItem brand>BabyLOv3</NavItem>
                         <BabyMenuItem icon="mdi-action-home" dest="home" label="Accueil"></BabyMenuItem>
                         <BabyMenuItem icon="mdi-action-grade" dest="games" label="Parties"></BabyMenuItem>
                         <BabyMenuItem icon="mdi-social-person" dest="users" label="Joueurs"></BabyMenuItem>

@@ -1,5 +1,5 @@
 var Reflux = require('reflux');
-var GameActions = require('actions/GameActions.js');
+var GameActions = require('actions/GameAction.js');
 
 module.exports = Reflux.createStore({
     listenables: GameActions,
