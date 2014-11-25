@@ -8,12 +8,12 @@ require('components/Table/Table.css');
 module.exports = React.createClass({
     generateRows: function(games) {
         return games.map(function(game) {
-            var classT1 = 'success';
-            var classT2 = 'danger';
+            var classT1 = 'light-green';
+            var classT2 = 'red';
 
             if (game.st1 < game.st2) {
-                var classT1 = 'danger';
-                var classT2 = 'success';
+                var classT1 = 'red';
+                var classT2 = 'light-green';
             }
 
             return <tr key={game.id}>
