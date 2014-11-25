@@ -30,6 +30,10 @@ module.exports = Reflux.createStore({
                 worst: {
                     name:'Stephane',
                     value: 9.46
+                },
+                fanny: {
+                    name:'Adel. & Nico.',
+                    value:'Fanny'
                 }
             },
             gameGraph: {

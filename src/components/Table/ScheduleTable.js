@@ -5,12 +5,6 @@ var {Panel, Table, Button} = require('react-bootstrap');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 
 module.exports = React.createClass({
-    componentDidMount: function() {
-        //
-    },
-    shouldComponentUpdate: function(nextProps, nextState) {
-        return nextProps.data.length != 0;
-    },
     getUserList: function(users) {
         var currentUser = CurrentUserStore.getCurrentUser();
         var userScheduled = false;
@@ -40,7 +34,7 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Panel header={this.props.title}>
+            <Panel header={this.props.title} bsStyle="primary">
                 <Table bordered>
                     <thead><tr><th>Créneau</th><th>Joueurs</th></tr></thead>
                     <tbody>{this.generateTable(this.props.data)}</tbody>

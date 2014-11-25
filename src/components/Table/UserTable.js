@@ -53,7 +53,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Panel header={this.props.title}>
+                <Panel header={this.props.title} bsStyle="primary">
                     <Table bordered>
                         <thead><tr>{header}</tr></thead>
                         <tbody>{rows}</tbody>

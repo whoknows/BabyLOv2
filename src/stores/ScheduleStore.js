@@ -20,7 +20,6 @@ module.exports = Reflux.createStore({
         this.schedule = schedule;
         this.trigger();
     },
-    onLoadFail: function(){},
     getSchedule: function() {
         return this.schedule;
     }

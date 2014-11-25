@@ -17,7 +17,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="col-md-2">
-                <Alert bsStyle={this.props.type}>
+                <Alert className={this.props.type}>
                     <div className="pull-left icon-container">
                         <i className={this.props.icon}></i>
                     </div>

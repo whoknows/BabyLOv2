@@ -17,6 +17,9 @@ module.exports = React.createClass({
                     ['x'].concat(this.props.data.labels),
                     ['Parties'].concat(this.props.data.datas)
                 ],
+                colors: {
+                    Parties:'#009788'
+                },
                 types: {
                     Parties: 'bar'
                 }

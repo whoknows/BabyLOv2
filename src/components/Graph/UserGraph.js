@@ -17,9 +17,9 @@ module.exports = React.createClass({
                     ['Ratio', 1, 0.8, 0.4, 0.45, 0.68, 0.84]
                 ],
                 colors: {
-                    Victoires: '#2ca02c',
-                    Defaites: '#ff2a0e',
-                    Ratio: '#1f77b4'
+                    Victoires: '#8bc24a',
+                    Defaites: '#f6413a',
+                    Ratio: '#009788'
                 },
                 axes: {
                     Ratio: 'y2'

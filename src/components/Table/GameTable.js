@@ -30,7 +30,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div>
-                <Panel header={this.props.title}>
+                <Panel header={this.props.title} bsStyle="primary">
                     <Table bordered>
                         <thead>
                         <tr>
