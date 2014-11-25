@@ -7,7 +7,7 @@ var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
 
 require('./App.css');
 
-var App = React.createClass({
+module.exports = React.createClass({
     render: function () {
         return (
             <div>
@@ -36,5 +36,3 @@ var App = React.createClass({
         );
     }
 });
-
-module.exports = App;
