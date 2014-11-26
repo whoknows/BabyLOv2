@@ -1,3 +1,9 @@
 .userImage {
     float: left;
 }
+
+.userImage img {
+    height:35px;
+    margin-right: 5px;
+    width:35px;
+}

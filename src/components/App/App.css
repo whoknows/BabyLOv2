@@ -2,6 +2,10 @@
     margin-right: 5px;
 }
 
+.panel-heading {
+    font-size: 15px!important;
+}
+
 .red {
     background-color: #f6413a;
 }

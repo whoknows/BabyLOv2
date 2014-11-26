@@ -19,7 +19,7 @@ module.exports = React.createClass({
         });
 
         if(!userScheduled){
-            ret.push(<Button className="pull-right" bsSize="xsmall" bsStyle="success">GO</Button>);
+            ret.push(<Button className="pull-right" bsStyle="success">GO</Button>);
         }
 
         return ret;
