@@ -8,11 +8,11 @@
 
 .alert div i {
     font-size: 50px;
-    vertical-align: middle;
+    margin: 3px 10px
 }
 
 .alert .text-container {
-    margin-left: 65px;
+    margin-left: 40px;
     text-align: center;
 }
 

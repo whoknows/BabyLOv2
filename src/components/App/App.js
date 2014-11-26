@@ -34,12 +34,12 @@ module.exports = React.createClass({
                 <Navbar inverse fluid>
                     <Nav>
                         <NavItem brand>BabyLOv3</NavItem>
-                        <BabyMenuItem icon="mdi-action-home" dest="home" label="Accueil"></BabyMenuItem>
-                        <BabyMenuItem icon="mdi-action-grade" dest="games" label="Parties"></BabyMenuItem>
-                        <BabyMenuItem icon="mdi-social-person" dest="users" label="Joueurs"></BabyMenuItem>
-                        <BabyMenuItem icon="mdi-action-settings" dest="matchmaker" label="Match Maker"></BabyMenuItem>
-                        <BabyMenuItem icon="mdi-social-whatshot" dest="compare" label="Comparateur"></BabyMenuItem>
-                        <BabyMenuItem icon="mdi-action-event" dest="schedule" label="Planification"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-home" dest="home" label="Accueil"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-star" dest="games" label="Parties"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-user" dest="users" label="Joueurs"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-cog" dest="matchmaker" label="Match Maker"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-fire" dest="compare" label="Comparateur"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav className="navbar-right">
                         <DropdownButton title={"Bonjour " + this.state.currentUser.username}>
