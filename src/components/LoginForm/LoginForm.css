@@ -1,14 +1,12 @@
-input {
-    color: #444!important;
-    font-size: 22px!important;
-    line-height: 22px!important;
-    height: 40px!important;
-}
-
 .thewell {
     margin-top: 200px;
+    padding-bottom: 36px;
 }
 
 h1 {
-    margin-bottom: 35px;
+    margin-bottom: 20px;
+}
+
+form a {
+    margin-left: 10px;
 }

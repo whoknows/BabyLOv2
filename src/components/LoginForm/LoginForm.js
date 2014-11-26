@@ -17,6 +17,7 @@ module.exports = React.createClass({
                                 <Input type="text" placeholder="Nom d'utilisateur" />
                                 <Input type="password" placeholder="Mot de passe" />
                                 <Button bsStyle="success">Se connecter</Button>
+                                <a href="javascript:void(0)">Demander un compte</a>
                             </form>
                         </div>
                     </div>

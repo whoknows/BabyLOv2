@@ -25,7 +25,7 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        if(this.state.currentUser === null) {
+        if(this.state.currentUser !== null) {
             return (<LoginForm/>);
         }
 
@@ -43,10 +43,10 @@ module.exports = React.createClass({
                     </Nav>
                     <Nav className="navbar-right">
                         <DropdownButton title={[<i className="fa fa-user"></i>, "Bonjour " + this.state.currentUser.username]}>
-                            {CurrentUserStore.isAdmin() ? <MenuItem>Ajouter une partie</MenuItem> : null}
-                            {CurrentUserStore.isSuperAdmin() ? <MenuItem>Gestion des utilisateurs</MenuItem> : null}
+                            {CurrentUserStore.isAdmin() ? <MenuItem><i className="fa fa-plus"></i>Ajouter une partie</MenuItem> : null}
+                            {CurrentUserStore.isSuperAdmin() ? <MenuItem><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem> : null}
                             <MenuItem divider />
-                            <MenuItem>Logout</MenuItem>
+                            <MenuItem><i className="fa fa-sign-out"></i>Logout</MenuItem>
                         </DropdownButton>
                     </Nav>
                 </Navbar>
