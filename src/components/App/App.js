@@ -42,7 +42,7 @@ module.exports = React.createClass({
                         <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav className="navbar-right">
-                        <DropdownButton title={"Bonjour " + this.state.currentUser.username}>
+                        <DropdownButton title={[<i className="fa fa-user"></i>, "Bonjour " + this.state.currentUser.username]}>
                             {CurrentUserStore.isAdmin() ? <MenuItem>Ajouter une partie</MenuItem> : null}
                             {CurrentUserStore.isSuperAdmin() ? <MenuItem>Gestion des utilisateurs</MenuItem> : null}
                             <MenuItem divider />

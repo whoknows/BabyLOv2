@@ -53,7 +53,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Panel header={this.props.title}>
+                <Panel header={[<i className="fa fa-trophy"></i>,this.props.title]}>
                     <Table hover>
                         <thead><tr>{header}</tr></thead>
                         <tbody>{rows}</tbody>

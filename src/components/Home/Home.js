@@ -66,12 +66,12 @@ module.exports = React.createClass({
                 </div>
                 <div className="row">
                     <div className="col-md-7">
-                        <Panel header="Parties jouées par jours">
+                        <Panel header={[<i className="fa fa-bar-chart"></i>,"Parties jouées par jours"]}>
                             {gameGraph}
                         </Panel>
                     </div>
                     <div className="col-md-5">
-                        <Panel header="Statistiques personnelles">
+                        <Panel header={[<i className="fa fa-line-chart"></i>,"Statistiques personnelles"]}>
                             <UserGraph></UserGraph>
                         </Panel>
                     </div>

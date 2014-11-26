@@ -30,7 +30,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div>
-                <Panel header={this.props.title}>
+                <Panel header={[<i className="fa fa-futbol-o"></i>, this.props.title]}>
                     <Table hover>
                         <thead>
                         <tr>

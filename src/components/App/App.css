@@ -6,6 +6,11 @@
     font-size: 15px!important;
 }
 
+.panel-heading i.fa {
+    color: #777;
+    margin-right: 5px;
+}
+
 .red {
     background-color: #f6413a;
 }
