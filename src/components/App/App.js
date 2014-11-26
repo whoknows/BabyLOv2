@@ -25,7 +25,7 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        if(this.state.currentUser !== null) {
+        if(this.state.currentUser === null) {
             return (<LoginForm/>);
         }
 

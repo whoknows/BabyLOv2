@@ -31,6 +31,9 @@ module.exports = React.createClass({
                         format: '%Y-%m-%d'
                     }
                 }
+            },
+            zoom: {
+                enabled: true
             }
         });
     },

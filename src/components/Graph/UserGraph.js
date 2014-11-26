@@ -41,6 +41,9 @@ module.exports = React.createClass({
                         format: function(x){ return ''; }
                     }
                 }
+            },
+            zoom: {
+                enabled: true
             }
         });
     },
