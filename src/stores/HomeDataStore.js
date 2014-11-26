@@ -13,27 +13,27 @@ module.exports = Reflux.createStore({
             alertBar: {
                 victory: {
                     name:'Guillaume',
-                    value: 8
+                    desc: '8 parties gagnées'
                 },
                 defeat: {
                     name:'Cedric',
-                    value: 8
+                    desc: '8 parties perdues'
                 },
                 games: {
                     name:'8',
-                    value: 8
+                    desc: '8 parties jouées'
                 },
                 last: {
                     name:'Joon',
-                    value: 0.1
+                    desc: '0.1 de score'
                 },
                 worst: {
                     name:'Stephane',
-                    value: 9.46
+                    desc: '9.46 buts pris par matchs'
                 },
                 fanny: {
                     name:'Adel. & Nico.',
-                    value:'Fanny'
+                    desc:'Ils ont pris fanny'
                 }
             },
             gameGraph: {
