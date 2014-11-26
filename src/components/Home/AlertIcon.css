@@ -1,5 +1,5 @@
 .alert {
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 6px rgba(0, 0, 0, 0.12);
+    /*box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 6px rgba(0, 0, 0, 0.12);*/
     color:white;
     display:inline-block;
     margin: 20px 0 40px 0;
@@ -8,6 +8,7 @@
 
 .alert div i {
     font-size: 50px;
+    vertical-align: middle;
 }
 
 .alert .text-container {
