@@ -15,7 +15,7 @@ module.exports = React.createClass({
         var ret = users.map(function(user){
             if(user.id == currentUser.id){
                 userScheduled = true;
-                return <UserImage user={user} removable></UserImage>;
+                return <UserImage schedule={creneau} user={user}></UserImage>;
             } else {
                 return <UserImage user={user}></UserImage>;
             }
@@ -41,7 +41,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <Panel header={[<i className="fa fa-calendar"></i>, this.props.title]}>
-                <Table hover>
+                <Table className="scheduleTable" hover>
                     <thead><tr><th>Créneau</th><th>Joueurs</th></tr></thead>
                     <tbody>{this.generateTable(this.props.data)}</tbody>
                 </Table>

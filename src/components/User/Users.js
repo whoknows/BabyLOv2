@@ -20,10 +20,16 @@ module.exports = React.createClass({
             users: UserStore.getUsers()
         };
     },
-    componentDidMount: function() {
-        //
+    getDetail: function (userId) {
+        return (<div className="col-md-12">
+            ici les details
+        </div>);
     },
     render: function () {
+        var details = null
+        if(this.props.params.id){
+            details = this.getDetail(this.props.params.id);
+        }
         return (
             <div className="row">
                 <div className="col-md-4">
@@ -35,6 +41,7 @@ module.exports = React.createClass({
                 <div className="col-md-4">
                     <UserTable data={this.state.users} title="Classement par score (depuis toujours)" mode="score" period="all"></UserTable>
                 </div>
+                {details}
             </div>
         );
     }

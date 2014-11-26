@@ -1,3 +1,11 @@
 td button.pull-right {
     margin: 6px;
 }
+
+.scheduleTable {
+    table-layout: fixed;
+}
+
+.scheduleTable thead tr th:first-child {
+    width:70;
+}

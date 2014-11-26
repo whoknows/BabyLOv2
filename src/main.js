@@ -15,7 +15,7 @@ var routes = (
         <Route name="app" path="/" handler={App}>
             <DefaultRoute name="home" handler={Home}/>
             <Route name="games" handler={Games}/>
-            <Route name="users" handler={Users}/>
+            <Route name="users" path="users/?:id?" handler={Users}/>
             <Route name="matchmaker" handler={MatchMaker}/>
             <Route name="compare" handler={Compare}/>
             <Route name="schedule" handler={Schedule}/>

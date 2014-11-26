@@ -6,6 +6,16 @@ module.exports = Reflux.createStore({
     init: function(){
         ScheduleAction.loadData();
     },
+    onUnparticipate: function(schedule) {
+        ScheduleAction.loadSuccess([
+            {
+                creneau: '15h10',
+                users: [
+                    {id:2, username:'Jordan', gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x'}
+                ]
+            }
+        ]);
+    },
     onParticipate: function(schedule) {
         //console.log(schedule);
         //TODO requete ajax add schedule
