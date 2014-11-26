@@ -5,6 +5,7 @@ var React = require('react');
 
 var UserStore = require('stores/UserStore.js');
 var UserTable = require('components/Table/UserTable.js');
+var UserDetail = require('./UserDetail.js');
 
 module.exports = React.createClass({
     mixins: [
@@ -22,7 +23,7 @@ module.exports = React.createClass({
     },
     getDetail: function (userId) {
         return (<div className="col-md-12">
-            ici les details
+            <UserDetail></UserDetail>
         </div>);
     },
     render: function () {
