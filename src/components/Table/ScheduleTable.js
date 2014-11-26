@@ -5,6 +5,8 @@ var {Panel, Table, Button} = require('react-bootstrap');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var ScheduleAction = require('actions/ScheduleAction.js');
 
+require('./ScheduleTable.css');
+
 module.exports = React.createClass({
     getUserList: function(users, creneau) {
         var currentUser = CurrentUserStore.getCurrentUser();

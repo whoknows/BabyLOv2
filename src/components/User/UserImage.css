@@ -1,5 +1,6 @@
 .userImage {
     float: left;
+    margin: 5px;
 }
 
 .userImage img {
