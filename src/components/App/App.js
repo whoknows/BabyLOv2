@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Navbar fluid>
+                <Navbar inverse fluid>
                     <Nav>
                         <NavItem brand>BabyLOv3</NavItem>
                         <BabyMenuItem icon="mdi-action-home" dest="home" label="Accueil"></BabyMenuItem>

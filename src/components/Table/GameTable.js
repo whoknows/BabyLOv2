@@ -8,12 +8,12 @@ require('components/Table/Table.css');
 module.exports = React.createClass({
     generateRows: function(games) {
         return games.map(function(game) {
-            var classT1 = 'light-green';
-            var classT2 = 'red';
+            var classT1 = 'text-success';
+            var classT2 = 'text-danger';
 
             if (game.st1 < game.st2) {
-                var classT1 = 'red';
-                var classT2 = 'light-green';
+                var classT1 = 'text-danger';
+                var classT2 = 'text-success';
             }
 
             return <tr key={game.id}>
@@ -30,8 +30,8 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div>
-                <Panel header={this.props.title} bsStyle="primary">
-                    <Table bordered>
+                <Panel header={this.props.title}>
+                    <Table hover>
                         <thead>
                         <tr>
                             <th rowSpan="2">Date</th>

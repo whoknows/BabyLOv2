@@ -23,8 +23,8 @@ module.exports = React.createClass({
                     <td>
                         <UserImage user={rawRow}></UserImage>
                     </td>
-                    <td className="success">{rawRow.gameData['won' + p]}</td>
-                    <td className="danger">{rawRow.gameData['lost' + p]}</td>
+                    <td className="text-success">{rawRow.gameData['won' + p]}</td>
+                    <td className="text-danger">{rawRow.gameData['lost' + p]}</td>
                     <td><b>{this.getScore(rawRow.gameData)}</b></td>
                 </tr>;
     },
@@ -53,8 +53,8 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Panel header={this.props.title} bsStyle="primary">
-                    <Table bordered>
+                <Panel header={this.props.title}>
+                    <Table hover>
                         <thead><tr>{header}</tr></thead>
                         <tbody>{rows}</tbody>
                     </Table>

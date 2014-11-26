@@ -34,8 +34,8 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Panel header={this.props.title} bsStyle="primary">
-                <Table bordered>
+            <Panel header={this.props.title}>
+                <Table hover>
                     <thead><tr><th>Créneau</th><th>Joueurs</th></tr></thead>
                     <tbody>{this.generateTable(this.props.data)}</tbody>
                 </Table>

@@ -6,6 +6,19 @@
     font-size: 15px;
 }
 
+.panel-default>.panel-heading {
+    background-color: white;
+    border-color: #cfdbe2!important;
+    border-bottom: 0;
+    border-top-color: #cfdbe2!important;
+    border-top-width: 3px;
+    color: #444;
+}
+
+.table > thead > tr > th {
+    border-bottom: 1px solid #DDD;
+}
+
 .red {
     background-color: #f6413a;
 }
