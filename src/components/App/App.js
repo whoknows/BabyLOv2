@@ -2,8 +2,8 @@
 
 var Reflux = require('expose?Reflux!reflux');
 var React = require('expose?React!react');
-var {Navbar, Nav, DropdownButton, MenuItem, Panel, NavItem} = require('react-bootstrap');
-var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
+var {Navbar, Nav, DropdownButton, MenuItem, NavItem} = require('react-bootstrap');
+//var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');

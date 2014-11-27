@@ -1,5 +1,5 @@
 {
-  "name": "fluxbone",
+  "name": "babylov3",
   "version": "1.0.0",
   "description": "flux architecture with backbone models",
   "main": "index.js",
@@ -9,18 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/myagoo/fluxbone.git"
+    "url": "https://github.com/whoknows/BabyLOv2.git"
   },
   "keywords": [
     "flux",
     "react"
   ],
-  "author": "Benjamin Millagou",
+  "author": "Guillaume Coste",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/myagoo/fluxbone/issues"
+    "url": "https://github.com/whoknows/BabyLOv2/issues"
   },
-  "homepage": "https://github.com/myagoo/fluxbone",
+  "homepage": "https://github.com/whoknows/BabyLOv2",
   "dependencies": {
     "c3": "^0.3.0",
     "css-loader": "^0.9.0",

@@ -22,15 +22,13 @@ module.exports = React.createClass({
         };
     },
     getDetail: function (userId) {
-        return (<div className="col-md-12">
-            <UserDetail></UserDetail>
-        </div>);
+        if(this.props.params.id){
+            return <div className="col-md-12"><UserDetail user={this.props.params.id}></UserDetail></div>;
+        }
+
+        return null;
     },
     render: function () {
-        var details = null
-        if(this.props.params.id){
-            details = this.getDetail(this.props.params.id);
-        }
         return (
             <div className="row">
                 <div className="col-md-4">
@@ -42,7 +40,7 @@ module.exports = React.createClass({
                 <div className="col-md-4">
                     <UserTable data={this.state.users} title="Classement par score (depuis toujours)" mode="score" period="all"></UserTable>
                 </div>
-                {details}
+                {this.getDetail()}
             </div>
         );
     }
