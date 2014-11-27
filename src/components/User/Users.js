@@ -27,7 +27,7 @@ module.exports = React.createClass({
             return <div className="col-md-12"><UserDetail user={this.props.params.id}></UserDetail></div>;
         }
 
-        return <p><i>Cliquer sur un joueur pour afficher ses détails</i></p>;
+        return <div className="col-md-12"><p><i>Cliquer sur un joueur pour afficher ses détails</i></p></div>;
     },
     render: function () {
         return <div className="content-wrapper">

@@ -5,6 +5,10 @@
     padding-right: 5px;
 }
 
+.userImage:hover {
+    color: #23B7E5;
+}
+
 .userImage.removable:after {
     content:"\f00d";
     color:f47f7f;
