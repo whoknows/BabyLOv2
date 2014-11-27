@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var UserImage = require('components/User/UserImage.js');
-var {Button} = require('react-bootstrap');
+var {Button, ListGroup, ListGroupItem} = require('react-bootstrap');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var ScheduleAction = require('actions/ScheduleAction.js');
 
@@ -31,11 +31,14 @@ module.exports = React.createClass({
         ScheduleAction.participate(e.target.dataset.schedule);
     },
     render: function () {
-        return (
-            <div>
-                {this.getUserList()}
-                {this.getButton()}
-            </div>
-        );
+        if (this.props.vertical) {
+            var userList = this.getUserList();
+            return <ListGroup>
+                       {userList.map(function(user){
+                           return <ListGroupItem>{user}</ListGroupItem>;
+                       })}
+                   </ListGroup>;
+        }
+        return <div>{[this.getUserList(), this.getButton()]}</div>;
     }
 });
