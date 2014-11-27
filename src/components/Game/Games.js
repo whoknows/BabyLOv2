@@ -3,6 +3,7 @@
 var React = require('react');
 var GameTable = require('components/Table/GameTable.js');
 var GameStore = require('stores/GameStore.js');
+var ColPanel = require('components/Home/ColPanel.js');
 
 module.exports = React.createClass({
     mixins: [
@@ -13,9 +14,14 @@ module.exports = React.createClass({
             games: GameStore.getGames()
         });
     },
+    getInitialState: function () {
+        return {
+            games: []
+        };
+    },
     render: function () {
-        return <div>
-                    <h3>Match Maker</h3>
+        return <div className="content-wrapper">
+                    <h3>Parties</h3>
                     <div className="row">
                         <ColPanel col="12" icon="futbol-o" title="Dernières parties">
                             <GameTable data={this.state.games}></GameTable>

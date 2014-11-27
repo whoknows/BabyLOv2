@@ -2,7 +2,7 @@
 
 var UserImage = require('components/User/UserImage.js');
 var {Input,Button} = require('react-bootstrap');
-var UserAction = require('actions/UserAction.js');
+var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 require('./LoginForm.css');
 
@@ -11,7 +11,7 @@ module.exports = React.createClass({
         //
     },
     handleConnection: function (e) {
-        UserAction.login(this.refs.login.getValue(), this.refs.password.getValue());
+        CurrentUserAction.login(this.refs.login.getValue(), this.refs.password.getValue());
         e.preventDefault();
     },
     render: function () {

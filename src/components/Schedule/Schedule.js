@@ -1,17 +1,17 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var ScheduleBloc = require('./ScheduleBloc.js');
+var ScheduleBlock = require('./ScheduleBlock.js');
 
 module.exports = React.createClass({
     generateBlocs: function () {
         return this.props.schedule.map(function(row){
-            return <ScheduleBloc creneau={row.schedule} users={row.users} ></ScheduleBloc>;
+            return <ScheduleBlock creneau={row.schedule} users={row.users} ></ScheduleBlock>;
         }.bind(this));
     },
     render: function () {
         return (
-            <div>
+            <div className="content-wrapper">
                 <h3>Planification</h3>
                 <div className="row-fluid">
                     todo

@@ -11,7 +11,7 @@ var Schedule = require('components/Schedule/Schedule.js');
 var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect} = require('react-router');
 
 var routes = (
-    <Routes location="history">
+    <Routes location="hash">
         <Route name="app" path="/" handler={App}>
             <DefaultRoute name="home" handler={Home}/>
             <Route name="games" handler={Games}/>

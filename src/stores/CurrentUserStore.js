@@ -7,7 +7,10 @@ module.exports = Reflux.createStore({
         CurrentUserAction.loadData();
     },
     onLoadData: function(){
-        CurrentUserAction.loadSuccess({
+        CurrentUserAction.loadSuccess(null);
+    },
+    onLogin: function(login, password) {
+        this.currentUser = {
             id:1,
             username: 'Guillaume',
             enabled: 1,
@@ -23,10 +26,8 @@ module.exports = Reflux.createStore({
                 lostThisMonth: 0,
                 totalThisMonth: 10
             }
-        });
-    },
-    onLogin: function(login, password) {
-        console.log("login : " + login);
+        };
+        this.trigger();
     },
     onLogout: function() {
         this.currentUser = null;

@@ -7,6 +7,9 @@ var ScheduleAction = require('actions/ScheduleAction.js');
 
 module.exports = React.createClass({
     userScheduled: false,
+    setUserScheduled: function (us) {
+        this.userScheduled = us;
+    },
     getDefaultProps: function() {
         return { users: [], creneau: "" };
     },
@@ -14,13 +17,14 @@ module.exports = React.createClass({
         var currentUser = CurrentUserStore.getCurrentUser();
 
         return this.props.users.map(function(user){
+            this.setUserScheduled(false);
             if(user.id == currentUser.id){
-                this.userScheduled = true;
+                this.setUserScheduled(true);
                 return <UserImage schedule={this.props.creneau} user={user}></UserImage>;
             }
 
             return <UserImage user={user}></UserImage>;
-        });
+        }.bind(this));
     },
     getButton: function () {
         if(!this.userScheduled){

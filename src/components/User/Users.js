@@ -30,7 +30,7 @@ module.exports = React.createClass({
         return <p><i>Cliquer sur un joueur pour afficher ses détails</i></p>;
     },
     render: function () {
-        return <div>
+        return <div className="content-wrapper">
                 <h3>Joueurs</h3>
                 <div className="row">
                     <ColPanel col="4" icon="trophy" title="Classement par score">
