@@ -2,10 +2,18 @@
 
 var UserImage = require('components/User/UserImage.js');
 var {Input,Button} = require('react-bootstrap');
+var UserAction = require('actions/UserAction.js');
 
 require('./LoginForm.css');
 
 module.exports = React.createClass({
+    askAccount: function () {
+        //
+    },
+    handleConnection: function (e) {
+        UserAction.login(this.refs.login.getValue(), this.refs.password.getValue());
+        e.preventDefault();
+    },
     render: function () {
         return (
             <div className="container">
@@ -14,10 +22,10 @@ module.exports = React.createClass({
                         <div className="well bs-component thewell">
                             <h1>Bienvenue.</h1>
                             <form>
-                                <Input type="text" placeholder="Nom d'utilisateur" />
-                                <Input type="password" placeholder="Mot de passe" />
-                                <Button bsStyle="success">Se connecter</Button>
-                                <a href="javascript:void(0)">Demander un compte</a>
+                                <Input ref="login" type="text" placeholder="Nom d'utilisateur" />
+                                <Input ref="password" type="password" placeholder="Mot de passe" />
+                                <Button onClick={this.handleConnection} bsStyle="success">Se connecter</Button>
+                                <a onClick={this.askAccount}>Demander un compte</a>
                             </form>
                         </div>
                     </div>

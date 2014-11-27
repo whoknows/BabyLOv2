@@ -7,6 +7,7 @@ var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('reac
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
+var UserAction = require('actions/UserAction.js');
 
 require('./App.css');
 
@@ -46,7 +47,7 @@ module.exports = React.createClass({
                             {CurrentUserStore.isAdmin() ? <MenuItem><i className="fa fa-plus"></i>Ajouter une partie</MenuItem> : null}
                             {CurrentUserStore.isSuperAdmin() ? <MenuItem><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem> : null}
                             <MenuItem divider />
-                            <MenuItem><i className="fa fa-sign-out"></i>Logout</MenuItem>
+                            <MenuItem onClick={UserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>
                         </DropdownButton>
                     </Nav>
                 </Navbar>
