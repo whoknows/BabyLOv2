@@ -1,0 +1,23 @@
+.scheduleBlock .userImage {
+    float: initial;
+}
+
+.scheduleBlock {
+    background-color:white;
+    border: 1px solid #E4EAEC;
+    height: 320px;
+}
+
+.scheduleBlock-title {
+    margin-bottom: 20px;
+}
+
+.scheduleBlock .list-group .list-group-item {
+    padding: 5px 10px;
+}
+
+.scheduleBlock button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
