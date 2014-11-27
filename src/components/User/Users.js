@@ -2,6 +2,7 @@
 
 var Reflux = require('reflux');
 var React = require('react');
+var {Panel} = require('react-bootstrap');
 
 var UserStore = require('stores/UserStore.js');
 var UserTable = require('components/Table/UserTable.js');
@@ -32,13 +33,19 @@ module.exports = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <UserTable data={this.state.users} title="Classement par score" mode="score" period="thismonth"></UserTable>
+                    <Panel header={[<i className="fa fa-trophy"></i>, "Classement par score"]}>
+                        <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
+                    </Panel>
                 </div>
                 <div className="col-md-4">
-                    <UserTable data={this.state.users} title="Classement par ratio" mode="ratio" period="thismonth"></UserTable>
+                    <Panel header={[<i className="fa fa-trophy"></i>, "Classement par ratio"]}>
+                        <UserTable data={this.state.users} mode="ratio" period="thismonth"></UserTable>
+                    </Panel>
                 </div>
                 <div className="col-md-4">
-                    <UserTable data={this.state.users} title="Classement par score (depuis toujours)" mode="score" period="all"></UserTable>
+                    <Panel header={[<i className="fa fa-trophy"></i>, "Classement par score (depuis toujours)"]}>
+                        <UserTable data={this.state.users} mode="score" period="all"></UserTable>
+                    </Panel>
                 </div>
                 {this.getDetail()}
             </div>

@@ -2,7 +2,7 @@
 
 var React = require('react');
 var UserImage = require('components/User/UserImage.js');
-var {Panel, Table} = require('react-bootstrap');
+var {Table} = require('react-bootstrap');
 
 require('components/Table/Table.css');
 
@@ -51,15 +51,9 @@ module.exports = React.createClass({
             return <th key={i}>{headum}</th>;
         });
 
-        return (
-            <div>
-                <Panel header={[<i className="fa fa-trophy"></i>,this.props.title]}>
-                    <Table hover>
-                        <thead><tr>{header}</tr></thead>
-                        <tbody>{rows}</tbody>
-                    </Table>
-                </Panel>
-            </div>
-        );
+        return <Table hover>
+                <thead><tr>{header}</tr></thead>
+                <tbody>{rows}</tbody>
+            </Table>;
     }
 });

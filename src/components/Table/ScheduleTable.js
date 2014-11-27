@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var UserImage = require('components/User/UserImage.js');
-var {Panel, Table, Button} = require('react-bootstrap');
+var {Table} = require('react-bootstrap');
 var ScheduleItem = require('components/Schedule/ScheduleItem.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var ScheduleAction = require('actions/ScheduleAction.js');
@@ -19,12 +19,10 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Panel header={[<i className="fa fa-calendar"></i>, this.props.title]}>
-                <Table className="scheduleTable" hover>
-                    <thead><tr><th>Créneau</th><th>Joueurs</th></tr></thead>
-                    <tbody>{this.generateTable(this.props.data)}</tbody>
-                </Table>
-            </Panel>
+            <Table className="scheduleTable" hover>
+                <thead><tr><th>Créneau</th><th>Joueurs</th></tr></thead>
+                <tbody>{this.generateTable(this.props.data)}</tbody>
+            </Table>
         );
     }
 });

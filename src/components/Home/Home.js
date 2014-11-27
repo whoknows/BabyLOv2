@@ -55,13 +55,19 @@ module.exports = React.createClass({
                 <AlertBar data={this.state.homeData.alertBar}></AlertBar>
                 <div className="row">
                     <div className="col-md-4">
-                        <ScheduleTable data={this.state.schedule} title="Planification"></ScheduleTable>
+                        <Panel header={[<i className="fa fa-calendar"></i>, "Planification"]}>
+                            <ScheduleTable data={this.state.schedule}></ScheduleTable>
+                        </Panel>
                     </div>
                     <div className="col-md-4">
-                        <GameTable data={this.state.games} title="Dernières parties"></GameTable>
+                        <Panel header={[<i className="fa fa-futbol-o"></i>, "Dernières parties"]}>
+                            <GameTable data={this.state.games}></GameTable>
+                        </Panel>
                     </div>
                     <div className="col-md-4">
-                        <UserTable data={this.state.users} title="Top players" mode="score" period="thismonth"></UserTable>
+                        <Panel header={[<i className="fa fa-trophy"></i>, "Top players"]}>
+                            <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
+                        </Panel>
                     </div>
                 </div>
                 <div className="row">
