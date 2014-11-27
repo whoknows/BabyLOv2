@@ -34,7 +34,7 @@ module.exports = React.createClass({
             <div>
                 <Navbar inverse fluid>
                     <Nav>
-                        <NavItem brand>BabyLOv3</NavItem>
+                        <NavItem brand><img src="external/img/react.png" height="36" width="36" alt="logo" />BabyLOv3</NavItem>
                         <BabyMenuItem icon="fa fa-home" dest="home" label="Accueil"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-star" dest="games" label="Parties"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-user" dest="users" label="Joueurs"></BabyMenuItem>
