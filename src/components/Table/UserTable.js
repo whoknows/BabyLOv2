@@ -34,7 +34,7 @@ module.exports = React.createClass({
         var ratio = gameData['won' + p] / total;
 
         if (this.props.mode == 'score') {
-            ratio = (ratio * this.poidsRatio) + ((total / gameData['total' + p]) * (1 - this.poidsRatio))
+            ratio = (ratio * this.poidsRatio) + ((total / gameData['total' + p]) * (1 - this.poidsRatio));
         }
 
         return Math.round(ratio*100)/100;
@@ -48,7 +48,7 @@ module.exports = React.createClass({
         }.bind(this));
 
         var header = this.getHeader().map(function(headum, i){
-            return <th key={i}>{headum}</th>
+            return <th key={i}>{headum}</th>;
         });
 
         return (

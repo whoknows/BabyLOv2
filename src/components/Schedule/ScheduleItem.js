@@ -7,6 +7,9 @@ var ScheduleAction = require('actions/ScheduleAction.js');
 
 module.exports = React.createClass({
     userScheduled: false,
+    getDefaultProps: function() {
+        return { users: [], creneau: "" };
+    },
     getUserList: function() {
         var currentUser = CurrentUserStore.getCurrentUser();
 
@@ -21,7 +24,7 @@ module.exports = React.createClass({
     },
     getButton: function () {
         if(!this.userScheduled){
-            return <Button data-schedule={creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
+            return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
         }
     },
     clickHandler: function (e) {
