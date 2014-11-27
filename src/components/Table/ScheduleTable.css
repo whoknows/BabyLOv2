@@ -1,4 +1,5 @@
-td button.pull-right {
+.scheduleTable td button {
+    float: right;
     margin: 6px;
 }
 

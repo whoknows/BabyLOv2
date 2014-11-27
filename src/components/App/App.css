@@ -15,6 +15,10 @@
     margin-right: 5px;
 }
 
+.content-wrapper {
+    padding:0!important;
+}
+
 .red {
     background-color: #f6413a;
 }

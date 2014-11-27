@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var {Panel} = require('react-bootstrap');
+var ColPanel = require('./ColPanel.js');
 var AlertBar = require('./AlertBar.js');
 var UserTable = require('components/Table/UserTable.js');
 var UserStore = require('stores/UserStore.js');
@@ -48,33 +48,27 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        var gameGraph = HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null;
-
         return (
             <div>
                 <AlertBar data={this.state.homeData.alertBar}></AlertBar>
                 <div className="row">
-                    <div className="col-md-4">
-                        <ScheduleTable data={this.state.schedule} title="Planification"></ScheduleTable>
-                    </div>
-                    <div className="col-md-4">
-                        <GameTable data={this.state.games} title="Dernières parties"></GameTable>
-                    </div>
-                    <div className="col-md-4">
-                        <UserTable data={this.state.users} title="Top players" mode="score" period="thismonth"></UserTable>
-                    </div>
+                    <ColPanel col="4" icon="calendar" title="Planification">
+                        <ScheduleTable data={this.state.schedule}></ScheduleTable>
+                    </ColPanel>
+                    <ColPanel col="4" icon="futbol-o" title="Dernières parties">
+                        <GameTable data={this.state.games}></GameTable>
+                    </ColPanel>
+                    <ColPanel col="4" icon="trophy" title="Top players">
+                        <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
+                    </ColPanel>
                 </div>
                 <div className="row">
-                    <div className="col-md-7">
-                        <Panel header={[<i className="fa fa-bar-chart"></i>,"Parties jouées par jours"]}>
-                            {gameGraph}
-                        </Panel>
-                    </div>
-                    <div className="col-md-5">
-                        <Panel header={[<i className="fa fa-line-chart"></i>,"Statistiques personnelles"]}>
-                            <UserGraph></UserGraph>
-                        </Panel>
-                    </div>
+                    <ColPanel col="7" icon="bar-chart" title="Parties jouées par jours">
+                        {HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null}
+                    </ColPanel>
+                    <ColPanel col="5" icon="bar-line" title="Statistiques personnelles">
+                        <UserGraph></UserGraph>
+                    </ColPanel>
                 </div>
             </div>
         );

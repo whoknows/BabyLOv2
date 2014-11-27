@@ -2,6 +2,7 @@
 
 var Reflux = require('reflux');
 var React = require('react');
+var ColPanel = require('components/Home/ColPanel.js');
 
 var UserStore = require('stores/UserStore.js');
 var UserTable = require('components/Table/UserTable.js');
@@ -22,28 +23,29 @@ module.exports = React.createClass({
         };
     },
     getDetail: function (userId) {
-        return (<div className="col-md-12">
-            <UserDetail></UserDetail>
-        </div>);
+        if(this.props.params.id){
+            return <div className="col-md-12"><UserDetail user={this.props.params.id}></UserDetail></div>;
+        }
+
+        return <p><i>Cliquer sur un joueur pour afficher ses détails</i></p>;
     },
     render: function () {
-        var details = null
-        if(this.props.params.id){
-            details = this.getDetail(this.props.params.id);
-        }
-        return (
-            <div className="row">
-                <div className="col-md-4">
-                    <UserTable data={this.state.users} title="Classement par score" mode="score" period="thismonth"></UserTable>
+        return <div>
+                <h3>Joueurs</h3>
+                <div className="row">
+                    <ColPanel col="4" icon="trophy" title="Classement par score">
+                        <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
+                    </ColPanel>
+                    <ColPanel col="4" icon="trophy" title="Classement par ratio">
+                        <UserTable data={this.state.users} mode="ratio" period="thismonth"></UserTable>
+                    </ColPanel>
+                    <ColPanel col="4" icon="trophy" title="Classement par score (depuis toujours)">
+                        <UserTable data={this.state.users} mode="score" period="all"></UserTable>
+                    </ColPanel>
                 </div>
-                <div className="col-md-4">
-                    <UserTable data={this.state.users} title="Classement par ratio" mode="ratio" period="thismonth"></UserTable>
+                <div className="row">
+                    {this.getDetail()}
                 </div>
-                <div className="col-md-4">
-                    <UserTable data={this.state.users} title="Classement par score (depuis toujours)" mode="score" period="all"></UserTable>
-                </div>
-                {details}
-            </div>
-        );
+            </div>;
     }
 });

@@ -25,6 +25,13 @@ module.exports = Reflux.createStore({
             }
         });
     },
+    onLogin: function(login, password) {
+        console.log("login : " + login);
+    },
+    onLogout: function() {
+        this.currentUser = null;
+        this.trigger();
+    },
     onLoadSuccess: function(currentUser){
         this.currentUser = currentUser;
         this.trigger();

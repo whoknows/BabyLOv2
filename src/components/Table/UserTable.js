@@ -2,7 +2,7 @@
 
 var React = require('react');
 var UserImage = require('components/User/UserImage.js');
-var {Panel, Table} = require('react-bootstrap');
+var {Table} = require('react-bootstrap');
 
 require('components/Table/Table.css');
 
@@ -34,7 +34,7 @@ module.exports = React.createClass({
         var ratio = gameData['won' + p] / total;
 
         if (this.props.mode == 'score') {
-            ratio = (ratio * this.poidsRatio) + ((total / gameData['total' + p]) * (1 - this.poidsRatio))
+            ratio = (ratio * this.poidsRatio) + ((total / gameData['total' + p]) * (1 - this.poidsRatio));
         }
 
         return Math.round(ratio*100)/100;
@@ -48,18 +48,12 @@ module.exports = React.createClass({
         }.bind(this));
 
         var header = this.getHeader().map(function(headum, i){
-            return <th key={i}>{headum}</th>
+            return <th key={i}>{headum}</th>;
         });
 
-        return (
-            <div>
-                <Panel header={[<i className="fa fa-trophy"></i>,this.props.title]}>
-                    <Table hover>
-                        <thead><tr>{header}</tr></thead>
-                        <tbody>{rows}</tbody>
-                    </Table>
-                </Panel>
-            </div>
-        );
+        return <Table hover>
+                <thead><tr>{header}</tr></thead>
+                <tbody>{rows}</tbody>
+            </Table>;
     }
 });

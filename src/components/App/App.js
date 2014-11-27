@@ -2,11 +2,12 @@
 
 var Reflux = require('expose?Reflux!reflux');
 var React = require('expose?React!react');
-var {Navbar, Nav, DropdownButton, MenuItem, Panel, NavItem} = require('react-bootstrap');
-var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
+var {Navbar, Nav, DropdownButton, MenuItem, NavItem} = require('react-bootstrap');
+//var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
+var UserAction = require('actions/UserAction.js');
 
 require('./App.css');
 
@@ -33,7 +34,7 @@ module.exports = React.createClass({
             <div>
                 <Navbar inverse fluid>
                     <Nav>
-                        <NavItem brand>BabyLOv3</NavItem>
+                        <NavItem brand><img src="external/img/react.png" height="36" width="36" alt="logo" />BabyLOv3</NavItem>
                         <BabyMenuItem icon="fa fa-home" dest="home" label="Accueil"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-star" dest="games" label="Parties"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-user" dest="users" label="Joueurs"></BabyMenuItem>
@@ -46,12 +47,14 @@ module.exports = React.createClass({
                             {CurrentUserStore.isAdmin() ? <MenuItem><i className="fa fa-plus"></i>Ajouter une partie</MenuItem> : null}
                             {CurrentUserStore.isSuperAdmin() ? <MenuItem><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem> : null}
                             <MenuItem divider />
-                            <MenuItem><i className="fa fa-sign-out"></i>Logout</MenuItem>
+                            <MenuItem onClick={UserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>
                         </DropdownButton>
                     </Nav>
                 </Navbar>
                 <div className="container-fluid">
-                    <this.props.activeRouteHandler/>
+                    <div className="content-wrapper">
+                        <this.props.activeRouteHandler/>
+                    </div>
                 </div>
             </div>
         );
