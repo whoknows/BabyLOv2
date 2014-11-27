@@ -7,7 +7,23 @@ module.exports = Reflux.createStore({
         CurrentUserAction.loadData();
     },
     onLoadData: function(){
-        CurrentUserAction.loadSuccess(null);
+        CurrentUserAction.loadSuccess({
+            id:1,
+            username: 'Guillaume',
+            enabled: 1,
+            roles: ['ROLE_USER', 'ROLE_ADMIN'],
+            gravatar: 'http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=35&d=mm&r=x',
+            gameData: {
+                played: 25,
+                won: 20,
+                lost: 5,
+                total: 30,
+                playedThisMonth: 5,
+                wonThisMonth: 5,
+                lostThisMonth: 0,
+                totalThisMonth: 10
+            }
+        });
     },
     onLogin: function(login, password) {
         this.currentUser = {

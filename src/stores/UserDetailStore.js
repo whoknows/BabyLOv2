@@ -14,7 +14,9 @@ module.exports = Reflux.createStore({
         }).then(function(response) {*/
             UserDetailAction.loadSuccess({
                     id: 1,
-                    username:"Guillaume"
+                    username:"Guillaume",
+                    gravatar:"http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=150&d=mm&r=x",
+                    graphData:{}
                 });
         //});
     },

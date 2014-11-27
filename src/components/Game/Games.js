@@ -5,6 +5,8 @@ var GameTable = require('components/Table/GameTable.js');
 var GameStore = require('stores/GameStore.js');
 var ColPanel = require('components/Home/ColPanel.js');
 
+require('./Game.css');
+
 module.exports = React.createClass({
     mixins: [
         Reflux.listenTo(GameStore,"onGameChange")
@@ -16,7 +18,7 @@ module.exports = React.createClass({
     },
     getInitialState: function () {
         return {
-            games: []
+            games: GameStore.getGames()
         };
     },
     render: function () {

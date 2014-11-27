@@ -31,11 +31,7 @@ module.exports = React.createClass({
         return <Table hover>
                     <thead>
                     <tr>
-                        <th rowSpan="2">Date</th>
-                        <th colSpan="3">Equipe 1</th>
-                        <th colSpan="3">Equipe 2</th>
-                    </tr>
-                    <tr>
+                        <th>Date</th>
                         <th>Joueur 1</th>
                         <th>Joueur 2</th>
                         <th>Score</th>

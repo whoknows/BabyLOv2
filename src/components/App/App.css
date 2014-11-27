@@ -1,6 +1,10 @@
-.brand img {
+.brand img, .image-left {
     margin-right: 5px;
     vertical-align: bottom;
+}
+
+.navbar-default .navbar-nav > li > a.brand, .brand:visited {
+    color: #00D8FF!important;
 }
 
 .navbar {
