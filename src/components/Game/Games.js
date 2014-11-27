@@ -14,12 +14,13 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        return (
-            <div className="row">
-                <ColPanel col="12" icon="futbol-o" title="Dernières parties">
-                    <GameTable data={this.state.games}></GameTable>
-                </ColPanel>
-            </div>
-        );
+        return <div>
+                    <h3>Match Maker</h3>
+                    <div className="row">
+                        <ColPanel col="12" icon="futbol-o" title="Dernières parties">
+                            <GameTable data={this.state.games}></GameTable>
+                        </ColPanel>
+                    </div>
+                </div>;
     }
 });

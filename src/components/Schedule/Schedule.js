@@ -11,8 +11,11 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <div className="row-fluid">
-                todo
+            <div>
+                <h3>Planification</h3>
+                <div className="row-fluid">
+                    todo
+                </div>
             </div>
         );
     }

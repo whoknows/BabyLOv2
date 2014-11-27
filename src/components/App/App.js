@@ -52,7 +52,9 @@ module.exports = React.createClass({
                     </Nav>
                 </Navbar>
                 <div className="container-fluid">
-                    <this.props.activeRouteHandler/>
+                    <div className="content-wrapper">
+                        <this.props.activeRouteHandler/>
+                    </div>
                 </div>
             </div>
         );

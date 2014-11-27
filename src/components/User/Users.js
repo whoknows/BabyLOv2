@@ -31,6 +31,7 @@ module.exports = React.createClass({
     },
     render: function () {
         return <div>
+                <h3>Joueurs</h3>
                 <div className="row">
                     <ColPanel col="4" icon="trophy" title="Classement par score">
                         <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>

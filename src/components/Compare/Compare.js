@@ -3,12 +3,7 @@
 var React = require('react');
 
 module.exports = React.createClass({
-    componentDidMount: function() {
-        //
-    },
     render: function () {
-        return (
-            <div id="userChart"></div>
-        );
+        return <div><h3>Comparateur</h3></div>;
     }
 });
