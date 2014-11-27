@@ -2,7 +2,7 @@
 
 var Reflux = require('reflux');
 var React = require('react');
-var {Panel} = require('react-bootstrap');
+var ColPanel = require('components/Home/ColPanel.js');
 
 var UserStore = require('stores/UserStore.js');
 var UserTable = require('components/Table/UserTable.js');
@@ -27,28 +27,24 @@ module.exports = React.createClass({
             return <div className="col-md-12"><UserDetail user={this.props.params.id}></UserDetail></div>;
         }
 
-        return null;
+        return <p><i>Cliquer sur un joueur pour afficher ses détails</i></p>;
     },
     render: function () {
-        return (
-            <div className="row">
-                <div className="col-md-4">
-                    <Panel header={[<i className="fa fa-trophy"></i>, "Classement par score"]}>
+        return <div>
+                <div className="row">
+                    <ColPanel col="4" icon="trophy" title="Classement par score">
                         <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
-                    </Panel>
-                </div>
-                <div className="col-md-4">
-                    <Panel header={[<i className="fa fa-trophy"></i>, "Classement par ratio"]}>
+                    </ColPanel>
+                    <ColPanel col="4" icon="trophy" title="Classement par ratio">
                         <UserTable data={this.state.users} mode="ratio" period="thismonth"></UserTable>
-                    </Panel>
-                </div>
-                <div className="col-md-4">
-                    <Panel header={[<i className="fa fa-trophy"></i>, "Classement par score (depuis toujours)"]}>
+                    </ColPanel>
+                    <ColPanel col="4" icon="trophy" title="Classement par score (depuis toujours)">
                         <UserTable data={this.state.users} mode="score" period="all"></UserTable>
-                    </Panel>
+                    </ColPanel>
                 </div>
-                {this.getDetail()}
-            </div>
-        );
+                <div className="row">
+                    {this.getDetail()}
+                </div>
+            </div>;
     }
 });
