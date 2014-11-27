@@ -48,8 +48,6 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        var gameGraph = HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null;
-
         return (
             <div>
                 <AlertBar data={this.state.homeData.alertBar}></AlertBar>
@@ -66,7 +64,7 @@ module.exports = React.createClass({
                 </div>
                 <div className="row">
                     <ColPanel col="7" icon="bar-chart" title="Parties jouées par jours">
-                        {gameGraph}
+                        {HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null}
                     </ColPanel>
                     <ColPanel col="5" icon="bar-line" title="Statistiques personnelles">
                         <UserGraph></UserGraph>
