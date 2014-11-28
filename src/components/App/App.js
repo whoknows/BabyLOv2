@@ -5,6 +5,7 @@ var React = require('expose?React!react');
 var {Navbar, Nav, DropdownButton, MenuItem, NavItem} = require('react-bootstrap');
 //var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect, Link} = require('react-router');
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
+var MenuItemLink = require('components/App/MenuItemLink.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
@@ -44,7 +45,7 @@ module.exports = React.createClass({
                     </Nav>
                     <Nav className="navbar-right">
                         <DropdownButton title={[<img className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
-                            {CurrentUserStore.isAdmin() ? <MenuItem><i className="fa fa-plus"></i>Ajouter une partie</MenuItem> : null}
+                            {CurrentUserStore.isAdmin() ? <MenuItemLink to="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItemLink> : null}
                             {CurrentUserStore.isSuperAdmin() ? <MenuItem><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem> : null}
                             <MenuItem divider />
                             <MenuItem onClick={CurrentUserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>

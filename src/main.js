@@ -8,6 +8,7 @@ var Users = require('components/User/Users.js');
 var MatchMaker = require('components/MatchMaker/MatchMaker.js');
 var Compare = require('components/Compare/Compare.js');
 var Schedule = require('components/Schedule/Schedule.js');
+var AddGame = require('components/AddGame/AddGame.js');
 var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect} = require('react-router');
 
 var routes = (
@@ -19,6 +20,7 @@ var routes = (
             <Route name="matchmaker" handler={MatchMaker}/>
             <Route name="compare" handler={Compare}/>
             <Route name="schedule" handler={Schedule}/>
+            <Route name="addgame" handler={AddGame}/>
         </Route>
     </Routes>
 );
