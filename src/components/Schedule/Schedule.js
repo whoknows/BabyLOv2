@@ -20,7 +20,7 @@ module.exports = React.createClass({
     },
     generateBlocs: function () {
         return this.state.schedule.map(function(row){
-            return <ScheduleBlock creneau={row.creneau} users={row.users} ></ScheduleBlock>;
+            return <ScheduleBlock creneau={row.creneau} users={row.users} isFull={row.isFull} ></ScheduleBlock>;
         }.bind(this));
     },
     render: function () {

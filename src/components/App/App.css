@@ -3,7 +3,7 @@
     vertical-align: bottom;
 }
 
-.navbar-default .navbar-nav > li > a.brand, .brand:visited {
+.navbar-inverse .navbar-nav > li > a > .brand {
     color: #00D8FF!important;
 }
 

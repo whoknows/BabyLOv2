@@ -10,11 +10,18 @@ module.exports = React.createClass({
     setUserScheduled: function (us) {
         this.userScheduled = us;
     },
+    isFull: function() {
+        return this.props.users.length == 4;
+    },
     getDefaultProps: function() {
-        return { users: [], creneau: "" };
+        return { users: [], creneau: "", isFull: false };
     },
     getUserList: function() {
         var currentUser = CurrentUserStore.getCurrentUser();
+
+        if (this.props.users.length === 0) {
+            return [<i>Aucun joueur pour ce créneau.</i>];
+        }
 
         return this.props.users.map(function(user){
             this.setUserScheduled(false);
@@ -27,8 +34,10 @@ module.exports = React.createClass({
         }.bind(this));
     },
     getButton: function () {
-        if(!this.userScheduled){
+        if(!this.userScheduled && !this.isFull()){
             return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
+        } else if (this.isFull() && this.props.vertical) {
+            return <i className="moveMe">Le créneau est plein</i>;
         }
     },
     clickHandler: function (e) {
