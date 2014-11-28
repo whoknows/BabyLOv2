@@ -1,7 +1,5 @@
 /** @jsx React.DOM */
 
-var Reflux = require('reflux');
-var React = require('react');
 var ColPanel = require('components/Home/ColPanel.js');
 
 var UserStore = require('stores/UserStore.js');

@@ -1,0 +1,8 @@
+.panel-body {
+    padding-top:30px;
+    max-height: 1000px!important;
+}
+
+#userChart {
+    margin-top: 40px;
+}
