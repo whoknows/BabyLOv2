@@ -25,7 +25,7 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        return <Panel header={[<i className="fa fa-user"></i>, "Statistiques détaillées : ", <span className="text-info">{this.state.detail.username}</span>]}>
+        return <Panel className="userDetailPanel" header={[<i className="fa fa-user"></i>, "Statistiques détaillées : ", <span className="text-info">{this.state.detail.username}</span>]}>
                     <div className="row-fluid">
                         <div className="col-md-5">
                             <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>

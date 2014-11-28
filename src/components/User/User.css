@@ -1,8 +1,8 @@
-.panel-body {
+.userDetailPanel .panel-body {
     padding-top:30px;
     max-height: 1000px!important;
 }
 
-#userChart {
+.userDetailPanel #userChart {
     margin-top: 40px;
 }

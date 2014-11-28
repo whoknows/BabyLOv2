@@ -3,6 +3,14 @@
     vertical-align: bottom;
 }
 
+.brand a {
+    color: yellow!important;
+}
+
+.form-control {
+    box-shadow: unset!important;
+}
+
 .navbar-inverse .navbar-nav > li > a > .brand {
     color: #00D8FF!important;
 }
