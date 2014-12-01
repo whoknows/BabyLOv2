@@ -23,14 +23,15 @@ module.exports = React.createClass({
             return [<i>Aucun joueur pour ce créneau.</i>];
         }
 
-        return this.props.users.map(function(user){
-            this.setUserScheduled(false);
-            if(user.id == currentUser.id){
+        this.setUserScheduled(false);
+
+        return this.props.users.map(function(userid){
+            if(userid == currentUser.id){
                 this.setUserScheduled(true);
-                return <UserImage schedule={this.props.creneau} user={user}></UserImage>;
+                return <UserImage schedule={this.props.creneau} user={userid}></UserImage>;
             }
 
-            return <UserImage user={user}></UserImage>;
+            return <UserImage user={userid}></UserImage>;
         }.bind(this));
     },
     getButton: function () {
@@ -41,7 +42,7 @@ module.exports = React.createClass({
         }
     },
     clickHandler: function (e) {
-        ScheduleAction.participate(e.target.dataset.schedule);
+        ScheduleAction.participate(e.target.dataset.schedule, CurrentUserStore.getCurrentUser().id);
     },
     render: function () {
         if (this.props.vertical) {

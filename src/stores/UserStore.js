@@ -19,11 +19,20 @@ module.exports = Reflux.createStore({
         this.users = users;
         this.trigger();
     },
-    onLoadFail: function(){
-        console.log('fail');
-    },
     getUsers: function() {
         return this.users;
+    },
+    getUserById: function(id) {
+        var user = null;
+
+        this.users.some(function(u) {
+            if(u.id == id) {
+                user = u;
+                return true;
+            }
+        });
+
+        return user;
     },
     users: []
 });

@@ -6,39 +6,49 @@ module.exports = Reflux.createStore({
     init: function(){
         ScheduleAction.loadData();
     },
-    onUnparticipate: function(schedule) {
-        ScheduleAction.loadSuccess([
-            {
-                creneau: '15h10',
-                users: [
-                    {id:2, username:'Jordan', gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x'}
-                ]
+    onUnparticipate: function(schedule, user_id) {
+        $.ajax({
+            url: 'http://127.0.1.1/Babylov2REST/slot/'+schedule+'/'+user_id,
+            type: 'DELETE',
+            dataType: 'json'
+        }).then(function(response){
+            //console.log(response);
+        });
+
+        this.schedule.map(function(s){
+            if(s.creneau == schedule){
+                // TODO : remove user
+                //s.users.push(user_id);
             }
-        ]);
+        });
+
+        ScheduleAction.loadSuccess(this.schedule);
     },
-    onParticipate: function(schedule) {
-        //console.log(schedule);
-        //TODO requete ajax add schedule
-        //this.schedule.push()
-        ScheduleAction.loadSuccess([
-            {
-                creneau: '15h10',
-                users: [
-                    {id:2, username:'Jordan', gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x'},
-                    {id:1, username:'Guillaume', gravatar: 'http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=35&d=mm&r=x'}
-                ]
+    onParticipate: function(schedule, user_id) {
+        $.ajax({
+            url: 'http://127.0.1.1/Babylov2REST/slot/'+schedule+'/'+user_id,
+            type: 'PUT',
+            dataType: 'json'
+        }).then(function(response){
+            //console.log(response);
+        });
+
+        this.schedule.map(function(s){
+            if(s.creneau == schedule){
+                s.users.push(user_id);
             }
-        ]);
+        });
+
+        ScheduleAction.loadSuccess(this.schedule);
     },
     onLoadData: function(){
-        ScheduleAction.loadSuccess([
-            {
-                creneau: '15h10',
-                users: [
-                    {id:2, username:'Jordan', gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x'}
-                ]
-            }
-        ]);
+        $.ajax({
+            url: 'http://127.0.1.1/Babylov2REST/slot',
+            type: 'GET',
+            dataType: 'json'
+        }).then(function(response) {
+            ScheduleAction.loadSuccess(response);
+        });
     },
     onLoadSuccess: function(schedule){
         this.schedule = schedule;

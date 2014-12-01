@@ -28,7 +28,7 @@ module.exports = React.createClass({
         var p = this.getPeriod();
         return <tr key={i}>
                     <td>
-                        <UserImage user={rawRow}></UserImage>
+                        <UserImage user={rawRow.id}></UserImage>
                     </td>
                     <td className="text-success">{rawRow.gameData['won' + p]}</td>
                     <td className="text-danger">{rawRow.gameData['lost' + p]}</td>
