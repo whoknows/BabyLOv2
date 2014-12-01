@@ -9,6 +9,13 @@ require('components/Table/Table.css');
 module.exports = React.createClass({
     header: ['Joueur','Gagnées','Perdues'],
     poidsRatio: 0.65,
+    getDefaultProps: function() {
+        return {
+            data: [],
+            mode: "",
+            period: ""
+        };
+    },
     getHeader: function() {
         var mode = 'Ratio';
         if (this.props.mode == 'score') {
@@ -37,7 +44,9 @@ module.exports = React.createClass({
             ratio = (ratio * this.poidsRatio) + ((total / gameData['total' + p]) * (1 - this.poidsRatio));
         }
 
-        return Math.round(ratio*100)/100;
+        var score = Math.round(ratio*100)/100;
+
+        return isNaN(score) ? 'N/A' : score;
     },
     getPeriod: function () {
         return this.props.period.toLowerCase() == 'thismonth' ? 'ThisMonth' : '';

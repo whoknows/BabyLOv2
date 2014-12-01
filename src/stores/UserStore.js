@@ -7,56 +7,20 @@ module.exports = Reflux.createStore({
         UserActions.loadData();
     },
     onLoadData: function(){
-        /*$.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/api/user',
+        $.ajax({
+            url: 'http://127.0.1.1/Babylov2REST/users',
             type: 'GET',
             dataType: 'json'
-        }).then(function(response) {*/
-            var response = [
-                {
-                    id:1,
-                    username: 'Guillaume',
-                    enabled: 1,
-                    roles: ['ROLE_USER', 'ROLE_ADMIN'],
-                    gravatar: 'http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=35&d=mm&r=x',
-                    gameData: {
-                        played: 25,
-                        won: 20,
-                        lost: 5,
-                        total: 30,
-                        playedThisMonth: 5,
-                        wonThisMonth: 5,
-                        lostThisMonth: 0,
-                        totalThisMonth: 10
-                    }
-                },
-                {
-                    id:2,
-                    username: 'Jordan',
-                    enabled: 1,
-                    roles: ['ROLE_USER'],
-                    gravatar: 'http://www.gravatar.com/avatar/f2fade485ed9688ed1e7756dc2980e79?s=40&d=mm&r=x',
-                    gameData: {
-                        played: 15,
-                        won: 5,
-                        lost: 10,
-                        total: 30,
-                        playedThisMonth: 3,
-                        wonThisMonth: 2,
-                        lostThisMonth: 1,
-                        totalThisMonth: 10
-                    }
-                },
-            ];
+        }).then(function(response) {
             UserActions.loadSuccess(response);
-        //});
+        });
     },
     onLoadSuccess: function(users){
         this.users = users;
         this.trigger();
     },
     onLoadFail: function(){
-        // bzzzzapp!
+        console.log('fail');
     },
     getUsers: function() {
         return this.users;

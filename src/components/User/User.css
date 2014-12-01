@@ -3,6 +3,10 @@
     max-height: 1000px!important;
 }
 
+.userpanels .panel-body {
+    max-height: initial;
+}
+
 .userDetailPanel #userChart {
     margin-top: 40px;
 }

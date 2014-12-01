@@ -33,8 +33,8 @@ module.exports = React.createClass({
 
         return (
             <header className="topnavbar-wrapper">
-                <Navbar className="topnavbar" fluid>
-                {/*<Navbar inverse fluid>*/}
+                {/*<Navbar className="topnavbar" fluid>*/}
+                <Navbar inverse fluid>
                     <Nav>
                         <NavItem className="brand"><img src="external/img/react.png" height="20" width="20" alt="logo" />BabyLOv3</NavItem>
                         <BabyMenuItem icon="fa fa-home" dest="home" label="Accueil"></BabyMenuItem>
