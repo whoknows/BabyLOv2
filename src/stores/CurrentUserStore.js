@@ -7,9 +7,11 @@ module.exports = Reflux.createStore({
         CurrentUserAction.loadData();
     },
     onLoadData: function(){
+        // TODO load player from session
         CurrentUserAction.loadSuccess(null);
     },
     onLogin: function(login, password) {
+        // TODO envoyer requete de login
         $.ajax({
             url: 'http://127.0.1.1/Babylov2REST/users/1',
             type: 'GET',
@@ -19,6 +21,7 @@ module.exports = Reflux.createStore({
         });
     },
     onLogout: function() {
+        // TODO envoyer requete de logout
         this.currentUser = null;
         this.trigger();
     },
