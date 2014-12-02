@@ -16,7 +16,7 @@ module.exports = React.createClass({
             }
         });
 
-        return data.slice(0, this.props.slice);
+        return returnData.slice(0, this.props.slice);
     },
     generateTable: function(data) {
         if (this.props.slice) {

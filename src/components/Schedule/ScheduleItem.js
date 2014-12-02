@@ -40,12 +40,12 @@ module.exports = React.createClass({
         return lol;
     },
     getButton: function () {
-        if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
+        if (this.props.creneau < (new Date()).getHours() + 'h' + (new Date()).getMinutes()) {
+            return <i className="moveMe">Le créneau est déjà passé.</i>;
+        } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
             return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
-        } else if (this.props.creneau < (new Date()).getHours() + 'h' + (new Date()).getMinutes()) {
-            return <i className="moveMe">Le créneau est déjà passé.</i>;
         }
     },
     clickHandler: function (e) {
