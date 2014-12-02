@@ -1,10 +1,7 @@
 /** @jsx React.DOM */
 
-var UserImage = require('components/User/UserImage.js');
 var {Table} = require('react-bootstrap');
 var ScheduleItem = require('components/Schedule/ScheduleItem.js');
-var CurrentUserStore = require('stores/CurrentUserStore.js');
-var ScheduleAction = require('actions/ScheduleAction.js');
 
 require('./ScheduleTable.css');
 

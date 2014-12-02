@@ -13,6 +13,7 @@ var UserGraph = require('components/Graph/UserGraph.js');
 var GameGraph = require('components/Graph/GameGraph.js');
 
 module.exports = React.createClass({
+    nbItem: 3,
     mixins: [
         Reflux.listenTo(UserStore,"onUserChange"),
         Reflux.listenTo(GameStore,"onGameChange"),
@@ -53,13 +54,13 @@ module.exports = React.createClass({
                 <AlertBar data={this.state.homeData.alertBar}></AlertBar>
                 <div className="row">
                     <ColPanel col="4" icon="calendar" title="Planification">
-                        <ScheduleTable slice={3} data={this.state.schedule}></ScheduleTable>
+                        <ScheduleTable slice={this.nbItem} data={this.state.schedule}></ScheduleTable>
                     </ColPanel>
-                    <ColPanel col="4" icon="futbol-o" title="Dernières parties">
-                        <GameTable data={this.state.games}></GameTable>
+                    <ColPanel col="5" icon="futbol-o" title="Dernières parties">
+                        <GameTable slice={this.nbItem} data={this.state.games}></GameTable>
                     </ColPanel>
-                    <ColPanel col="4" icon="trophy" title="Top players">
-                        <UserTable slice={3} data={this.state.users} mode="score" period="thismonth"></UserTable>
+                    <ColPanel col="3" icon="trophy" title="Top players">
+                        <UserTable slice={this.nbItem} data={this.state.users} mode="score" period="thismonth"></UserTable>
                     </ColPanel>
                 </div>
                 <div className="row">

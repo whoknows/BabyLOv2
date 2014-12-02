@@ -13,6 +13,9 @@ module.exports = React.createClass({
     isFull: function() {
         return this.props.users.length == 4;
     },
+    isEmpty: function() {
+        return this.props.users.length === 0;
+    },
     getDefaultProps: function() {
         return { users: [], creneau: "", isFull: false };
     },
@@ -24,7 +27,8 @@ module.exports = React.createClass({
         }
 
         this.setUserScheduled(false);
-        return this.props.users.map(function(userid){
+
+        var lol = this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
                 return <UserImage schedule={this.props.creneau} user={userid}></UserImage>;
@@ -32,9 +36,11 @@ module.exports = React.createClass({
 
             return <UserImage user={userid}></UserImage>;
         }.bind(this));
+
+        return lol;
     },
     getButton: function () {
-        if(!this.userScheduled && !this.isFull()){
+        if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
             return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
@@ -46,7 +52,6 @@ module.exports = React.createClass({
         ScheduleAction.participate(e.target.dataset.schedule, CurrentUserStore.getCurrentUser().id);
     },
     render: function () {
-        console.log(this.userScheduled ? "oui" : "non");
         if (this.props.vertical) {
             return <ListGroup>
                        {this.getUserList().map(function(user){
@@ -54,6 +59,7 @@ module.exports = React.createClass({
                        }), this.getButton()}
                    </ListGroup>;
         }
+
         return <div>{[this.getUserList(), this.getButton()]}</div>;
     }
 });
