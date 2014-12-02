@@ -8,7 +8,7 @@ require('./LoginForm.css');
 
 module.exports = React.createClass({
     askAccount: function () {
-        //
+        alert("LOL t'as crus quoi la ?");
     },
     handleConnection: function (e) {
         CurrentUserAction.login(this.refs.login.getValue(), this.refs.password.getValue());
@@ -20,7 +20,7 @@ module.exports = React.createClass({
                 <div className="row">
                     <div className="col-md-6 col-md-offset-3">
                         <div className="well bs-component thewell">
-                            <h1>Bienvenue.</h1>
+                            <h1>Bienvenue</h1>
                             <form>
                                 <Input ref="login" type="text" placeholder="Nom d'utilisateur" />
                                 <Input ref="password" type="password" placeholder="Mot de passe" />

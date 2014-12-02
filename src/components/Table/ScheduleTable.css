@@ -1,6 +1,11 @@
 .scheduleTable td button {
     float: right;
-    margin: 5px;
+    margin: 5px 5px 6px 5px;
+}
+
+.scheduleTable td i {
+    display: inline-block;
+    margin-top: 7px!important;
 }
 
 .scheduleTable {

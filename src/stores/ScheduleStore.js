@@ -17,8 +17,13 @@ module.exports = Reflux.createStore({
 
         this.schedule.map(function(s){
             if(s.creneau == schedule){
-                // TODO : remove user
-                //s.users.push(user_id);
+                var users = [];
+                s.users.forEach(function(v,k){
+                    if(v != user_id){
+                        users.push(v);
+                    }
+                });
+                s.users = users;
             }
         });
 

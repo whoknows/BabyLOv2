@@ -13,8 +13,12 @@ module.exports = React.createClass({
         return {
             data: [],
             mode: "",
-            period: ""
+            period: "",
+            slice: false
         };
+    },
+    getPeriod: function () {
+        return this.props.period.toLowerCase() == 'thismonth' ? 'ThisMonth' : '';
     },
     getHeader: function() {
         var mode = 'Ratio';
@@ -32,8 +36,22 @@ module.exports = React.createClass({
                     </td>
                     <td className="text-success">{rawRow.gameData['won' + p]}</td>
                     <td className="text-danger">{rawRow.gameData['lost' + p]}</td>
-                    <td><b>{this.getScore(rawRow.gameData)}</b></td>
+                    <td><b>{rawRow.score}</b></td>
                 </tr>;
+    },
+    getDisplayData: function() {
+        this.prepareArray();
+        this.sortArray();
+
+        var data = this.props.data;
+
+        if(this.props.slice){
+            data = this.props.data.slice(0, this.props.slice);
+        }
+
+        return data.map(function(datum, i) {
+            return this.getRow(datum, i);
+        }.bind(this));
     },
     getScore: function (gameData) {
         var p = this.getPeriod();
@@ -46,23 +64,28 @@ module.exports = React.createClass({
 
         var score = Math.round(ratio*100)/100;
 
-        return isNaN(score) ? 'N/A' : score;
+        return isNaN(score) ? 0 : score;
     },
-    getPeriod: function () {
-        return this.props.period.toLowerCase() == 'thismonth' ? 'ThisMonth' : '';
+    prepareArray: function() {
+        this.props.data.map(function(datum){
+            datum.score = this.getScore(datum.gameData);
+
+            return datum;
+        }.bind(this));
+    },
+    sortArray: function() {
+        this.props.data.sort(function(a, b){
+            return a.score < b.score ? 1 : -1;
+        });
     },
     render: function () {
-        var rows = this.props.data.map(function(datum, i) {
-            return this.getRow(datum, i);
-        }.bind(this));
-
         var header = this.getHeader().map(function(headum, i){
             return <th key={i}>{headum}</th>;
         });
 
         return <Table hover>
                 <thead><tr>{header}</tr></thead>
-                <tbody>{rows}</tbody>
+                <tbody>{this.getDisplayData()}</tbody>
             </Table>;
     }
 });

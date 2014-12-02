@@ -9,7 +9,23 @@ var ScheduleAction = require('actions/ScheduleAction.js');
 require('./ScheduleTable.css');
 
 module.exports = React.createClass({
+    prepareData: function(data) {
+        var heure = (new Date()).getHours() + 'h' + (new Date()).getMinutes();
+        var returnData = [];
+
+        data.forEach(function(v,k){
+            if(v.creneau >= heure){
+                returnData.push(v);
+            }
+        });
+
+        return data.slice(0, this.props.slice);
+    },
     generateTable: function(data) {
+        if (this.props.slice) {
+            data = this.prepareData(data);
+        }
+
         return data.map(function(row, i){
             return <tr key={i}>
                 <td>{row.creneau}</td>
