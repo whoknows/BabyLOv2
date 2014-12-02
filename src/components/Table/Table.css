@@ -1,5 +1,6 @@
 .panel-body {
     padding: 0;
+    max-height:initial!important;
 }
 
 .panel-body .table {
