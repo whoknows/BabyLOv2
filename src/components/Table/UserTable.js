@@ -67,11 +67,15 @@ module.exports = React.createClass({
         return isNaN(score) ? 0 : score;
     },
     prepareArray: function() {
+        var tmp = [];
         this.props.data.map(function(datum){
-            datum.score = this.getScore(datum.gameData);
-
-            return datum;
+            if(datum.enabled == 1){
+                datum.score = this.getScore(datum.gameData);
+                tmp.push(datum);
+            }
         }.bind(this));
+
+        this.props.data = tmp;
     },
     sortArray: function() {
         this.props.data.sort(function(a, b){
