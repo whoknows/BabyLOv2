@@ -25,7 +25,7 @@ module.exports = Reflux.createStore({
             }
         });
 
-        ScheduleAction.loadSuccess(this.schedule);
+        this.trigger();
     },
     onParticipate: function(schedule, user_id) {
         $.ajax({
@@ -36,13 +36,14 @@ module.exports = Reflux.createStore({
             //console.log(response);
         });
 
+        // TODO : verifier que le creneau n'est pas plein coté serveur !!!
         this.schedule.map(function(s){
             if(s.creneau == schedule){
                 s.users.push(user_id);
             }
         });
 
-        ScheduleAction.loadSuccess(this.schedule);
+        this.trigger();
     },
     onLoginSuccess: function(){
         $.ajax({

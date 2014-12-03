@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 var {Input,Button} = require('react-bootstrap');
+var Select = require('components/Select/Select.js');
+var UserStore = require('stores/UserStore.js');
 
 module.exports = React.createClass({
     mixins: [
@@ -23,6 +25,7 @@ module.exports = React.createClass({
                         <h4>Equipe 1</h4>
                         <div className="row">
                             <div className="col-md-12">
+                                <Select data={UserStore.getUsers()} />
                                 <Input ref="p1t1" type="text" placeholder="Joueur 1" value="" />
                             </div>
                             <div className="col-md-12">

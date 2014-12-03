@@ -9,10 +9,10 @@ var MatchMaker = require('components/MatchMaker/MatchMaker.js');
 var Compare = require('components/Compare/Compare.js');
 var Schedule = require('components/Schedule/Schedule.js');
 var AddGame = require('components/AddGame/AddGame.js');
-var {Route, DefaultRoute, HashLocation, create, run} = require('react-router');
+var {Route, DefaultRoute, HistoryLocation, run} = require('react-router');
 
 var routes = (
-        <Route name="app" path="/" handler={App}>
+        <Route name="app" path="/Babylov2/" handler={App}>
             <DefaultRoute name="home" handler={Home}/>
             <Route name="games" handler={Games}/>
             <Route name="users" path="users/?:id?" handler={Users}/>
@@ -23,7 +23,7 @@ var routes = (
         </Route>);
 
 document.addEventListener('DOMContentLoaded', function() {
-    run(routes, function (Handler) {
+    run(routes, HistoryLocation, function (Handler) {
         React.render(<Handler/>, document.body);
     });
 });
