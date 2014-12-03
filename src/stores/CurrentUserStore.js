@@ -1,4 +1,5 @@
 var CurrentUserAction = require('actions/CurrentUserAction.js');
+var sha1 = require('sha1');
 
 module.exports = Reflux.createStore({
     listenables: CurrentUserAction,
@@ -7,13 +8,22 @@ module.exports = Reflux.createStore({
         CurrentUserAction.loadData();
     },
     onLoadData: function(){
-        // TODO load player from session
-        CurrentUserAction.loadSuccess(null);
+        $.ajax({
+            url: '/Babylov2REST/isconnected',
+            type: 'GET',
+            dataType: 'json'
+        }).then(function(response) {
+            CurrentUserAction.loadSuccess(response);
+        });
     },
     onLogin: function(login, password) {
-        // TODO envoyer requete de login
+        if(login === '' || password === ''){
+            CurrentUserAction.loadSuccess({message:'Champs vide.'});
+            return true;
+        }
+
         $.ajax({
-            url: '/Babylov2REST/users/1',
+            url: '/Babylov2REST/login/'+login+'/'+sha1(password),
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
@@ -21,9 +31,12 @@ module.exports = Reflux.createStore({
         });
     },
     onLogout: function() {
-        // TODO envoyer requete de logout
-        this.currentUser = null;
-        this.trigger();
+        $.ajax({
+            url: '/Babylov2REST/logout',
+            type: 'GET',
+            dataType: 'json'
+        });
+        CurrentUserAction.loadSuccess(null);
     },
     onLoadSuccess: function(currentUser){
         this.currentUser = currentUser;

@@ -7,6 +7,9 @@ var CurrentUserAction = require('actions/CurrentUserAction.js');
 require('./LoginForm.css');
 
 module.exports = React.createClass({
+    getDefaultProps: function() {
+        return {message: ""};
+    },
     askAccount: function () {
         alert("LOL t'as crus quoi la ?");
     },
@@ -26,6 +29,7 @@ module.exports = React.createClass({
                                 <Input ref="password" type="password" placeholder="Mot de passe" />
                                 <Button onClick={this.handleConnection} bsStyle="success">Se connecter</Button>
                                 <a onClick={this.askAccount}>Demander un compte</a>
+                                <div className="text-danger error-message">{this.props.message}</div>
                             </form>
                         </div>
                     </div>
