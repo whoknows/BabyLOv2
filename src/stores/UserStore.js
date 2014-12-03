@@ -8,7 +8,7 @@ module.exports = Reflux.createStore({
     },
     onLoadData: function(){
         $.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/users',
+            url: '/Babylov2REST/users',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {

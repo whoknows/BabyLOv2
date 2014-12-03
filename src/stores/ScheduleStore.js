@@ -8,7 +8,7 @@ module.exports = Reflux.createStore({
     },
     onUnparticipate: function(schedule, user_id) {
         $.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/slot/'+schedule+'/'+user_id,
+            url: '/Babylov2REST/slot/'+schedule+'/'+user_id,
             type: 'DELETE',
             dataType: 'json'
         }).then(function(response){

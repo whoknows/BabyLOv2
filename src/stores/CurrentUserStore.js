@@ -13,7 +13,7 @@ module.exports = Reflux.createStore({
     onLogin: function(login, password) {
         // TODO envoyer requete de login
         $.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/users/1',
+            url: '/Babylov2REST/users/1',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
