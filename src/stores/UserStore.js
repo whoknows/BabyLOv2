@@ -4,7 +4,7 @@ var UserActions = require('actions/UserAction.js');
 module.exports = Reflux.createStore({
     listenables: UserActions,
     init: function(){
-        UserActions.loadData();
+        //UserActions.loadData();
     },
     onLoadData: function(){
         $.ajax({

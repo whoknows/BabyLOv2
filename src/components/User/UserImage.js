@@ -21,6 +21,10 @@ module.exports = React.createClass({
     render: function () {
         var user = UserStore.getUserById(this.props.user);
 
+        if (user === null) {
+            return null;
+        }
+
         return (
             <span className={"userImage pteam1" + (this.props.schedule ? " removable" : "")} onClick={this.handleClick} data-id={user.id}>
                 <img src={user.gravatar} alt="gravatar" />{user.username}

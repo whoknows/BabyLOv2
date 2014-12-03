@@ -3,7 +3,7 @@ var sha1 = require('sha1');
 
 module.exports = Reflux.createStore({
     listenables: CurrentUserAction,
-    currentUser: [],
+    currentUser: null,
     init: function(){
         CurrentUserAction.loadData();
     },

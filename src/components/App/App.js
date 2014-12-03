@@ -26,10 +26,9 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        if(this.state.currentUser === null || this.state.currentUser.message) {
-            if (this.state.currentUser && this.state.currentUser.message) {
-                return (<LoginForm message={this.state.currentUser.message} />);
-            }
+        if (this.state.currentUser && this.state.currentUser.message) {
+            return (<LoginForm message={this.state.currentUser.message} />);
+        } else if (this.state.currentUser === null) {
             return (<LoginForm />);
         }
 
