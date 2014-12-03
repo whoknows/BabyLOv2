@@ -6,20 +6,7 @@ var UserStore = require('stores/UserStore.js');
 var UserImage = require('components/User/UserImage.js');
 
 module.exports = React.createClass({
-    getSelectContent: function() {
-        var ret = [];
-
-        UserStore.getUsers().map(function(datum, i){
-            if (datum.enabled == 1) {
-                ret.push(<UserImage user={datum.id} />);
-            }
-        });
-
-        return ret;
-    },
     render: function () {
-        var selectContent = this.getSelectContent();
-
         return (
             <div className="content-wrapper">
                 <h3>Ajouter une partie</h3>
@@ -36,7 +23,7 @@ module.exports = React.createClass({
                         <h4>Equipe 1</h4>
                         <div className="row">
                             <div className="col-md-12">
-                                <Select ref="p1t1" placeholder="Joueur 1" data={selectContent} />
+                                <Select ref="p1t1" placeholder="Joueur 1" />
                             </div>
                             <div className="col-md-12">
                                 <Input ref="p2t1" type="text" placeholder="Joueur 2" value="" />
