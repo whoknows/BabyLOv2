@@ -8,6 +8,7 @@ var MenuItemLink = require('components/App/MenuItemLink.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
+var {RouteHandler} = require('react-router');
 
 require('./App.css');
 
@@ -55,7 +56,7 @@ module.exports = React.createClass({
                     </Nav>
                 </Navbar>
                 <div className="container-fluid">
-                    <this.props.activeRouteHandler/>
+                    <RouteHandler />
                 </div>
             </header>
         );

@@ -5,10 +5,12 @@ var ColPanel = require('components/Home/ColPanel.js');
 var UserStore = require('stores/UserStore.js');
 var UserTable = require('components/Table/UserTable.js');
 var UserDetail = require('./UserDetail.js');
+var {State} = require('react-router');
 
 module.exports = React.createClass({
     mixins: [
-        Reflux.listenTo(UserStore,"onUserChange")
+        Reflux.listenTo(UserStore,"onUserChange"),
+        State
     ],
     onUserChange: function() {
         this.setState({
@@ -20,9 +22,10 @@ module.exports = React.createClass({
             users: UserStore.getUsers()
         };
     },
-    getDetail: function (userId) {
-        if(this.props.params.id){
-            return <div className="col-md-12"><UserDetail user={this.props.params.id}></UserDetail></div>;
+    getDetail: function () {
+        var id = this.getParams().id;
+        if(id){
+            return <div className="col-md-12"><UserDetail user={id}></UserDetail></div>;
         }
 
         return <div className="col-md-12"><p><i>Cliquer sur un joueur pour afficher ses détails</i></p></div>;

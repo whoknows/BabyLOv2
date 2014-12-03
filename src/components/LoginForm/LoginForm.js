@@ -24,10 +24,10 @@ module.exports = React.createClass({
                     <div className="col-md-6 col-md-offset-3">
                         <div className="well bs-component thewell">
                             <h1>Bienvenue</h1>
-                            <form>
+                            <form onSubmit={this.handleConnection}>
                                 <Input ref="login" type="text" placeholder="Nom d'utilisateur" />
                                 <Input ref="password" type="password" placeholder="Mot de passe" />
-                                <Button onClick={this.handleConnection} bsStyle="success">Se connecter</Button>
+                                <Button type="submit" bsStyle="success">Se connecter</Button>
                                 <a onClick={this.askAccount}>Demander un compte</a>
                                 <div className="text-danger error-message">{this.props.message}</div>
                             </form>

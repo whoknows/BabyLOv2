@@ -13,7 +13,6 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            CurrentUserAction.loginSuccess(); //TODO modifier success
             CurrentUserAction.loadSuccess(response);
         });
     },
@@ -28,7 +27,6 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            CurrentUserAction.loginSuccess(); //TODO
             CurrentUserAction.loadSuccess(response);
         });
     },
@@ -42,6 +40,11 @@ module.exports = Reflux.createStore({
     },
     onLoadSuccess: function(currentUser){
         this.currentUser = currentUser;
+
+        if(currentUser !== null && !this.currentUser.message){
+            CurrentUserAction.loginSuccess();
+        }
+
         this.trigger();
     },
     getCurrentUser: function() {

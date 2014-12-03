@@ -9,10 +9,9 @@ var MatchMaker = require('components/MatchMaker/MatchMaker.js');
 var Compare = require('components/Compare/Compare.js');
 var Schedule = require('components/Schedule/Schedule.js');
 var AddGame = require('components/AddGame/AddGame.js');
-var {Routes, Route, DefaultRoute, NotFoundRoute, Redirect} = require('react-router');
+var {Route, DefaultRoute, HashLocation, create, run} = require('react-router');
 
 var routes = (
-    <Routes location="hash">
         <Route name="app" path="/" handler={App}>
             <DefaultRoute name="home" handler={Home}/>
             <Route name="games" handler={Games}/>
@@ -21,10 +20,10 @@ var routes = (
             <Route name="compare" handler={Compare}/>
             <Route name="schedule" handler={Schedule}/>
             <Route name="addgame" handler={AddGame}/>
-        </Route>
-    </Routes>
-);
+        </Route>);
 
 document.addEventListener('DOMContentLoaded', function() {
-    React.renderComponent(routes, document.body);
+    run(routes, function (Handler) {
+        React.render(<Handler/>, document.body);
+    });
 });
