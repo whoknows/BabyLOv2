@@ -13,7 +13,7 @@ module.exports = React.createClass({
                     <h3>{this.props.creneau}</h3>
                 </div>
                 <div className="scheduleBlock-content">
-                    <ScheduleItem users={this.props.users} creneau={this.props.creneau} isFull={this.props.isFull} vertical />
+                    {<ScheduleItem users={this.props.users} creneau={this.props.creneau} isFull={this.props.isFull} vertical />}
                 </div>
             </div>
         );

@@ -18,17 +18,14 @@ module.exports = React.createClass({
             schedule: ScheduleStore.getSchedule()
         };
     },
-    generateBlocs: function () {
-        return this.state.schedule.map(function(row){
-            return <ScheduleBlock creneau={row.creneau} users={row.users} isFull={row.isFull} ></ScheduleBlock>;
-        }.bind(this));
-    },
     render: function () {
         return (
             <div className="content-wrapper">
                 <h3>Planification</h3>
                 <div className="row-fluid">
-                    {this.generateBlocs()}
+                    {this.state.schedule.map(function(row,i){
+                        return <ScheduleBlock key={i} creneau={row.creneau} users={row.users} isFull={row.isFull} />;
+                    })}
                 </div>
             </div>
         );

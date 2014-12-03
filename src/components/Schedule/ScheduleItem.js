@@ -54,12 +54,12 @@ module.exports = React.createClass({
     render: function () {
         if (this.props.vertical) {
             return <ListGroup>
-                       {this.getUserList().map(function(user){
-                           return <ListGroupItem>{user}</ListGroupItem>;
+                       {this.getUserList().map(function(user,i){
+                           return <ListGroupItem key={i}>{user}</ListGroupItem>;
                        }), this.getButton()}
                    </ListGroup>;
         }
 
-        return <div>{[this.getUserList(), this.getButton()]}</div>;
+        return <div>{this.getUserList()} {this.getButton()}</div>;
     }
 });

@@ -8,16 +8,19 @@ require('components/User/UserImage.css');
 
 module.exports = React.createClass({
     getDefaultProps: function() {
-        return {data:[]};
+        return {
+            data:[],
+            placeholder: "Select"
+        };
     },
-    handleClick: function() {
+    handleSelect: function() {
         //
     },
     render: function () {
         return (
-            <DropdownButton title="Dropdown">
+            <DropdownButton title={this.props.placeholder}>
                 {this.props.data.map(function(datum, i){
-                    return <MenuItem eventKey={i} key={datum.id}><UserImage user={datum.id} /></MenuItem>;
+                    return <MenuItem eventKey={i} key={i}>{datum}</MenuItem>;
                 })}
             </DropdownButton>
         );

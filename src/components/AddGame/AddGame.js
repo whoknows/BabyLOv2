@@ -5,10 +5,20 @@ var Select = require('components/Select/Select.js');
 var UserStore = require('stores/UserStore.js');
 
 module.exports = React.createClass({
-    mixins: [
-        //Reflux.listenTo(ScheduleStore,"onScheduleChange")
-    ],
+    getSelectContent: function() {
+        var ret = [];
+
+        UserStore.getUsers().map(function(datum, i){
+            if (datum.enabled == 1) {
+                ret.push(<UserImage user={datum.id} />);
+            }
+        });
+
+        return ret;
+    },
     render: function () {
+        var selectContent = this.getSelectContent();
+
         return (
             <div className="content-wrapper">
                 <h3>Ajouter une partie</h3>
@@ -25,14 +35,13 @@ module.exports = React.createClass({
                         <h4>Equipe 1</h4>
                         <div className="row">
                             <div className="col-md-12">
-                                <Select data={UserStore.getUsers()} />
-                                <Input ref="p1t1" type="text" placeholder="Joueur 1" value="" />
+                                <Select ref="p1t1" placeholder="Joueur 1" data={selectContent} />
                             </div>
                             <div className="col-md-12">
                                 <Input ref="p2t1" type="text" placeholder="Joueur 2" value="" />
                             </div>
                             <div className="col-md-12">
-                                <Input ref="scoret1" type="text" placeholder="Score" value="" />
+                                <Input ref="st1" type="text" placeholder="Score" value="" />
                             </div>
                         </div>
                     </div>
@@ -46,7 +55,7 @@ module.exports = React.createClass({
                                 <Input ref="p2t2" type="text" placeholder="Joueur 2" value="" />
                             </div>
                             <div className="col-md-12">
-                                <Input ref="scoret2" type="text" placeholder="Score" value="" />
+                                <Input ref="st2" type="text" placeholder="Score" value="" />
                             </div>
                         </div>
                     </div>

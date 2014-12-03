@@ -30,7 +30,7 @@ module.exports = React.createClass({
     },
     getRow: function (rawRow, i) {
         var p = this.getPeriod();
-        return <tr key={i}>
+        return <tr key={rawRow.id}>
                     <td>
                         <UserImage user={rawRow.id}></UserImage>
                     </td>

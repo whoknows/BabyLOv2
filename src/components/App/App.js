@@ -26,6 +26,21 @@ module.exports = React.createClass({
             currentUser: CurrentUserStore.getCurrentUser()
         });
     },
+    getDropdownContent: function(){
+        var ret = [];
+
+        if(CurrentUserStore.isAdmin()){
+            ret.push(<MenuItemLink key="admin" to="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItemLink>);
+        }
+        if(CurrentUserStore.isSuperAdmin()){
+            ret.push(<MenuItem key="superadmin"><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem>);
+        }
+
+        ret.push(<MenuItem key="divider" divider />);
+        ret.push(<MenuItem key="logout" onClick={CurrentUserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>);
+
+        return ret;
+    },
     render: function () {
         if (this.state.currentUser && this.state.currentUser.message) {
             return (<LoginForm message={this.state.currentUser.message} />);
@@ -47,11 +62,8 @@ module.exports = React.createClass({
                         <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav className="navbar-right">
-                        <DropdownButton title={[<img className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
-                            {CurrentUserStore.isAdmin() ? <MenuItemLink to="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItemLink> : null}
-                            {CurrentUserStore.isSuperAdmin() ? <MenuItem><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem> : null}
-                            <MenuItem divider />
-                            <MenuItem onClick={CurrentUserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>
+                        <DropdownButton title={[<img key="img" className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
+                            {this.getDropdownContent()}
                         </DropdownButton>
                     </Nav>
                 </Navbar>

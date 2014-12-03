@@ -34,13 +34,13 @@ module.exports = React.createClass({
         return <div className="content-wrapper">
                 <h3>Joueurs</h3>
                 <div className="row userpanels">
-                    <ColPanel col="4" icon="trophy" title="Classement par score">
+                    <ColPanel key={1} col="4" icon="trophy" title="Classement par score">
                         <UserTable data={this.state.users} mode="score" period="thismonth"></UserTable>
                     </ColPanel>
-                    <ColPanel col="4" icon="trophy" title="Classement par ratio">
+                    <ColPanel key={2} col="4" icon="trophy" title="Classement par ratio">
                         <UserTable data={this.state.users} mode="ratio" period="thismonth"></UserTable>
                     </ColPanel>
-                    <ColPanel col="4" icon="trophy" title="Classement par score (depuis toujours)">
+                    <ColPanel key={3} col="4" icon="trophy" title="Classement par score (depuis toujours)">
                         <UserTable data={this.state.users} mode="score" period="all"></UserTable>
                     </ColPanel>
                 </div>

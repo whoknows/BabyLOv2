@@ -22,14 +22,14 @@ module.exports = React.createClass({
             }
 
             return <tr key={game.id}>
-                    <td>{game.date}</td>
-                    <td className={classT1}><UserImage user={game.p1t1}></UserImage></td>
-                    <td className={classT1}><UserImage user={game.p2t1}></UserImage></td>
-                    <td className={classT1}>{game.st1}</td>
-                    <td className={classT2}><UserImage user={game.p1t2}></UserImage></td>
-                    <td className={classT2}><UserImage user={game.p2t2}></UserImage></td>
-                    <td className={classT2}>{game.st2}</td>
-                </tr>;
+                        <td>{game.date}</td>
+                        <td className={classT1}><UserImage user={game.p1t1}></UserImage></td>
+                        <td className={classT1}><UserImage user={game.p2t1}></UserImage></td>
+                        <td className={classT1}>{game.st1}</td>
+                        <td className={classT2}><UserImage user={game.p1t2}></UserImage></td>
+                        <td className={classT2}><UserImage user={game.p2t2}></UserImage></td>
+                        <td className={classT2}>{game.st2}</td>
+                    </tr>;
         });
     },
     render: function () {

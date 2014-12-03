@@ -52,22 +52,22 @@ module.exports = React.createClass({
         return (
             <div>
                 <AlertBar data={this.state.homeData.alertBar}></AlertBar>
-                <div className="row">
-                    <ColPanel col="4" icon="calendar" title="Planification">
+                <div key={1} className="row">
+                    <ColPanel key={1} col="4" icon="calendar" title="Planification">
                         <ScheduleTable slice={this.nbItem} data={this.state.schedule}></ScheduleTable>
                     </ColPanel>
-                    <ColPanel col="5" icon="futbol-o" title="Dernières parties">
+                    <ColPanel key={2} col="5" icon="futbol-o" title="Dernières parties">
                         <GameTable slice={this.nbItem} data={this.state.games}></GameTable>
                     </ColPanel>
-                    <ColPanel col="3" icon="trophy" title="Top players">
+                    <ColPanel key={3} col="3" icon="trophy" title="Top players">
                         <UserTable slice={this.nbItem} data={this.state.users} mode="score" period="thismonth"></UserTable>
                     </ColPanel>
                 </div>
-                <div className="row">
-                    <ColPanel col="7" icon="bar-chart" title="Parties jouées par jours">
+                <div key={2} className="row">
+                    <ColPanel key={1} col="7" icon="bar-chart" title="Parties jouées par jours">
                         {HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null}
                     </ColPanel>
-                    <ColPanel col="5" icon="bar-line" title="Statistiques personnelles">
+                    <ColPanel key={2} col="5" icon="bar-line" title="Statistiques personnelles">
                         <UserGraph></UserGraph>
                     </ColPanel>
                 </div>
