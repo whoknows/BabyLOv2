@@ -37,6 +37,7 @@ module.exports = React.createClass({
         });
     },
     render: function () {
+
         var menuItems = this.state.users.filter(function(user){
             return user.username.indexOf(this.state.filter) > -1;
         }.bind(this)).map(function(user){
@@ -49,7 +50,7 @@ module.exports = React.createClass({
 
         var title;
         if(this.state.selectedUserId){
-            title = UserStore.getUserById(this.state.selectedUserId).username;
+            title = <UserImage nolink user={this.state.selectedUserId} />
         }else{
             title = this.props.placeholder
         }
