@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
         this.setUserScheduled(false);
 
-        var lol = this.props.users.map(function(userid){
+        return this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
                 return <UserImage schedule={this.props.creneau} user={userid}></UserImage>;
@@ -36,8 +36,6 @@ module.exports = React.createClass({
 
             return <UserImage user={userid}></UserImage>;
         }.bind(this));
-
-        return lol;
     },
     getButton: function () {
         if (this.props.creneau < (new Date()).getHours() + 'h' + (new Date()).getMinutes()) {
