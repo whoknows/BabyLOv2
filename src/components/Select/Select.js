@@ -6,7 +6,7 @@ var UserImage = require('components/User/UserImage.js');
 
 module.exports = React.createClass({
     mixins: [
-        Reflux.listenTo(UserStore, "onUserChange")
+        Reflux.listenTo(UserStore, 'onUserChange')
     ],
     onUserChange: function(){
         this.setState({
@@ -39,7 +39,7 @@ module.exports = React.createClass({
     render: function () {
 
         var menuItems = this.state.users.filter(function(user){
-            return user.username.indexOf(this.state.filter) > -1;
+            return user.username.toLowerCase().indexOf(this.state.filter.toLowerCase()) > -1;
         }.bind(this)).map(function(user){
             return (
                 <MenuItem onSelect={this.handleSelect} eventKey={user.id} key={user.id}>

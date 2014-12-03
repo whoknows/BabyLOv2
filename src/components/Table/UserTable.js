@@ -28,29 +28,26 @@ module.exports = React.createClass({
 
         return this.header.concat([mode]);
     },
-    getRow: function (rawRow, i) {
-        var p = this.getPeriod();
-        return <tr key={rawRow.id}>
-                    <td>
-                        <UserImage user={rawRow.id}></UserImage>
-                    </td>
-                    <td className="text-success">{rawRow.gameData['won' + p]}</td>
-                    <td className="text-danger">{rawRow.gameData['lost' + p]}</td>
-                    <td><b>{rawRow.score}</b></td>
-                </tr>;
+    getRow: function (user) {
+
     },
-    getDisplayData: function() {
-        this.prepareArray();
-        this.sortArray();
-
-        var data = this.props.data;
-
-        if(this.props.slice){
-            data = this.props.data.slice(0, this.props.slice);
-        }
-
-        return data.map(function(datum, i) {
-            return this.getRow(datum, i);
+    getRows: function() {
+        return Array.prototype.slice.apply(this.props.data, this.props.slice ? [0, this.props.slice] : undefined)
+        .filter(function(user){
+            return user.enabled;
+        }.bind(this)).sort(function(userA, userB){
+            // FIXME Score should already be computed by store !!!
+            return this.getScore(userA.gameData) < this.getScore(userB.gameData) ? 1 : -1;
+        }.bind(this)).map(function(user){
+            var p = this.getPeriod();
+            return <tr key={user.id}>
+                <td className="hasUserImage">
+                    <UserImage user={user.id}></UserImage>
+                </td>
+                <td className="text-success">{user.gameData['won' + p]}</td>
+                <td className="text-danger">{user.gameData['lost' + p]}</td>
+                <td><b>{this.getScore(user.gameData)}</b></td>
+            </tr>;
         }.bind(this));
     },
     getScore: function (gameData) {
@@ -66,22 +63,7 @@ module.exports = React.createClass({
 
         return isNaN(score) ? 0 : score;
     },
-    prepareArray: function() {
-        var tmp = [];
-        this.props.data.map(function(datum){
-            if(datum.enabled == 1){
-                datum.score = this.getScore(datum.gameData);
-                tmp.push(datum);
-            }
-        }.bind(this));
 
-        this.props.data = tmp;
-    },
-    sortArray: function() {
-        this.props.data.sort(function(a, b){
-            return a.score < b.score ? 1 : -1;
-        });
-    },
     render: function () {
         var header = this.getHeader().map(function(headum, i){
             return <th key={i}>{headum}</th>;
@@ -89,7 +71,7 @@ module.exports = React.createClass({
 
         return <Table hover>
                 <thead><tr>{header}</tr></thead>
-                <tbody>{this.getDisplayData()}</tbody>
+                <tbody>{this.getRows()}</tbody>
             </Table>;
     }
 });
