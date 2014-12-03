@@ -31,7 +31,7 @@ module.exports = Reflux.createStore({
     },
     onParticipate: function(schedule, user_id) {
         $.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/slot/'+schedule+'/'+user_id,
+            url: '/Babylov2REST/slot/'+schedule+'/'+user_id,
             type: 'PUT',
             dataType: 'json'
         }).then(function(response){
@@ -48,7 +48,7 @@ module.exports = Reflux.createStore({
     },
     onLoadData: function(){
         $.ajax({
-            url: 'http://127.0.1.1/Babylov2REST/slot',
+            url: '/Babylov2REST/slot',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
