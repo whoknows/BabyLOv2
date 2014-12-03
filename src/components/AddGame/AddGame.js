@@ -3,6 +3,7 @@
 var {Input,Button} = require('react-bootstrap');
 var Select = require('components/Select/Select.js');
 var UserStore = require('stores/UserStore.js');
+var UserImage = require('components/User/UserImage.js');
 
 module.exports = React.createClass({
     getSelectContent: function() {

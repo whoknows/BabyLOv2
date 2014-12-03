@@ -12,7 +12,7 @@ var AddGame = require('components/AddGame/AddGame.js');
 var {Route, DefaultRoute, HistoryLocation, run} = require('react-router');
 
 var routes = (
-        <Route name="app" path="/Babylov2/" handler={App}>
+        <Route name="app" path="/babylov3/" handler={App}>
             <DefaultRoute name="home" handler={Home}/>
             <Route name="games" handler={Games}/>
             <Route name="users" path="users/?:id?" handler={Users}/>
