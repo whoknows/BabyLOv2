@@ -1,23 +1,18 @@
 var Reflux = require('reflux');
 var UserActions = require('actions/UserAction.js');
+var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: UserActions,
-    init: function(){
-        //UserActions.loadData();
-    },
-    onLoadData: function(){
+    listenables: [UserActions, CurrentUserAction],
+    onLoginSuccess: function(){
         $.ajax({
             url: '/Babylov2REST/users',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            UserActions.loadSuccess(response);
-        });
-    },
-    onLoadSuccess: function(users){
-        this.users = users;
-        this.trigger();
+            this.users = response;
+            this.trigger();
+        }.bind(this));
     },
     getUsers: function() {
         return this.users;

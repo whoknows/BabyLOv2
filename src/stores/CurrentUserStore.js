@@ -5,14 +5,15 @@ module.exports = Reflux.createStore({
     listenables: CurrentUserAction,
     currentUser: null,
     init: function(){
-        CurrentUserAction.loadData();
+        CurrentUserAction.checkSession();
     },
-    onLoadData: function(){
+    onCheckSession: function(){
         $.ajax({
             url: '/Babylov2REST/isconnected',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
+            CurrentUserAction.loginSuccess(); //TODO modifier success
             CurrentUserAction.loadSuccess(response);
         });
     },
@@ -27,6 +28,7 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
+            CurrentUserAction.loginSuccess(); //TODO
             CurrentUserAction.loadSuccess(response);
         });
     },
