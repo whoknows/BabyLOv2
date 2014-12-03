@@ -1,18 +1,16 @@
 var Reflux = require('reflux');
 var UserDetailAction = require('actions/UserDetailAction.js');
+var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: UserDetailAction,
-    init: function(){
-        UserDetailAction.loadData();
-    },
-    onLoadData: function(){
+    listenables: [CurrentUserAction, UserDetailAction],
+    onLoginSuccess: function(){
         /*$.ajax({
             url: 'http://127.0.1.1/Babylov2REST/api/game',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {*/
-            UserDetailAction.loadSuccess({
+            this.userDetail = {
                     id: 1,
                     username:"Guillaume",
                     gravatar:"http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=150&d=mm&r=x",
@@ -33,13 +31,9 @@ module.exports = Reflux.createStore({
                         {text: "Moins bon adversaire", value: "Jordan"},
                         {text: "Meilleur partenaire", value: "Jordan"},
                         {text: "Moins bon partenaire", value: "Jordan"}
-                    ]
-                });
-        //});
-    },
-    onLoadSuccess: function(userDetail){
-        this.userDetail = userDetail;
-        this.trigger();
+                    ]};
+            this.trigger();
+        //}.bind(this));
     },
     getUserDetail: function() {
         return this.userDetail;

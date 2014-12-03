@@ -1,23 +1,18 @@
 var Reflux = require('reflux');
 var GameActions = require('actions/GameAction.js');
+var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: GameActions,
-    init: function(){
-        GameActions.loadData();
-    },
-    onLoadData: function(){
+    listenables: [CurrentUserAction, GameActions],
+    onLoginSuccess: function(){
         $.ajax({
             url: '/Babylov2REST/games/5', //TODO : changer ce 5
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            GameActions.loadSuccess(response);
-        });
-    },
-    onLoadSuccess: function(games){
-        this.games = games;
-        this.trigger();
+            this.games = response;
+            this.trigger();
+        }.bind(this));
     },
     getGames: function() {
         return this.games;

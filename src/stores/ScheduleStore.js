@@ -1,11 +1,9 @@
 var ScheduleAction = require('actions/ScheduleAction.js');
+var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: ScheduleAction,
+    listenables: [CurrentUserAction, ScheduleAction],
     schedule: [],
-    init: function(){
-        ScheduleAction.loadData();
-    },
     onUnparticipate: function(schedule, user_id) {
         $.ajax({
             url: '/Babylov2REST/slot/'+schedule+'/'+user_id,
@@ -46,18 +44,15 @@ module.exports = Reflux.createStore({
 
         ScheduleAction.loadSuccess(this.schedule);
     },
-    onLoadData: function(){
+    onLoginSuccess: function(){
         $.ajax({
             url: '/Babylov2REST/slot',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            ScheduleAction.loadSuccess(response);
-        });
-    },
-    onLoadSuccess: function(schedule){
-        this.schedule = schedule;
-        this.trigger();
+            this.schedule = response;
+            this.trigger();
+        }.bind(this));
     },
     getSchedule: function() {
         return this.schedule;
