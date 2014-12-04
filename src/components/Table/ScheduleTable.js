@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 
 var {Table} = require('react-bootstrap');
+var ScheduleStore = require('stores/ScheduleStore.js');
 var ScheduleItem = require('components/Schedule/ScheduleItem.js');
 
 require('./ScheduleTable.css');
 
 module.exports = React.createClass({
     prepareData: function(data) {
-        var h = (new Date()).getHours();
-        var heure = (h<10?'0'+h:h) + 'h' + (new Date()).getMinutes();
+        var heure = ScheduleStore.getCurrentTime();
         var returnData = [];
 
         data.forEach(function(v,k){

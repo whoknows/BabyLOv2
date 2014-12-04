@@ -55,6 +55,13 @@ module.exports = Reflux.createStore({
             this.trigger();
         }.bind(this));
     },
+    getCurrentTime: function() {
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+
+        return (h<10?'0'+h:h) + 'h' + (m<10?'0'+m:m);
+    },
     getSchedule: function() {
         return this.schedule;
     }
