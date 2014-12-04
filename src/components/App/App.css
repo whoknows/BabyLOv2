@@ -36,9 +36,17 @@
     padding:0!important;
 }
 
-.red {
-    background-color: #f6413a;
+.pageloader {
+    color: #607d8b;
+    font-size: 100px;
+    height: 100%;
+    padding-top:300px;
+    text-align:center;
+    width: 100%;
+    vertical-align:middle;
 }
+
+.red { background-color: #f6413a; }
 .pink {
     background-color: #ea1e63;
 }

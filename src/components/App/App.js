@@ -15,9 +15,7 @@ require('./App.css');
 module.exports = React.createClass({
     mixins: [Reflux.listenTo(CurrentUserStore,"onCurrentUserChange")],
     getInitialState: function(){
-        return {
-            currentUser: CurrentUserStore.getCurrentUser()
-        };
+        return {};
     },
     onCurrentUserChange: function() {
         this.setState({
@@ -40,6 +38,10 @@ module.exports = React.createClass({
         return ret;
     },
     render: function () {
+        if(typeof this.state.currentUser === 'undefined'){
+            return <div className="pageloader"><i className="fa fa-circle-o-notch fa-spin"></i></div>;
+        }
+
         if (this.state.currentUser && this.state.currentUser.message) {
             return (<LoginForm message={this.state.currentUser.message} />);
         } else if (this.state.currentUser === null) {
