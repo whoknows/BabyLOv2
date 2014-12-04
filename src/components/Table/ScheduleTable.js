@@ -7,7 +7,8 @@ require('./ScheduleTable.css');
 
 module.exports = React.createClass({
     prepareData: function(data) {
-        var heure = (new Date()).getHours() + 'h' + (new Date()).getMinutes();
+        var h = (new Date()).getHours();
+        var heure = (h<10?'0'+h:h) + 'h' + (new Date()).getMinutes();
         var returnData = [];
 
         data.forEach(function(v,k){

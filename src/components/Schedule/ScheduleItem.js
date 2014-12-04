@@ -38,7 +38,8 @@ module.exports = React.createClass({
         }.bind(this));
     },
     getButton: function () {
-        if (this.props.creneau < (new Date()).getHours() + 'h' + (new Date()).getMinutes()) {
+        var h = (new Date()).getHours();
+        if (this.props.creneau < (h<10?'0'+h:h) + 'h' + (new Date()).getMinutes()) {
             return <i className="moveMe">Le créneau est déjà passé.</i>;
         } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
             return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
