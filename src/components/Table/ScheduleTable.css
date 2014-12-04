@@ -1,6 +1,6 @@
 .scheduleTable td button {
     float: right;
-    margin: 5px 5px 6px 5px;
+    margin-top: 1px;
 }
 
 .scheduleTable td i {

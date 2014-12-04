@@ -13,7 +13,7 @@ var UserGraph = require('components/Graph/UserGraph.js');
 var GameGraph = require('components/Graph/GameGraph.js');
 
 module.exports = React.createClass({
-    nbItem: 3,
+    nbItem: 4,
     mixins: [
         Reflux.listenTo(UserStore,"onUserChange"),
         Reflux.listenTo(GameStore,"onGameChange"),
