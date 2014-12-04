@@ -23,7 +23,7 @@ module.exports = React.createClass({
         var currentUser = CurrentUserStore.getCurrentUser();
 
         if (this.props.users.length === 0) {
-            return [<i>Aucun joueur pour ce créneau.</i>];
+            return [<i key={this.props.creneau}>Aucun joueur pour ce créneau.</i>];
         }
 
         this.setUserScheduled(false);
@@ -34,7 +34,7 @@ module.exports = React.createClass({
                 return <UserImage schedule={this.props.creneau} user={userid}></UserImage>;
             }
 
-            return <UserImage user={userid}></UserImage>;
+            return <UserImage key={userid} user={userid}></UserImage>;
         }.bind(this));
     },
     getButton: function () {
