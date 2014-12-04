@@ -9,7 +9,7 @@ module.exports = React.createClass({
     getDefaultProps: function() {
         return {
             data:{
-                name:"",
+                desc:"",
                 value: "N/A"
             }
         };
@@ -24,7 +24,7 @@ module.exports = React.createClass({
                         </div>
                         <div className="text-container">
                             <div>
-                                <strong>{this.props.data.name}</strong>
+                                <strong>{this.props.data.value}</strong>
                             </div>
                             {this.props.text}
                         </div>

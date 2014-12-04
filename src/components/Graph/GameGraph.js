@@ -28,7 +28,7 @@ module.exports = React.createClass({
                 x: {
                     type: 'timeseries',
                     tick: {
-                        format: '%Y-%m-%d'
+                        format: '%d/%m/%Y'
                     }
                 }
             },
