@@ -28,9 +28,6 @@ module.exports = React.createClass({
 
         return this.header.concat([mode]);
     },
-    getRow: function (user) {
-
-    },
     getRows: function() {
         return Array.prototype.slice.apply(this.props.data, this.props.slice ? [0, this.props.slice] : undefined)
         .filter(function(user){

@@ -30,7 +30,7 @@ module.exports = Reflux.createStore({
     onParticipate: function(schedule, user_id) {
         $.ajax({
             url: '/Babylov2REST/slot/'+schedule+'/'+user_id,
-            type: 'PUT',
+            type: 'POST',
             dataType: 'json'
         }).then(function(response){
             //console.log(response);
