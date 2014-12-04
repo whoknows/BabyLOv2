@@ -31,7 +31,7 @@ module.exports = React.createClass({
         return this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
-                return <UserImage schedule={this.props.creneau} user={userid}></UserImage>;
+                return <UserImage key={userid} schedule={this.props.creneau} user={userid}></UserImage>;
             }
 
             return <UserImage key={userid} user={userid}></UserImage>;

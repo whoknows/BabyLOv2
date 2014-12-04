@@ -27,7 +27,7 @@ module.exports = React.createClass({
         return data.map(function(row, i){
             return <tr key={row.creneau}>
                 <td>{row.creneau}</td>
-                <td><ScheduleItem users={row.users} creneau={row.creneau} isFull={row.isFull} /></td>
+                <td className="hasUserImage"><ScheduleItem users={row.users} creneau={row.creneau} isFull={row.isFull} /></td>
             </tr>;
         }.bind(this));
     },

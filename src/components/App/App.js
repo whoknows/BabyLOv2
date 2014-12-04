@@ -13,7 +13,7 @@ var {RouteHandler} = require('react-router');
 require('./App.css');
 
 module.exports = React.createClass({
-    mixins: [CurrentUserAction, Reflux.listenTo(CurrentUserStore,"onCurrentUserChange")],
+    mixins: [Reflux.listenTo(CurrentUserStore,"onCurrentUserChange")],
     getInitialState: function(){
         return {
             currentUser: CurrentUserStore.getCurrentUser()
