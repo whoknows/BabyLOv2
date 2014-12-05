@@ -12,12 +12,12 @@ module.exports = React.createClass({
         Reflux.listenTo(UserDetailStore,"onUserDetailChange")
     ],
     handleSelect: function(selected) {
-        this.setState({panel: selected});
+        this.setState({period: selected});
     },
     getInitialState: function() {
         return {
             detail: UserDetailStore.getUserDetail(),
-            panel: 'ThisMonth'
+            period: 'ThisMonth'
         };
     },
     onUserDetailChange: function () {
@@ -29,7 +29,7 @@ module.exports = React.createClass({
         return <Panel className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{this.state.detail.username}</span>]}>
                     <div className="row-fluid">
                         <div className="col-md-5">
-                            <Nav bsStyle="pills" activeKey={this.state.panel} onSelect={this.handleSelect}>
+                            <Nav bsStyle="pills" activeKey={this.state.period} onSelect={this.handleSelect}>
                                 <NavItem eventKey="ThisMonth">Ce mois ci</NavItem>
                                 <NavItem eventKey="LastMonth">Le mois dernier</NavItem>
                                 <NavItem eventKey="">Depuis toujours</NavItem>
@@ -41,7 +41,7 @@ module.exports = React.createClass({
                             </ListGroup>
                         </div>
                         <div className="col-md-7">
-                            <UserGraph />
+                            <UserGraph user={this.props.user} period={this.state.period} />
                         </div>
                     </div>
                 </Panel>;

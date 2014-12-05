@@ -64,11 +64,11 @@ module.exports = React.createClass({
                     </ColPanel>
                 </div>
                 <div key={2} className="row">
-                    <ColPanel key={1} col="7" icon="bar-chart" title="Parties jouées par jours">
+                    <ColPanel key={1} col="7" icon="area-chart" title="Parties jouées par jours">
                         {HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null}
                     </ColPanel>
-                    <ColPanel key={2} col="5" icon="bar-line" title="Statistiques personnelles">
-                        <UserGraph />
+                    <ColPanel key={2} col="5" icon="bar-chart" title="Statistiques personnelles">
+                        <UserGraph user={1} period="ThisMonth" />
                     </ColPanel>
                 </div>
             </div>

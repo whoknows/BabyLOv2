@@ -14,9 +14,6 @@ module.exports = Reflux.createStore({
                     id: 1,
                     username:"Guillaume",
                     gravatar:"http://www.gravatar.com/avatar/22c64f33e43b433721446315a683ee5a?s=150&d=mm&r=x",
-                    graphData:{
-                        //
-                    },
                     userDetail: [
                         {text: "Nombre de parties jouées", value: 3},
                         {text: "Nombre de parties gagnées", value: 3},

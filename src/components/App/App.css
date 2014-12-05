@@ -35,6 +35,12 @@
 .content-wrapper {
     padding:0!important;
 }
+/*
+.content-wrapper > h3 {
+    margin: 0!important;
+    margin-bottom: 20px;
+    padding: 20px;
+}*/
 
 .pageloader {
     color: #607d8b;
