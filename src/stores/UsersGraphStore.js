@@ -4,10 +4,6 @@ var CurrentUserStore = require('stores/CurrentUserStore.js');
 
 module.exports = Reflux.createStore({
     listenables: [CurrentUserAction, UsersGraphAction],
-    /*onLoginSuccess: function(){
-        var CU = CurrentUserStore.getCurrentUser();
-        this.loadData(CU.id);
-    },*/
     loadData: function(user_id){
         $.ajax({
             url: '/Babylov2REST/usergraph/' + user_id,

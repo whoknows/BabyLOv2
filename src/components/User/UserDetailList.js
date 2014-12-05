@@ -15,6 +15,12 @@ module.exports = React.createClass({
             detail: UserDetailStore.getUserDetail(),
         };
     },
+    componentWillReceiveProps: function(nextProps) {
+        UserDetailStore.loadData(nextProps.user);
+    },
+    componentWillMount: function() {
+        UserDetailStore.loadData(this.props.user);
+    },
     onUserDetailChange: function () {
         this.setState({
             detail: UserDetailStore.getUserDetail()
