@@ -1,12 +1,27 @@
 .userDetailPanel .panel-body {
-    padding-top:30px;
-    max-height: 1000px!important;
-}
-
-.userpanels .panel-body {
+    padding-top: 10px;
     max-height: initial;
 }
 
 .userDetailPanel #userChart {
-    margin-top: 40px;
+    margin-top: 60px;
+}
+
+.userDetailPanel .nav.nav-pills .active > a, .userDetailPanel .nav.nav-pills .active > a:hover {
+    background-color: #51C6EA;
+    color:white;
+}
+
+.userDetailPanel .nav.nav-pills li a {
+    color: #51C6EA;
+}
+
+.userDetailPanel .nav.nav-pills li a:hover {
+    background-color: #efefef;
+    color:#1797BE;
+}
+
+.userDetailPanel .nav {
+    margin-bottom: 20px;
+    cursor: initial;
 }

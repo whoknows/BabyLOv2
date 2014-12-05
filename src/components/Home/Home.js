@@ -68,7 +68,7 @@ module.exports = React.createClass({
                         {HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null}
                     </ColPanel>
                     <ColPanel key={2} col="5" icon="bar-line" title="Statistiques personnelles">
-                        <UserGraph></UserGraph>
+                        <UserGraph />
                     </ColPanel>
                 </div>
             </div>

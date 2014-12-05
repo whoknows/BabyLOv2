@@ -3,7 +3,7 @@
 var UserDetailStore = require('stores/UserDetailStore.js');
 var UserGraph = require('components/Graph/UserGraph.js');
 var ItemBadge = require('./ItemBadge.js');
-var {Panel, ListGroup, Nav, NavItem, Label} = require('react-bootstrap');
+var {Panel, ListGroup, Nav, NavItem} = require('react-bootstrap');
 
 require('./User.css');
 
@@ -12,11 +12,12 @@ module.exports = React.createClass({
         Reflux.listenTo(UserDetailStore,"onUserDetailChange")
     ],
     handleSelect: function(selected) {
-        console.log("lol " + selected);
+        this.setState({panel: selected});
     },
     getInitialState: function() {
         return {
-            detail: UserDetailStore.getUserDetail()
+            detail: UserDetailStore.getUserDetail(),
+            panel: 'ThisMonth'
         };
     },
     onUserDetailChange: function () {
@@ -25,16 +26,17 @@ module.exports = React.createClass({
         });
     },
     render: function () {
-        return <Panel className="userDetailPanel" header={[<i className="fa fa-user"></i>, "Statistiques détaillées : ", <span className="text-info">{this.state.detail.username}</span>]}>
+        return <Panel className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{this.state.detail.username}</span>]}>
                     <div className="row-fluid">
                         <div className="col-md-5">
-                            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
-                                <NavItem eventKey={1}>Ce mois ci</NavItem>
-                                <NavItem eventKey={2}>Depuis toujours</NavItem>
+                            <Nav bsStyle="pills" activeKey={this.state.panel} onSelect={this.handleSelect}>
+                                <NavItem eventKey="ThisMonth">Ce mois ci</NavItem>
+                                <NavItem eventKey="LastMonth">Le mois dernier</NavItem>
+                                <NavItem eventKey="">Depuis toujours</NavItem>
                             </Nav>
                             <ListGroup>
-                                {this.state.detail.userDetail && this.state.detail.userDetail.map(function(item){
-                                    return <ItemBadge value={item.value} text={item.text} />;
+                                {this.state.detail.userDetail && this.state.detail.userDetail.map(function(item,i){
+                                    return <ItemBadge key={i} value={item.value} text={item.text} />;
                                 })}
                             </ListGroup>
                         </div>

@@ -31,7 +31,7 @@ module.exports = React.createClass({
     getRows: function() {
         return Array.prototype.slice.apply(this.props.data, this.props.slice ? [0, this.props.slice] : undefined)
         .filter(function(user){
-            return user.enabled;
+            return user.enabled == "1";
         }.bind(this)).sort(function(userA, userB){
             // FIXME Score should already be computed by store !!!
             return this.getScore(userA.gameData) < this.getScore(userB.gameData) ? 1 : -1;
