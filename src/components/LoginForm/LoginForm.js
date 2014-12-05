@@ -17,6 +17,11 @@ module.exports = React.createClass({
         CurrentUserAction.login(this.refs.login.getValue(), this.refs.password.getValue());
         e.preventDefault();
     },
+    componentDidMount: function(){
+        setTimeout(function(){
+            this.refs.login.getDOMNode().focus();
+        }.bind(this), 0);
+    },
     render: function () {
         return (
             <div className="container">
