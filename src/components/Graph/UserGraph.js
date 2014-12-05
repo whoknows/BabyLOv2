@@ -23,6 +23,9 @@ module.exports = React.createClass({
     componentDidMount: function() {
         this.generateChart();
     },
+    componentWillUnmount: function() {
+        //$('#userChart').highcharts().destroy();
+    },
     filterData: function(data) {
         if (data.length === 0) {
             return false;

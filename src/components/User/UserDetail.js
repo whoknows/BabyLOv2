@@ -1,32 +1,31 @@
 /** @jsx React.DOM */
 
-var UserDetailStore = require('stores/UserDetailStore.js');
+var UserDetailList = require('./UserDetailList.js');
 var UserGraph = require('components/Graph/UserGraph.js');
-var ItemBadge = require('./ItemBadge.js');
-var {Panel, ListGroup, Nav, NavItem} = require('react-bootstrap');
+var {Panel, Nav, NavItem} = require('react-bootstrap');
 
 require('./User.css');
 
 module.exports = React.createClass({
-    mixins:[
-        Reflux.listenTo(UserDetailStore,"onUserDetailChange")
-    ],
+    componentDidMount: function () {
+        this.scroll();
+    },
+    componentWillReceiveProps: function(newprops){
+        this.scroll();
+    },
+    scroll: function() {
+        setTimeout(function(){
+            this.refs.userdetail.getDOMNode().scrollIntoView();
+        }.bind(this), 0);
+    },
     handleSelect: function(selected) {
         this.setState({period: selected});
     },
     getInitialState: function() {
-        return {
-            detail: UserDetailStore.getUserDetail(),
-            period: 'ThisMonth'
-        };
-    },
-    onUserDetailChange: function () {
-        this.setState({
-            detail: UserDetailStore.getUserDetail()
-        });
+        return {period: 'ThisMonth'};
     },
     render: function () {
-        return <Panel className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{this.state.detail.username}</span>]}>
+        return <Panel ref="userdetail" className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{1}</span>]}>
                     <div className="row-fluid">
                         <div className="col-md-5">
                             <Nav bsStyle="pills" activeKey={this.state.period} onSelect={this.handleSelect}>
@@ -34,11 +33,7 @@ module.exports = React.createClass({
                                 <NavItem eventKey="LastMonth">Le mois dernier</NavItem>
                                 <NavItem eventKey="">Depuis toujours</NavItem>
                             </Nav>
-                            <ListGroup>
-                                {this.state.detail.userDetail && this.state.detail.userDetail.map(function(item,i){
-                                    return <ItemBadge key={i} value={item.value} text={item.text} />;
-                                })}
-                            </ListGroup>
+                            <UserDetailList period={this.state.period} user={this.props.user} />
                         </div>
                         <div className="col-md-7">
                             <UserGraph user={this.props.user} period={this.state.period} />
