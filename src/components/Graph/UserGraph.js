@@ -1,55 +1,56 @@
 /** @jsx React.DOM */
 
-var React = require('react');
-var c3 = require('c3');
-
-require('c3/c3.css');
+require('js/highcharts.js');
 require('./Graph.css');
 
 module.exports = React.createClass({
     componentDidMount: function() {
-        c3.generate({
-            bindto: '#userChart',
-            data: {
-                columns: [
-                    ['Victoires', 3, 2, 1, 4, 1, 2],
-                    ['Defaites', 5, 2, 1, 4, 1, 2],
-                    ['Ratio', 1, 0.8, 0.4, 0.45, 0.68, 0.84]
-                ],
-                colors: {
-                    Victoires: '#27c24c',
-                    Defaites: '#f05050',
-                    Ratio: '#1797be'
-                },
-                axes: {
-                    Ratio: 'y2'
-                },
-                types: {
-                    Victoires:'bar',
-                    Defaites:'bar'
-                },
-                groups: [
-                    ['Victoires', 'Defaites']
-                ]
+        $('#userChart').highcharts({
+            chart: { zoomType: 'x' },
+            credits: { enabled: false },
+            title: { text: null },
+            xAxis: {
+                /*type: 'datetime',
+                dateTimeLabelFormats: {
+                    month: '%e. %b',
+                    year: '%b'
+                },*/
+                title: {text: null},
+                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
             },
-            axis: {
-                y2: {
-                    show: true
-                },
-                x: {
-                    tick: {
-                        format: function(x){ return ''; }
-                    }
+            yAxis: [{
+                title: {text: null},
+            },{
+                title: {text: null},
+                opposite: true
+            }],
+            legend: { enabled: false },
+            plotOptions: {
+                column: {
+                    stacking: 'normal'
                 }
             },
-            zoom: {
-                enabled: true
-            }
+            series: [{
+                type: 'column',
+                name: 'Victoires',
+                color: '#F05050',
+                data: [3, 2, 1, 4, 1],
+            },{
+                type: 'column',
+                name: 'Victoires',
+                color: '#27C24C',
+                data: [5, 1, 6, 1, 4],
+            },{
+                type: 'line',
+                name: 'Ratio',
+                yAxis: 1,
+                data: [0.8, 0.4, 0.1, 0.4, 0.7],
+            }]
         });
     },
     render: function () {
         return (
-            <div id="userChart"></div>
+            <div id="userChart" className="homeChart"></div>
         );
     }
 });

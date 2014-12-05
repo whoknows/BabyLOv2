@@ -1,7 +1,4 @@
-.c3 {
-    margin: 10px 0;
-}
-
-#userChart .c3-line-ratio, #userChart .c3-line-score {
-  stroke-width: 2px;
+.homeChart {
+    height: 370px;
+    //margin: 10px 0;
 }
