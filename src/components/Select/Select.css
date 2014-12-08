@@ -1,0 +1,11 @@
+.babylo-select {
+    height: 50px;
+    margin: 10px 0;
+    text-align: left;
+    width: 200px!important;
+}
+
+.babylo-select ul {
+    max-height: 300px!important;
+    overflow-x: auto;
+}

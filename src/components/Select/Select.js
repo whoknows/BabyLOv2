@@ -4,6 +4,8 @@ var UserStore = require('stores/UserStore.js');
 var {DropdownButton, MenuItem, Input} = require('react-bootstrap');
 var UserImage = require('components/User/UserImage.js');
 
+require('./Select.css');
+
 module.exports = React.createClass({
     mixins: [
         Reflux.listenTo(UserStore, 'onUserChange')
@@ -48,18 +50,18 @@ module.exports = React.createClass({
                 <MenuItem onSelect={this.handleSelect} eventKey={user.id} key={user.id}>
                     <UserImage nolink user={user.id} />
                 </MenuItem>
-            );            
+            );
         }.bind(this));
 
         var title;
         if(this.state.selectedUserId){
-            title = <UserImage nolink user={this.state.selectedUserId} />
+            title = <UserImage nolink user={this.state.selectedUserId} />;
         }else{
-            title = this.props.placeholder
+            title = this.props.placeholder;
         }
 
         return (
-            <DropdownButton title={title}>
+            <DropdownButton className="babylo-select hasUserImage" title={title}>
                 <MenuItem>
                     <Input ref="filter" type="search" placeholder="Filter" value={this.state.filter} onChange={this.handleFilterChange} />
                 </MenuItem>

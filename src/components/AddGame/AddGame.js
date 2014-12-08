@@ -26,7 +26,7 @@ module.exports = React.createClass({
                                 <Select ref="p1t1" placeholder="Joueur 1" />
                             </div>
                             <div className="col-md-12">
-                                <Input ref="p2t1" type="text" placeholder="Joueur 2" value="" />
+                                <Select ref="p2t1" placeholder="Joueur 2" />
                             </div>
                             <div className="col-md-12">
                                 <Input ref="st1" type="text" placeholder="Score" value="" />
@@ -37,10 +37,10 @@ module.exports = React.createClass({
                         <h4>Equipe 2</h4>
                         <div className="row">
                             <div className="col-md-12">
-                                <Input ref="p1t2" type="text" placeholder="Joueur 1" value="" />
+                                <Select ref="p1t2" placeholder="Joueur 1" />
                             </div>
                             <div className="col-md-12">
-                                <Input ref="p2t2" type="text" placeholder="Joueur 2" value="" />
+                                <Select ref="p2t2" placeholder="Joueur 2" />
                             </div>
                             <div className="col-md-12">
                                 <Input ref="st2" type="text" placeholder="Score" value="" />
