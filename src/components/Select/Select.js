@@ -36,6 +36,9 @@ module.exports = React.createClass({
             filter: this.refs.filter.getValue()
         });
     },
+    getValue: function(){
+        return this.state.selectedUserId;
+    },
     render: function () {
 
         var menuItems = this.state.users.filter(function(user){
