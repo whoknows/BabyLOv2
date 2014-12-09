@@ -4,6 +4,7 @@ var CurrentUserStore = require('stores/CurrentUserStore.js');
 var GameAction = require('actions/GameAction.js');
 var {Table, Button} = require('react-bootstrap');
 var UserImage = require('components/User/UserImage.js');
+var PopConfirm = require('components/PopConfirm/PopConfirm.js');
 
 require('components/Table/Table.css');
 
@@ -45,7 +46,8 @@ module.exports = React.createClass({
                         <td className={"hasUserImage " + classT2}><UserImage user={game.p1t2}></UserImage></td>
                         <td className={"hasUserImage " + classT2}><UserImage user={game.p2t2}></UserImage></td>
                         <td className={classT2}>{game.st2}</td>
-                        {this.state.admin ? <td><Button bsStyle="danger" onClick={this.handleDelete} data-id={game.id}><i className="fa fa-trash"></i></Button></td> : null}
+                        {this.state.admin ? <td><PopConfirm title="Supprimer la partie ?"><Button bsStyle="danger" /*onClick={this.handleDelete}*/ data-id={game.id}><i className="fa fa-trash"></i></Button></PopConfirm></td> : null}
+                        {/*this.state.admin ? <td><Button bsStyle="danger" onClick={this.handleDelete} data-id={game.id}><i className="fa fa-trash"></i></Button></td> : null*/}
                     </tr>;
         }.bind(this));
     },

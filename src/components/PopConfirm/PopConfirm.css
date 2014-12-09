@@ -1,0 +1,7 @@
+.popconfirm {
+    text-align: center;
+}
+
+.popconfirm .btn + .btn {
+    margin-left: 40px;
+}

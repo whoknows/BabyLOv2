@@ -25,7 +25,7 @@ module.exports = React.createClass({
         return <div className="content-wrapper">
                     <h3>Parties</h3>
                     <div className="row">
-                        <ColPanel col="12" icon="futbol-o" title="Dernières parties">
+                        <ColPanel col="8" icon="futbol-o" title="Dernières parties">
                             <GameTable data={this.state.games}></GameTable>
                         </ColPanel>
                     </div>
