@@ -15,16 +15,41 @@ module.exports = Reflux.createStore({
             dataType: 'json'
         }).then(function(response) {
             form.id = response.id;
-            this.games.push(form);
+            form.date = this.formatDate(form.date);
+            this.games.unshift(form);
             this.trigger();
-        });
+        }.bind(this));
+    },
+    formatDate: function(date){
+        var d = date.split('-');
+        j = d[2];
+        d = new Date(d[0], (d[1]-1), j);
+
+        return (j<10?'0':'')+d.toLocaleDateString();
     },
     onDeleteGame: function(id){
-        console.log('delete game');
+        $.ajax({
+            url: '/Babylov2REST/games/'+id,
+            type: 'DELETE',
+            dataType: 'json'
+        }).then(function() {
+            var newGames = [];
+
+            this.games.forEach(function(elem){
+                if(elem.id != id){
+                    newGames.push(elem);
+                }
+            });
+
+            this.games = newGames;
+            this.trigger();
+        }.bind(this));
     },
     onLoadGames: function(){
+        var today = new Date();
+        today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() < 10 ? '0' : '') + today.getDate();
         $.ajax({
-            url: '/Babylov2REST/games/5', //TODO : changer ce 5
+            url: '/Babylov2REST/games/'+today,
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {

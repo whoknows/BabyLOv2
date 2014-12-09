@@ -11,11 +11,12 @@ module.exports = React.createClass({
         Reflux.listenTo(UserStore, 'onUserChange')
     ],
     onUserChange: function(){
-        this.setState({
-            users: UserStore.getUsers().filter(function(user){
+        this.setState({users: this.getUserList()});
+    },
+    getUserList: function(){
+        return UserStore.getUsers().filter(function(user){
                 return user.enabled;
-            }.bind(this))
-        });
+        }.bind(this))
     },
     getDefaultProps: function() {
         return {
@@ -24,7 +25,7 @@ module.exports = React.createClass({
     },
     getInitialState: function(){
         return {
-            users: [],
+            users: this.getUserList(),
             filter: ''
         };
     },
