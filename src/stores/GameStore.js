@@ -8,7 +8,16 @@ module.exports = Reflux.createStore({
         GameActions.loadGames();
     },
     onSaveGame: function(form){
-        console.log('save game');
+        $.ajax({
+            url: '/Babylov2REST/games',
+            type: 'POST',
+            data: form,
+            dataType: 'json'
+        }).then(function(response) {
+            form.id = response.id;
+            this.games.push(form);
+            this.trigger();
+        });
     },
     onDeleteGame: function(id){
         console.log('delete game');

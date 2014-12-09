@@ -10,7 +10,7 @@ var Unauthorised = require('components/Unauthorised/Unauthorised.js');
 
 module.exports = React.createClass({
     getInitialState: function(){
-        return {errorMessage: ""};
+        return {errorMessage: "", successMessage: ""};
     },
     handleSubmit: function(){
         var form = {
@@ -53,13 +53,17 @@ module.exports = React.createClass({
             return false;
         }
 
-        this.setState({errorMessage: "Partie enregistrée."});
+        this.setState({successMessage: "Partie enregistrée."});
         return true;
     },
     render: function () {
         if(!CurrentUserStore.isAdmin()){
             return <Unauthorised />;
         }
+
+        var date = new Date();
+        var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' : '') + date.getDate();
+
         var options = [];
         for(var i=0; i<=10; i++){
             options.push(<option value={i}>{i}</option>);
@@ -73,7 +77,7 @@ module.exports = React.createClass({
                         <h4>Date</h4>
                         <div className="row">
                             <div className="col-md-3">
-                                <Input ref="date" type="text" placeholder="Date" />
+                                <Input ref="date" type="date" placeholder="Date" defaultValue={dateString} />
                             </div>
                         </div>
                     </div>
@@ -98,6 +102,7 @@ module.exports = React.createClass({
                                 <Button bsStyle="success" onClick={this.handleSubmit} bsSize="large">Enregistrer la partie</Button>
                                 <br />
                                 <span className="text-danger">{this.state.errorMessage}</span>
+                                <span className="text-success">{this.state.successMessage}</span>
                             </div>
                         </div>
                     </div>
