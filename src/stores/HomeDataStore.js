@@ -1,4 +1,3 @@
-var Reflux = require('reflux');
 var HomeDataAction = require('actions/HomeDataAction.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 

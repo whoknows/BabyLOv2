@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
 var UsersGraphStore = require('stores/UsersGraphStore.js');
+var UsersGraphAction = require('actions/UsersGraphAction.js');
 
 require('js/highcharts.js');
 require('./Graph.css');
@@ -15,10 +16,12 @@ module.exports = React.createClass({
         this.generateChart();
     },
     componentWillReceiveProps: function(nextProps) {
-        UsersGraphStore.loadData(nextProps.user);
+        if(nextProps.user != this.props.user || this.props.period != nextProps.period){
+            UsersGraphAction.loadData(nextProps.user);
+        }
     },
     componentWillMount: function() {
-        UsersGraphStore.loadData(this.props.user);
+        UsersGraphAction.loadData(this.props.user);
     },
     componentDidMount: function() {
         this.generateChart();
@@ -57,7 +60,6 @@ module.exports = React.createClass({
             var stop = Date.UTC(date.getFullYear(), date.getMonth() + 1, 0);
             condition = datum[0] >= start && datum[0] <= stop;
         }
-
         return condition;
     },
     generateChart: function(){

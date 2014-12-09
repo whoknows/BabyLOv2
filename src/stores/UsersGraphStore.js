@@ -1,10 +1,8 @@
 var UsersGraphAction = require('actions/UsersGraphAction.js');
-var CurrentUserAction = require('actions/CurrentUserAction.js');
-var CurrentUserStore = require('stores/CurrentUserStore.js');
 
 module.exports = Reflux.createStore({
-    listenables: [CurrentUserAction, UsersGraphAction],
-    loadData: function(user_id){
+    listenables: [UsersGraphAction],
+    onLoadData: function(user_id){
         $.ajax({
             url: '/Babylov2REST/usergraph/' + user_id,
             type: 'GET',

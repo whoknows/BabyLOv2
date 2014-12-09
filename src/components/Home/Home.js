@@ -11,6 +11,7 @@ var ScheduleStore = require('stores/ScheduleStore.js');
 var HomeDataStore = require('stores/HomeDataStore.js');
 var UserGraph = require('components/Graph/UserGraph.js');
 var GameGraph = require('components/Graph/GameGraph.js');
+var CurrentUserStore = require('stores/CurrentUserStore.js');
 
 module.exports = React.createClass({
     nbItem: 4,
@@ -18,10 +19,12 @@ module.exports = React.createClass({
         Reflux.listenTo(UserStore,"onUserChange"),
         Reflux.listenTo(GameStore,"onGameChange"),
         Reflux.listenTo(HomeDataStore,"onHomeDataChange"),
-        Reflux.listenTo(ScheduleStore,"onScheduleChange")
+        Reflux.listenTo(ScheduleStore,"onScheduleChange"),
+        Reflux.listenTo(CurrentUserStore, "onCurrentUserChange")
     ],
     getInitialState: function() {
         return {
+            currentUser: CurrentUserStore.getCurrentUser(),
             games: GameStore.getGames(),
             users: UserStore.getUsers(),
             homeData: HomeDataStore.getHomeDatas(),
@@ -48,6 +51,11 @@ module.exports = React.createClass({
             schedule: ScheduleStore.getSchedule()
         });
     },
+    onCurrentUserChange: function() {
+        this.setState({
+            currentUser:CurrentUserStore.getCurrentUser()
+        });
+    },
     render: function () {
         return (
             <div>
@@ -68,7 +76,7 @@ module.exports = React.createClass({
                         {HomeDataStore.isLoaded() ? <GameGraph data={this.state.homeData.gameGraph}></GameGraph> : null}
                     </ColPanel>
                     <ColPanel key={2} col="5" icon="bar-chart" title="Statistiques personnelles">
-                        <UserGraph user={1} period="ThisMonth" />
+                        <UserGraph user={this.state.currentUser.id} period="ThisMonth" />
                     </ColPanel>
                 </div>
             </div>
