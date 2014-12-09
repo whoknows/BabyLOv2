@@ -32,6 +32,7 @@ module.exports = React.createClass({
             ret.push(<MenuItem key="superadmin"><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem>);
         }
 
+        ret.push(<MenuItem key="userinfo"><i className="fa fa-user"></i>Gestion du compte</MenuItem>);
         ret.push(<MenuItem key="divider" divider />);
         ret.push(<MenuItem key="logout" onClick={CurrentUserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>);
 
