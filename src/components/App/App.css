@@ -52,6 +52,10 @@
     vertical-align:middle;
 }
 
+.gimemargin-vertical > * {
+    margin: 5px 0;
+}
+
 .red { background-color: #f6413a; }
 .pink {
     background-color: #ea1e63;

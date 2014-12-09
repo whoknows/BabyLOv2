@@ -54,14 +54,16 @@ module.exports = React.createClass({
         }.bind(this));
 
         var title;
+        var classe = "babylo-select";
         if(this.state.selectedUserId){
+            classe += " hasUserImage";
             title = <UserImage nolink user={this.state.selectedUserId} />;
         }else{
             title = this.props.placeholder;
         }
 
         return (
-            <DropdownButton className="babylo-select hasUserImage" title={title}>
+            <DropdownButton className={classe} title={title}>
                 <MenuItem>
                     <Input ref="filter" type="search" placeholder="Filter" value={this.state.filter} onChange={this.handleFilterChange} />
                 </MenuItem>

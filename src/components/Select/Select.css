@@ -5,7 +5,20 @@
     width: 200px!important;
 }
 
-.babylo-select ul {
-    max-height: 300px!important;
+.babylo-select .caret {
+    float:right!important;
+    margin-top: 10px;
+}
+
+.babylo-select.hasUserImage {
+    padding: 6px 16px 6px 4px;
+}
+
+.babylo-select.hasUserImage .caret {
+    margin-top: 18px;
+}
+
+.babylo-select + ul {
+    max-height: 300px;
     overflow-x: auto;
 }
