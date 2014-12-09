@@ -20,7 +20,9 @@ module.exports = React.createClass({
         }.bind(this), 0);
     },
     handleSelect: function(selected) {
-        this.setState({period: selected});
+        if(this.state.period != selected){
+            this.setState({period: selected});
+        }
     },
     getInitialState: function() {
         return {period: 'ThisMonth'};
