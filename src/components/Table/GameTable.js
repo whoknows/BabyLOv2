@@ -23,8 +23,7 @@ module.exports = React.createClass({
         }
     },
     handleDelete: function(id,e){
-        console.log(id)
-        //GameAction.deleteGame(id);
+        GameAction.deleteGame(id);
     },
     generateRows: function(games) {
         if(this.props.slice){

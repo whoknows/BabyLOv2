@@ -18,7 +18,7 @@ module.exports = React.createClass({
     render: function () {
         var pop = <Popover title={this.props.title} className="popconfirm">
                     <Button bsStyle="success" onClick={this.confirm}>Oui</Button>
-                    <Button bsStyle="danger" onClick={this.refs.overlay.hide}>Non</Button>
+                    <Button bsStyle="danger" onClick={this.hide}>Non</Button>
                 </Popover>;
         return (
             <OverlayTrigger ref="overlay" trigger="click" placement="top" overlay={pop}>
