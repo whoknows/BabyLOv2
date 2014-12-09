@@ -4,6 +4,8 @@ var {Input,Button} = require('react-bootstrap');
 var Select = require('components/Select/Select.js');
 var UserStore = require('stores/UserStore.js');
 var UserImage = require('components/User/UserImage.js');
+var CurrentUserStore = require('stores/CurrentUserStore.js');
+var Unauthorised = require('components/Unauthorised/Unauthorised.js');
 
 module.exports = React.createClass({
     errorMessage: "test",
@@ -26,6 +28,9 @@ module.exports = React.createClass({
         //
     },
     render: function () {
+        if(!CurrentUserStore.isAdmin()){
+            return <Unauthorised />;
+        }
         var options = [];
         for(var i=0; i<=10; i++){
             options.push(<option value={i}>{i}</option>);

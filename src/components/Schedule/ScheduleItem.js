@@ -59,6 +59,6 @@ module.exports = React.createClass({
                    </ListGroup>;
         }
 
-        return <div>{this.getUserList()} {this.getButton()}</div>;
+        return <div className="scheduleItem">{this.getUserList()} {this.getButton()}</div>;
     }
 });
