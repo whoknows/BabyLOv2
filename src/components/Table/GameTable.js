@@ -47,9 +47,12 @@ module.exports = React.createClass({
                         <td className={"hasUserImage " + classT2}><UserImage user={game.p1t2}></UserImage></td>
                         <td className={"hasUserImage " + classT2}><UserImage user={game.p2t2}></UserImage></td>
                         <td className={classT2}>{game.st2}</td>
-                        {this.state.admin ? <td><PopConfirm title="Supprimer la partie ?" onConfirm={curry(this.handleDelete, game.id)}><Button bsStyle="danger"><i className="fa fa-trash"></i></Button></PopConfirm></td> : null}
+                        {this.getAdminCondition() ? <td><PopConfirm title="Supprimer la partie ?" onConfirm={curry(this.handleDelete, game.id)}><Button bsStyle="danger"><i className="fa fa-trash"></i></Button></PopConfirm></td> : null}
                     </tr>;
         }.bind(this));
+    },
+    getAdminCondition: function(){
+        return this.state.admin && this.props.advancedDisplay;
     },
     render: function () {
         return <Table hover>
@@ -62,7 +65,7 @@ module.exports = React.createClass({
                         <th>Joueur 1</th>
                         <th>Joueur 2</th>
                         <th>Score</th>
-                        {this.state.admin ? <th>Suppr.</th> : null}
+                        {this.getAdminCondition() ? <th>Suppr.</th> : null}
                     </tr>
                     </thead>
                     <tbody>{this.generateRows(this.props.data)}</tbody>

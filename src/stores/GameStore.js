@@ -45,9 +45,15 @@ module.exports = Reflux.createStore({
             this.trigger();
         }.bind(this));
     },
-    onLoadGames: function(){
-        var today = new Date();
-        today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() < 10 ? '0' : '') + today.getDate();
+    onLoadGames: function(date){
+        var today;
+        if(date){
+            today = date;
+        } else {
+            today = new Date();
+            today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() < 10 ? '0' : '') + today.getDate();
+        }
+
         $.ajax({
             url: '/Babylov2REST/games/'+today,
             type: 'GET',
