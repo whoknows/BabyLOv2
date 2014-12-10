@@ -32,7 +32,7 @@ module.exports = React.createClass({
         return this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
-                return <UserImage key={userid} schedule={this.props.creneau} user={userid}></UserImage>;
+                return <UserImage key={userid} handleClick={this.userClickHandler.bind(null, this.props.creneau, userid)} user={userid}></UserImage>;
             }
 
             return <UserImage key={userid} user={userid}></UserImage>;
@@ -46,6 +46,9 @@ module.exports = React.createClass({
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
         }
+    },
+    userClickHandler: function(schedule, user){
+        ScheduleAction.unparticipate(schedule, user);
     },
     clickHandler: function (e) {
         ScheduleAction.participate(e.target.dataset.schedule, CurrentUserStore.getCurrentUser().id);

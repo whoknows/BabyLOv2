@@ -12,8 +12,8 @@ module.exports = React.createClass({
         Navigation
     ],
     handleClick: function() {
-        if (this.props.schedule) {
-            ScheduleAction.unparticipate(this.props.schedule, this.props.user);
+        if (this.props.handleClick) {
+            this.props.handleClick();
         } else if(!this.props.nolink) {
             this.transitionTo("users", {id:this.props.user});
         }
