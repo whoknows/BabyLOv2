@@ -5,7 +5,6 @@ module.exports = Reflux.createStore({
     listenables: [MatchmakingActions],
     teams: [],
     onDoMatchMaking: function(users) {
-        console.log('MM');
         if(users.length !== 4){
             return false;
         }
@@ -15,8 +14,12 @@ module.exports = Reflux.createStore({
             return userA.gameData.score < userB.gameData.score ? 1 : -1;
         });
 
-        console.log(data);
-        //get first + last, second + third
+        this.teams = [
+            [data[0].id, data[3].id],
+            [data[1].id, data[2].id]
+        ];
+
+        this.trigger();
     },
     getTeams: function() {
         return this.teams;

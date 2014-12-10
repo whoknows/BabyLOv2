@@ -8,12 +8,12 @@ var MenuItemLink = require('components/App/MenuItemLink.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
-var {RouteHandler} = require('react-router');
+var {RouteHandler, Navigation} = require('react-router');
 
 require('./App.css');
 
 module.exports = React.createClass({
-    mixins: [Reflux.listenTo(CurrentUserStore,"onCurrentUserChange")],
+    mixins: [Reflux.listenTo(CurrentUserStore,"onCurrentUserChange"), Navigation],
     getInitialState: function(){
         return {};
     },
@@ -26,7 +26,7 @@ module.exports = React.createClass({
         var ret = [];
 
         if(CurrentUserStore.isAdmin()){
-            ret.push(<MenuItemLink key="admin" to="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItemLink>);
+            ret.push(<MenuItem key="admin" eventKey="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItem>);
         }
         if(CurrentUserStore.isSuperAdmin()){
             ret.push(<MenuItem key="superadmin"><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem>);
@@ -37,6 +37,12 @@ module.exports = React.createClass({
         ret.push(<MenuItem key="logout" onClick={CurrentUserAction.logout}><i className="fa fa-sign-out"></i>Logout</MenuItem>);
 
         return ret;
+    },
+    handleSelect: function(to){
+        if(to){
+            this.refs.navbar.refs.nav.refs.dropdown.setDropdownState(false);
+            this.transitionTo(to);
+        }
     },
     render: function () {
         if(typeof this.state.currentUser === 'undefined'){
@@ -52,7 +58,7 @@ module.exports = React.createClass({
         return (
             <header className="topnavbar-wrapper">
                 {/*<Navbar className="topnavbar" fluid>*/}
-                <Navbar inverse fluid>
+                <Navbar ref="navbar" inverse fluid>
                     <Nav>
                         <NavItem className="brand"><img src="external/img/react.png" height="20" width="20" alt="logo" />BabyLOv3</NavItem>
                         <BabyMenuItem icon="fa fa-home" dest="home" label="Accueil"></BabyMenuItem>
@@ -62,8 +68,8 @@ module.exports = React.createClass({
                         <BabyMenuItem icon="fa fa-fire" dest="compare" label="Comparateur"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
-                    <Nav className="navbar-right">
-                        <DropdownButton title={[<img key="img" className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
+                    <Nav ref="nav" className="navbar-right">
+                        <DropdownButton ref="dropdown" onSelect={this.handleSelect} title={[<img key="img" className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
                             {this.getDropdownContent()}
                         </DropdownButton>
                     </Nav>

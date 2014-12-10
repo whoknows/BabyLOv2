@@ -7,6 +7,6 @@ var LinkMixin = require('components/Mixins/LinkMixin.js');
 module.exports = React.createClass({
     mixins: [LinkMixin],
     render: function(){
-        return this.transferPropsTo(<MenuItem className={this.getClassName()} href={this.getHref()} onClick={this.handleClick}>{this.props.children}</MenuItem>);
+        return <MenuItem {...this.props} className={this.getClassName()} href={this.getHref()} onClick={this.handleClick}>{this.props.children}</MenuItem>;
     }
 });
