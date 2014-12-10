@@ -30,7 +30,7 @@ module.exports = React.createClass({
     handleClick: function(userid){
         var users = this.state.selectedUsers;
 
-        if (users.length >= 4) {
+        if (users.indexOf(userid) === -1 && users.length >= 4) {
             users.shift();
         }
 
