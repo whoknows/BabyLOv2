@@ -1,8 +1,22 @@
 .popconfirm {
+    /*border: 1px solid #CFDBE2;*/
+    padding: 0;
     text-align: center;
-    width: 180px;
+    width: 200px;
+}
+
+.popconfirm .popover-title {
+    background-color: #F47F7F;
+    border-radius: 0;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    color: #FFF;
+}
+
+.popconfirm .btn {
+    width: 80px;
 }
 
 .popconfirm .btn + .btn {
-    margin-left: 20px;
+    margin-left: 10px;
 }
