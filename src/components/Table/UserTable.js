@@ -3,6 +3,7 @@
 var React = require('react');
 var UserImage = require('components/User/UserImage.js');
 var {Table} = require('react-bootstrap');
+var CurrentUserStore = require('stores/CurrentUserStore.js');
 
 require('components/Table/Table.css');
 
@@ -30,7 +31,7 @@ module.exports = React.createClass({
     getRows: function() {
         return Array.prototype.slice.apply(this.props.data, this.props.slice ? [0, this.props.slice] : undefined)
         .filter(function(user){
-            return user.enabled == "1";
+            return user.enabled == "1" || user.id == CurrentUserStore.getCurrentUser().id;
         }.bind(this)).sort(function(userA, userB){
             var p = this.getPeriod();
             return userA.gameData['score' + p] < userB.gameData['score' + p] ? 1 : -1;

@@ -32,14 +32,16 @@ module.exports = React.createClass({
         return this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
-                return <UserImage key={userid} handleClick={this.userClickHandler.bind(null, this.props.creneau, userid)} user={userid}></UserImage>;
+                return <UserImage key={userid} className="removable" handleClick={this.userClickHandler.bind(null, this.props.creneau, userid)} user={userid}></UserImage>;
             }
 
             return <UserImage key={userid} user={userid}></UserImage>;
         }.bind(this));
     },
     getButton: function () {
-        if (this.props.creneau < ScheduleStore.getCurrentTime()) {
+        if(CurrentUserStore.getCurrentUser().enabled != "1") {
+            return null;
+        } else if (this.props.creneau < ScheduleStore.getCurrentTime()) {
             return <i className="moveMe">Le créneau est déjà passé.</i>;
         } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
             return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
