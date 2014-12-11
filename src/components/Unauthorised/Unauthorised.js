@@ -11,12 +11,17 @@ module.exports = React.createClass({
         this.transitionTo("home");
     },
     render: function () {
+        var button = (<span><br /><p><Button onClick={this.handleClic}>Retour à l'accueil</Button></p></span>);
+
+        if(this.props.noButton){
+            button = null;
+        }
+
         return (
             <Alert bsStyle="danger">
                 <h4>Accès non authorisé</h4>
                 <p>Vous n'êtes pas authorisé à accéder à cette page.</p>
-                <br />
-                <p><Button onClick={this.handleClic}>Retour à l'accueil</Button></p>
+                {button}
             </Alert>
         );
     }

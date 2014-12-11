@@ -9,6 +9,7 @@ var LoginForm = require('components/LoginForm/LoginForm.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 var {RouteHandler, Navigation} = require('react-router');
+var Unauthorised = require('components/Unauthorised/Unauthorised.js');
 
 require('./App.css');
 
@@ -53,6 +54,12 @@ module.exports = React.createClass({
             return (<LoginForm message={this.state.currentUser.message} />);
         } else if (this.state.currentUser === null) {
             return (<LoginForm />);
+        }  else if(this.state.currentUser.roles.indexOf('ROLE_USER') == -1){
+            return <div className="row">
+                        <div className="col-md-8 col-md-offset-2">
+                            <Unauthorised noButton />
+                        </div>
+                    </div>;
         }
 
         return (
