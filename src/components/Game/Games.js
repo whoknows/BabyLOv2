@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 
-var React = require('react');
 var GameTable = require('components/Table/GameTable.js');
 var GameStore = require('stores/GameStore.js');
 var GameActions = require('actions/GameAction.js');

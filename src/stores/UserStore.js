@@ -1,13 +1,22 @@
 var Reflux = require('reflux');
-var UserActions = require('actions/UserAction.js');
+var UserAction = require('actions/UserAction.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: [UserActions, CurrentUserAction],
+    listenables: [UserAction, CurrentUserAction],
     users: [],
     periodList: ["", "ThisMonth", "LastMonth"],
     poidsRatio: 0.65,
     onLoginSuccess: function(){
+        UserAction.loadUsers();
+    },
+    onSaveUser: function(user){
+        console.log('saveuser');
+    },
+    onAddUser: function(user){
+        console.log('adduser');
+    },
+    onLoadUsers: function(){
         $.ajax({
             url: '/Babylov2REST/users',
             type: 'GET',
