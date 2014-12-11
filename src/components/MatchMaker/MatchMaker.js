@@ -85,11 +85,12 @@ module.exports = React.createClass({
             <div className="content-wrapper">
                 <h3>Match Maker</h3>
                 <div className="row">
+                    <div className="col-md-1"></div>
                     <div className="col-md-4">
                         <ListGroup>{this.getUserList()}</ListGroup>
                     </div>
-                    <div className="col-md-1">
-                        <Button bsStyle="danger" onClick={this.handleSubmit}>DO IT FAGGOT</Button>
+                    <div className="col-md-2 centered-children">
+                        <Button bsSize="large" bsStyle="danger" onClick={this.handleSubmit}>DO IT FAGGOT</Button>
                     </div>
                     <div className="col-md-4">
                         {this.getTeams()}

@@ -5,7 +5,7 @@ var CurrentUserAction = require('actions/CurrentUserAction.js');
 module.exports = Reflux.createStore({
     listenables: [CurrentUserAction, GameActions],
     onLoginSuccess: function(){
-        GameActions.loadGames();
+        GameActions.loadGames(null,4);
     },
     onSaveGame: function(form){
         $.ajax({
@@ -45,18 +45,19 @@ module.exports = Reflux.createStore({
             this.trigger();
         }.bind(this));
     },
-    onLoadGames: function(date){
-        var today;
+    onLoadGames: function(date, limit){
+        var data = {'limit':limit};
         if(date){
-            today = date;
-        } else {
-            today = new Date();
-            today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() < 10 ? '0' : '') + today.getDate();
+            data.date = date;
+        } else if(date !== null) {
+            data.date = new Date();
+            data.date = data.date.getFullYear() + '-' + (data.date.getMonth() + 1) + '-' + (data.date.getDate() < 10 ? '0' : '') + data.date.getDate();
         }
 
         $.ajax({
-            url: '/Babylov2REST/games/'+today,
+            url: '/Babylov2REST/games',
             type: 'GET',
+            'data': data,
             dataType: 'json'
         }).then(function(response) {
             this.games = response;

@@ -52,6 +52,10 @@
     vertical-align:middle;
 }
 
+.centered-children {
+    text-align: center;
+}
+
 .gimemargin-vertical > * {
     margin: 5px 0;
 }
