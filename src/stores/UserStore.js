@@ -11,10 +11,26 @@ module.exports = Reflux.createStore({
         UserAction.loadUsers();
     },
     onSaveUser: function(user){
-        console.log('saveuser');
+        $.ajax({
+            url:'/Babylov2REST/users',
+            type: 'PUT',
+            dataType: 'json',
+            data: user
+        }).then(function(response){
+            //edituser
+            //this.trigger();
+        }.bind(this));
     },
     onAddUser: function(user){
-        console.log('adduser');
+        $.ajax({
+            url:'/Babylov2REST/users',
+            type: 'POST',
+            dataType: 'json',
+            data: user
+        }).then(function(response){
+            //edituser
+            //this.trigger();
+        }.bind(this));
     },
     onLoadUsers: function(){
         $.ajax({

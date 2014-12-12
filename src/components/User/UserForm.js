@@ -10,15 +10,15 @@ require('./UserForm.css');
 module.exports = React.createClass({
     getDefaultProps: function () {
         return {
-            user: {
-                id: null,
-                username: null,
-                email:'',
-                enabled: "0",
-                roles: []
-            },
-            admin: false
+            user: {},
+            admin: false,
+            width: 10
         };
+    },
+    componentWillReceiveProps: function(nextProps){
+        if(nextProps.user === null){
+            nextProps.user = this.props.user;
+        }
     },
     handleSubmit: function(e){
         e.preventDefault();
@@ -41,11 +41,10 @@ module.exports = React.createClass({
         return true;
     },
     getFormData: function(){
-        var data = {};
         if(this.props.admin){
             data = {
                 roles: [].map.call(this.refs.roles.getInputDOMNode().selectedOptions, function (option) {
-                  return option.value;
+                    return option.value;
                 }),
                 enabled: this.refs.enabled.getChecked() ? 1 : 0
             };
@@ -61,23 +60,23 @@ module.exports = React.createClass({
         return (
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <Input type="hidden" ref="userid" value={this.props.user.id} />
-                <Input type="text" label="Username" placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.props.user.username} labelClassName="col-md-2" wrapperClassName="col-md-10" />
-                <Input type="password" label="Password" ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName="col-md-10" />
-                <Input type="password" label="Confirm" ref="password2" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName="col-md-10" />
-                <Input type="email" label="Email" placeholder="Utiliser un email associé à un compte Gravatar" ref="email" defaultValue={this.props.user.email} labelClassName="col-md-2" wrapperClassName="col-md-10" />
+                <Input type="text" label="Username" placeholder="Sera utilisé comme identifiant de connexion" ref="username" defaultValue={this.props.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="password" label="Password" ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="password" label="Confirm" ref="password2" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="email" label="Email" placeholder="Utiliser un email associé à un compte Gravatar" ref="email" defaultValue={this.props.user.email} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 {this.props.admin ?
                 <div>
-                    <Input type="select" label="Roles" ref="roles" multiple labelClassName="col-md-2" wrapperClassName="col-md-10">
+                    <Input type="select" label="Roles" ref="roles" multiple labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width}>
                         <option value="ROLE_USER">ROLE_USER</option>
                         <option value="ROLE_ADMIN">ROLE_ADMIN</option>
                         <option value="ROLE_SUPER_ADMIN">ROLE_SUPER_ADMIN</option>
                     </Input>
-                    <Input type="checkbox" label="Actif" ref="enabled" defaultValue={this.props.user.enabled == "0"} wrapperClassName="col-md-offset-2 col-md-10" />
+                    <Input type="checkbox" label="Actif" ref="enabled" checked={this.props.user.enabled == "0"} wrapperClassName={"col-md-offset-2 col-md-" + this.props.width} />
                 </div>
                 : null}
 
                 <div className="form-group">
-                    <div className="col-md-offset-2 col-md-8">
+                    <div className={"col-md-offset-2 col-md-" + this.props.width}>
                         <Button type="submit" bsStyle="success">Valider</Button>
                         {this.props.cancel ?
                             <Button className="button-cancel" onClick={this.props.cancel}>Annuler</Button>
