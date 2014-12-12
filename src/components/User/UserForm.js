@@ -44,6 +44,10 @@ module.exports = React.createClass({
             } else {
                 UserAction.addUser(data);
             }
+
+            if (this.props.doAfterSubmit) {
+                this.props.doAfterSubmit();
+            }
         }
     },
     cleanForm: function(data) {
@@ -75,7 +79,7 @@ module.exports = React.createClass({
                 <Input type="email" label="Email" onChange={this.handleChange.bind(this, "email")} placeholder="Utiliser un email associé à un compte Gravatar" ref="email" value={this.state.user.email} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 {this.props.admin ?
                 <div>
-                    <Input type="select" value={this.state.user.roles} onChange={this.handleChange.bind(this, "roles")} label="Roles" ref="roles" multiple labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width}>
+                    <Input type="select" value={this.state.user.roles ? this.state.user.roles : []} onChange={this.handleChange.bind(this, "roles")} label="Roles" ref="roles" multiple labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width}>
                         <option value="ROLE_USER">ROLE_USER</option>
                         <option value="ROLE_ADMIN">ROLE_ADMIN</option>
                         <option value="ROLE_SUPER_ADMIN">ROLE_SUPER_ADMIN</option>

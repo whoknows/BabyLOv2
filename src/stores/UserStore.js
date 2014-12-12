@@ -1,4 +1,3 @@
-var Reflux = require('reflux');
 var UserAction = require('actions/UserAction.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 
@@ -17,8 +16,14 @@ module.exports = Reflux.createStore({
             dataType: 'json',
             data: user
         }).then(function(response){
-            //edituser
-            //this.trigger();
+            this.users = this.users.map(function(u){
+                if(u.id == user.id){
+                    user.password = undefined;
+                    return user;
+                }
+                return u;
+            });
+            this.trigger();
         }.bind(this));
     },
     onAddUser: function(user){

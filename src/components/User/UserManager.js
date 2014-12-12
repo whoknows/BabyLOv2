@@ -64,7 +64,7 @@ module.exports = React.createClass({
                         </Table>
                     </ColPanel>
                     <ColPanel key={2} col="6" icon="edit" title="Formulaire utilisateur">
-                        <Form admin width={9} cancel={this.resetForm} user={this.state.currentUser}/>
+                        <Form admin width={9} cancel={this.resetForm} user={this.state.currentUser} doAfterSubmit={this.resetForm}/>
                     </ColPanel>
                 </div>
             </div>
