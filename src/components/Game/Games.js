@@ -33,8 +33,7 @@ module.exports = React.createClass({
         return <div className="content-wrapper">
                     <h3>Parties</h3>
                     <div className="row">
-                        <div className="col-md-1"></div>
-                        <ColPanel col="10" icon="futbol-o" title="Dernières parties">
+                        <ColPanel col="12" icon="futbol-o" title="Dernières parties">
                             <div className="col-md-12">
                                 <form className="form-inline gameform" onSubmit={this.handleSubmit}>
                                     <Input ref="date" type="date" placeholder="Date" defaultValue={dateString} />
