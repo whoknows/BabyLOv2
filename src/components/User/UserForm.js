@@ -15,18 +15,13 @@ module.exports = React.createClass({
             width: 10
         };
     },
-    componentWillReceiveProps: function(nextProps){
-        if(nextProps.user === null){
-            nextProps.user = this.props.user;
-        }
-    },
     handleSubmit: function(e){
         e.preventDefault();
         var data = this.getFormData();
 
         if(this.validateForm(data)){
             //data.password = sha1(data.password);
-            if(this.props.user.id !== null){
+            if(this.props.user.id){
                 UserAction.saveUser(data);
             } else {
                 UserAction.addUser(data);
@@ -77,7 +72,7 @@ module.exports = React.createClass({
 
                 <div className="form-group">
                     <div className={"col-md-offset-2 col-md-" + this.props.width}>
-                        <Button type="submit" bsStyle="success">Valider</Button>
+                        <Button type="submit" bsStyle="success">{this.props.user.id ? "Mettre à jour" : "Nouvel utilisateur"}</Button>
                         {this.props.cancel ?
                             <Button className="button-cancel" onClick={this.props.cancel}>Annuler</Button>
                         : null}

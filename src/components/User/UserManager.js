@@ -39,16 +39,16 @@ module.exports = React.createClass({
         this.setState({currentUser: user});
     },
     render: function () {
-        /*if(!CurrentUserStore.isSuperAdmin()){
+        if(!CurrentUserStore.isSuperAdmin()){
             return <Unauthorised />;
-        }*/
+        }
 
         return (
             <div className="content-wrapper">
                 <h3>Gestion des utilisateurs</h3>
                 <div className="row">
                     <ColPanel key={1} col="6" icon="calendar" title="Planification">
-                        <Table stripped>
+                        <Table hover>
                             <thead>
                                 <tr>
                                     <th>Utilisateur</th>
