@@ -9,6 +9,7 @@ h1 {
 
 form a {
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .error-message {

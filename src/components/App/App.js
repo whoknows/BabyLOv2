@@ -30,7 +30,7 @@ module.exports = React.createClass({
             ret.push(<MenuItem key="admin" eventKey="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItem>);
         }
         if(CurrentUserStore.isSuperAdmin()){
-            ret.push(<MenuItem key="superadmin"><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem>);
+            ret.push(<MenuItem key="superadmin" eventKey="usermanager"><i className="fa fa-cogs"></i>Gestion des utilisateurs</MenuItem>);
         }
 
         ret.push(<MenuItem key="userinfo"><i className="fa fa-user"></i>Gestion du compte</MenuItem>);

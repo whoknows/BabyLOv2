@@ -9,6 +9,7 @@ var MatchMaker = require('components/MatchMaker/MatchMaker.js');
 var Compare = require('components/Compare/Compare.js');
 var Schedule = require('components/Schedule/Schedule.js');
 var AddGame = require('components/AddGame/AddGame.js');
+var UserManager = require('components/User/UserManager.js');
 var {Route, DefaultRoute, HistoryLocation, run} = require('react-router');
 
 var routes = (
@@ -20,6 +21,7 @@ var routes = (
             <Route name="compare" handler={Compare}/>
             <Route name="schedule" handler={Schedule}/>
             <Route name="addgame" handler={AddGame}/>
+            <Route name="usermanager" handler={UserManager}/>
         </Route>);
 
 document.addEventListener('DOMContentLoaded', function() {

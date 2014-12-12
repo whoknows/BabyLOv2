@@ -9,6 +9,7 @@ require('./Graph.css');
 module.exports = React.createClass({
     stdData: {victoires:[], defaites:[], ratio:[]},
     graphData: {},
+    chart: false,
     mixins: [
         Reflux.listenTo(UsersGraphStore,"onUsersGraphChange")
     ],
@@ -63,6 +64,7 @@ module.exports = React.createClass({
         this.graphData = this.filterData(UsersGraphStore.getUsersGraph());
 
         if (this.graphData) {
+            this.chart = true;
             $('#userChart').highcharts({
                 chart: { zoomType: 'x' },
                 credits: { enabled: false },
@@ -104,17 +106,19 @@ module.exports = React.createClass({
                     data: this.graphData.ratio,
                 }]
             });
+        } else {
+            if(this.chart){
+                $('#userChart').highcharts().destroy();
+                this.chart = false;
+            }
         }
     },
     render: function () {
-        return (
-            <div id="userChart" className="homeChart">
-                <div className="row-fluid">
+        return (<div id="userChart" className="homeChart"><div className="row-fluid">
                     <div className="col-md-12">
                         <i>Aucune donnée à afficher, il faut jouer plus !</i>
                     </div>
                 </div>
-            </div>
-        );
+            </div>);
     }
 });
