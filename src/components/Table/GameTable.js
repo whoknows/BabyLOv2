@@ -30,6 +30,13 @@ module.exports = React.createClass({
             games = games.slice(0,this.props.slice);
         }
 
+        if (games.length === 0) {
+            var colspan = this.getAdminCondition() ? 8 : 7;
+            return <tr key="osef">
+                <td colSpan={colspan}>Aucune partie disponible pour les filtres sélectionnés.</td>
+            </tr>;
+        }
+
         return games.map(function(game) {
             var classT1 = 'text-success';
             var classT2 = 'text-danger';

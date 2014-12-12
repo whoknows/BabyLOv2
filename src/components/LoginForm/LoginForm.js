@@ -17,11 +17,6 @@ module.exports = React.createClass({
         CurrentUserAction.login(this.refs.login.getValue(), this.refs.password.getValue());
         e.preventDefault();
     },
-    componentDidMount: function(){
-        setTimeout(function(){
-            this.refs.login.getDOMNode().focus();
-        }.bind(this), 0);
-    },
     render: function () {
         return (
             <div className="container">
@@ -30,7 +25,7 @@ module.exports = React.createClass({
                         <div className="well bs-component thewell">
                             <h1>Bienvenue</h1>
                             <form onSubmit={this.handleConnection}>
-                                <Input ref="login" type="text" placeholder="Nom d'utilisateur" />
+                                <Input ref="login" type="text" autoFocus placeholder="Nom d'utilisateur" />
                                 <Input ref="password" type="password" placeholder="Mot de passe" />
                                 <Button type="submit" bsStyle="success">Se connecter</Button>
                                 <a onClick={this.askAccount}>Demander un compte</a>

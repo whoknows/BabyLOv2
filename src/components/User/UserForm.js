@@ -29,6 +29,10 @@ module.exports = React.createClass({
         }
     },
     validateForm: function(data){
+        if(this.refs.confirm.getValue() != data.password){
+            // show error !!!!!
+            return false;
+        }
         return true;
     },
     getFormData: function(){
@@ -41,10 +45,10 @@ module.exports = React.createClass({
         return (
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <Input type="hidden" ref="userid" value={this.props.user.id} />
-                <Input type="text" label="Username" ref="username" value={this.props.user.username} labelClassName="col-md-2" wrapperClassName="col-md-8" />
-                <Input type="password" label="Password" ref="password" labelClassName="col-md-2" wrapperClassName="col-md-8" />
-                <Input type="password" label="Confirm" ref="password2" labelClassName="col-md-2" wrapperClassName="col-md-8" />
-                <Input type="text" label="Email" ref="email" defaultValue={this.props.user.email} labelClassName="col-md-2" wrapperClassName="col-md-8" />
+                <Input type="text" label="Username" placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.props.user.username} labelClassName="col-md-2" wrapperClassName="col-md-8" />
+                <Input type="password" label="Password" ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName="col-md-8" />
+                <Input type="password" label="Confirm" ref="password2" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName="col-md-8" />
+                <Input type="text" label="Email" placeholder="Utiliser un email associé à un compte Gravatar" ref="email" defaultValue={this.props.user.email} labelClassName="col-md-2" wrapperClassName="col-md-8" />
                 {this.props.admin ?
                 <div>
                     <Input type="select" label="Roles" ref="roles" multiple labelClassName="col-md-2" wrapperClassName="col-md-8">

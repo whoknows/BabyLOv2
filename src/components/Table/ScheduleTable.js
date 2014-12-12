@@ -24,6 +24,12 @@ module.exports = React.createClass({
             data = this.prepareData(data);
         }
 
+        if (data.length === 0) {
+            return <tr key="osef">
+                <td colSpan={2}>Plus aucun créneau disponible.</td>
+            </tr>;
+        }
+
         return data.map(function(row, i){
             return <tr key={row.creneau}>
                 <td>{row.creneau}</td>
