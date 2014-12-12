@@ -23,9 +23,6 @@ module.exports = React.createClass({
     componentWillMount: function() {
         UsersGraphAction.loadData(this.props.user);
     },
-    componentDidMount: function() {
-        this.generateChart();
-    },
     componentWillUnmount: function() {
         //$('#userChart').highcharts().destroy();
     },
