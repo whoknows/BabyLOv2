@@ -57,6 +57,10 @@ module.exports = React.createClass({
             data.password = sha1(data.password);
         }
 
+        if(this.props.admin){
+            data.admin = true;
+        }
+
         return data;
     },
     validateForm: function(data){
