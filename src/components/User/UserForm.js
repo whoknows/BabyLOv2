@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
 var {Button, Input} = require('react-bootstrap');
-var PopConfirm = require('components/PopConfirm/PopConfirm.js');
 var UserAction = require('actions/UserAction.js');
 var sha1 = require('sha1');
 

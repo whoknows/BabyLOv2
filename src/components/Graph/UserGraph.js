@@ -51,11 +51,11 @@ module.exports = React.createClass({
         var condition = true;
 
         if(this.props.period == "ThisMonth") {
-            var utc = Date.UTC(date.getFullYear(), date.getMonth() + 1, 1);
+            var utc = Date.UTC(date.getFullYear(), date.getMonth(), 1);
             condition = datum[0] >= utc;
         } else if(this.props.period == "LastMonth") {
-            var start = Date.UTC(date.getFullYear(), date.getMonth(), 1);
-            var stop = Date.UTC(date.getFullYear(), date.getMonth() + 1, 0);
+            var start = Date.UTC(date.getFullYear(), date.getMonth() - 1, 1);
+            var stop = Date.UTC(date.getFullYear(), date.getMonth(), 0);
             condition = datum[0] >= start && datum[0] <= stop;
         }
         return condition;

@@ -1,13 +1,34 @@
 var UserAction = require('actions/UserAction.js');
+var GameAction = require('actions/GameAction.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: [UserAction, CurrentUserAction],
+    listenables: [UserAction, GameAction, CurrentUserAction],
     users: [],
     periodList: ["", "ThisMonth", "LastMonth"],
     poidsRatio: 0.65,
     onLoginSuccess: function(){
         UserAction.loadUsers();
+    },
+    onSaveGame: function(){
+        UserAction.loadUsers();
+    },
+    onDeleteUser: function(user_id) {
+        $.ajax({
+            url:'/Babylov2REST/users',
+            type: 'DELETE',
+            dataType: 'json',
+            data: {id: user_id}
+        }).then(function(response){
+            var tmp = [];
+            this.users.forEach(function(u){
+                if(u.id != user_id){
+                    tmp.push(u);
+                }
+            });
+            this.users = tmp;
+            this.trigger();
+        }.bind(this));
     },
     onSaveUser: function(user){
         $.ajax({
@@ -33,8 +54,14 @@ module.exports = Reflux.createStore({
             dataType: 'json',
             data: user
         }).then(function(response){
-            //edituser
-            //this.trigger();
+            user.id = parseInt(response);
+            user.password = undefined;
+            user.gameData = {};
+            if(!user.roles){
+                user.roles = [];
+            }
+            this.users.push(user);
+            this.trigger();
         }.bind(this));
     },
     onLoadUsers: function(){

@@ -17,7 +17,7 @@ module.exports = Reflux.createStore({
 
         response.forEach(function(row){
             var tmp = row.date.split('-');
-            var date = Date.UTC(tmp[0], tmp[1], tmp[2]);
+            var date = Date.UTC(parseInt(tmp[0]), parseInt(tmp[1]) - 1, parseInt(tmp[2]));
 
             data.victoires.push([date, parseInt(row.won)]);
             data.defaites.push([date, parseInt(row.total - row.won)]);

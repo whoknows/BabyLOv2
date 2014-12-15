@@ -2,20 +2,21 @@
 
 var {Button,Alert} = require('react-bootstrap');
 var {Navigation} = require('react-router');
+var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = React.createClass({
     mixins:[
         Navigation
     ],
     handleClic: function(){
-        this.transitionTo("home");
+        if (this.props.noButton) {
+            CurrentUserAction.logout();
+        } else {
+            this.transitionTo("home");
+        }
     },
     render: function () {
         var button = (<span><br /><p><Button onClick={this.handleClic}>Retour à l'accueil</Button></p></span>);
-
-        if(this.props.noButton){
-            button = null;
-        }
 
         return (
             <Alert bsStyle="danger">
