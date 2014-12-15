@@ -63,6 +63,8 @@ module.exports = React.createClass({
         return data;
     },
     validateForm: function(data){
+        // vérifier que l'user n'existe pas déjà
+
         if(data.password2 != data.password){
             // show error !!!!!
             return false;

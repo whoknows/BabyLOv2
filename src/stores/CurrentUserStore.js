@@ -1,12 +1,18 @@
 var CurrentUserAction = require('actions/CurrentUserAction.js');
+var UserAction = require('actions/UserAction.js');
+var UserStore = require('stores/UserStore.js');
 var sha1 = require('sha1');
 
 module.exports = Reflux.createStore({
-    listenables: CurrentUserAction,
+    listenables: [CurrentUserAction, UserAction],
     currentUser: null,
     init: function(){
         CurrentUserAction.checkSession();
     },
+    /*onLoadUser: function(){
+        CurrentUserAction.loadSuUserStore.getUserById(this.userId);
+        this.trigger();
+    },*/
     onCheckSession: function(){
         $.ajax({
             url: '/Babylov2REST/isconnected',
