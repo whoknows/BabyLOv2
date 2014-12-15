@@ -29,13 +29,14 @@ module.exports = React.createClass({
         return this.header.concat([mode]);
     },
     getRows: function() {
-        return Array.prototype.slice.apply(this.props.data, this.props.slice ? [0, this.props.slice] : undefined)
-        .filter(function(user){
+        var data = this.props.data.filter(function(user){
             return user.enabled == "1" || user.id == CurrentUserStore.getCurrentUser().id;
         }.bind(this)).sort(function(userA, userB){
             var p = this.getPeriod();
             return userA.gameData['score' + p] < userB.gameData['score' + p] ? 1 : -1;
-        }.bind(this)).map(function(user){
+        }.bind(this));
+
+        return Array.prototype.slice.apply(data, this.props.slice ? [0, this.props.slice] : undefined).map(function(user){
             var p = this.getPeriod();
             return <tr key={user.id}>
                 <td className="hasUserImage">

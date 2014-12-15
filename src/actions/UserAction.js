@@ -1,1 +1,1 @@
-module.exports = Reflux.createActions(["loadUsers", "saveUser", "addUser", "deleteUser"]);
+module.exports = Reflux.createActions(["loadUsers", "loadUsersSuccess", "saveUser", "addUser", "deleteUser"]);

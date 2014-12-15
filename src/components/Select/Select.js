@@ -43,7 +43,6 @@ module.exports = React.createClass({
         return this.state.selectedUserId;
     },
     render: function () {
-
         var menuItems = this.state.users.filter(function(user){
             return user.username.toLowerCase().indexOf(this.state.filter.toLowerCase()) > -1;
         }.bind(this)).map(function(user){
@@ -55,21 +54,22 @@ module.exports = React.createClass({
         }.bind(this));
 
         var title;
-        var classe = "babylo-select";
         if(this.state.selectedUserId){
-            classe += " hasUserImage";
+            var classe = "hasUserImage";
             title = <UserImage nolink user={this.state.selectedUserId} />;
         }else{
             title = this.props.placeholder;
         }
 
         return (
-            <DropdownButton className={classe} title={title}>
-                <MenuItem>
-                    <Input ref="filter" type="search" placeholder="Filter" value={this.state.filter} onChange={this.handleFilterChange} />
-                </MenuItem>
-                {menuItems}
-            </DropdownButton>
+            <div className="select-wrapper">
+                <DropdownButton className={classe} title={title}>
+                    <MenuItem>
+                        <Input ref="filter" type="search" autoFocus placeholder="Filter" value={this.state.filter} onChange={this.handleFilterChange} />
+                    </MenuItem>
+                    {menuItems}
+                </DropdownButton>
+            </div>
         );
     }
 });

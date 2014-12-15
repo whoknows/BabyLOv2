@@ -66,7 +66,7 @@ module.exports = React.createClass({
 
         var options = [];
         for(var i=0; i<=10; i++){
-            options.push(<option value={i}>{i}</option>);
+            options.push(<option key={i} value={i}>{i}</option>);
         }
 
         return (
@@ -95,9 +95,7 @@ module.exports = React.createClass({
                                     {options}
                                 </Input>
                             </div>
-                            <div className="col-md-12">
-                                <Button bsStyle="info" bsSize="large">Gagnant</Button>
-                            </div>
+                            {/*<div className="col-md-12"><Button bsStyle="info" bsSize="large">Gagnant</Button></div>*/}
                             <div className="col-md-12 gimemargin-vertical">
                                 <Button bsStyle="success" onClick={this.handleSubmit} bsSize="large">Enregistrer la partie</Button>
                                 <br />
@@ -120,9 +118,7 @@ module.exports = React.createClass({
                                     {options}
                                 </Input>
                             </div>
-                            <div className="col-md-12">
-                                <Button bsStyle="info" bsSize="large">Gagnant</Button>
-                            </div>
+                            {/*<div className="col-md-12"><Button bsStyle="info" bsSize="large">Gagnant</Button></div>*/}
                         </div>
                     </div>
                 </div>

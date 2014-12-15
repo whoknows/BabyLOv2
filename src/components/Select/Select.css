@@ -1,24 +1,26 @@
-.babylo-select {
+.select-wrapper .btn-group {
+    width: 100%;
+}
+
+.select-wrapper .btn-group .btn {
     height: 50px;
     margin: 10px 0;
     text-align: left;
-    width: 200px!important;
+    vertical-align: middle;
+    width: 100%;
 }
 
-.babylo-select .caret {
-    float:right!important;
-    margin-top: 10px;
+.select-wrapper .btn-group .btn .caret {
+    position: absolute;
+    top: 25px;
+    right:15px;
 }
 
-.babylo-select.hasUserImage {
+.select-wrapper .hasUserImage {
     padding: 6px 16px 6px 4px;
 }
 
-.babylo-select.hasUserImage .caret {
-    margin-top: 18px;
-}
-
-.babylo-select + ul {
-    max-height: 300px;
+.select-wrapper ul {
+    max-height: 400px;
     overflow-x: auto;
 }

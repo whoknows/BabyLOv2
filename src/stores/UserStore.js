@@ -70,9 +70,12 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            this.users = this.formatResponse(response);
-            this.trigger();
-        }.bind(this));
+            UserAction.loadUsersSuccess(response);
+        });
+    },
+    onLoadUsersSuccess: function(response){
+        this.users = this.formatResponse(response);
+        this.trigger();
     },
     getUsers: function() {
         return this.users;

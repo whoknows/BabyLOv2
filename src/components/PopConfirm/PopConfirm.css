@@ -1,19 +1,25 @@
 .popconfirm {
+    border: 0;
+    box-shadow: 0px 0px 50px #444;
     padding: 0;
     text-align: center;
-    width: 200px;
+    width: 220px;
 }
 
 .popconfirm .popover-title {
     background-color: #F47F7F;
+    border: 1px solid #F47F7F;
     border-radius: 0;
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
     color: #FFF;
+    font-size:16px;
+    line-height: 24px;
+    height: 40px;
 }
 
 .popconfirm .btn {
-    width: 80px;
+    width: 90px;
 }
 
 .popconfirm .btn + .btn {

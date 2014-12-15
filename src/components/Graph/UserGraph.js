@@ -77,12 +77,10 @@ module.exports = React.createClass({
                     },
                     title: {text: null},
                 },
-                yAxis: [{
-                    title: {text: null},
-                },{
-                    title: {text: null},
-                    opposite: true
-                }],
+                yAxis: [
+                    { min: 0, title: {text: 'Parties jouées'}},
+                    { min: 0, max: 1, title: {text: 'Score'}, opposite: true }
+                ],
                 legend: { enabled: false },
                 plotOptions: {
                     column: {
@@ -101,7 +99,7 @@ module.exports = React.createClass({
                     data: this.graphData.defaites,
                 },{
                     type: 'line',
-                    name: 'Ratio',
+                    name: 'Score',
                     yAxis: 1,
                     data: this.graphData.ratio,
                 }]
