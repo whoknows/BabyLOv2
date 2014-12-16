@@ -1,7 +1,14 @@
 .userImage {
     cursor: pointer;
-    margin: 5px;
+    display:inline-block;
+    height: 35px;
+    margin: 0 5px;
     padding-right: 5px;
+    width: 110px;
+}
+
+.userImage img {
+    background-color: white;
 }
 
 .userImage:hover {

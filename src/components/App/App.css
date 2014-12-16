@@ -59,3 +59,13 @@
 .gimemargin-vertical > * {
     margin: 5px 0;
 }
+
+.team1 {
+    background-color: #8BB8F1;
+    color:white;
+}
+
+.team2 {
+    background-color: #F47F7F;
+    color:white;
+}

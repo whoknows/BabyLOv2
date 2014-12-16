@@ -1,7 +1,7 @@
 .scheduleBlock .userImage {
     display: inline-block;
     float: initial;
-    margin: 0 5px;
+    /*margin: 0 5px;*/
     width: 100%;
 }
 
