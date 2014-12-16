@@ -24,12 +24,14 @@ module.exports = Reflux.createStore({
         response.alertBar.games = this.getGames();
         response.alertBar.victory = this.getVictory();
         response.alertBar.defeat = this.getDefeat();
+        response.alertBar.fanny = this.getFanny(response.alertBar.fanny);
+        response.alertBar.worst = this.getWorst();
 
         return response;
     },
     getVictory: function(){
         var users = this.users.sort(function(userA, userB){
-            return userA.gameData['wonThisMonth'] < userB.gameData['wonThisMonth'] ? 1 : -1;
+            return userA.gameData.wonThisMonth < userB.gameData.wonThisMonth ? 1 : -1;
         });
 
         return {
@@ -39,17 +41,17 @@ module.exports = Reflux.createStore({
     },
     getDefeat: function(){
         var users = this.users.sort(function(userA, userB){
-            return userA.gameData['lostThisMonth'] < userB.gameData['lostThisMonth'] ? 1 : -1;
+            return userA.gameData.lostThisMonth < userB.gameData.lostThisMonth ? 1 : -1;
         });
 
         return {
             desc: users[0].gameData.lostThisMonth + " parties perdues",
             value: users[0].username
-        }
+        };
     },
     getLast: function(){
         var users = this.users.sort(function(userA, userB){
-            return userA.gameData['scoreThisMonth'] < userB.gameData['scoreThisMonth'] ? 1 : -1;
+            return userA.gameData.scoreThisMonth < userB.gameData.scoreThisMonth ? 1 : -1;
         });
 
         return {
@@ -61,6 +63,22 @@ module.exports = Reflux.createStore({
         return {
             desc: this.users[0].gameData.totalThisMonth + " parties jouées",
             value: this.users[0].gameData.totalThisMonth
+        };
+    },
+    getFanny: function(data){
+        var tmp = data.users.map(function(u){
+            return UserStore.getUserById(u).username;
+        });
+
+        return {
+            desc: tmp[0] + ' et ' + tmp[1] + ' ont pris fanny le ' + data.date,
+            value: tmp[0].substr(0,4) + '.' + ' & ' + tmp[1].substr(0,4) + '.'
+        };
+    },
+    getWorst: function() {
+        return {
+            desc : 'N/A',
+            value: 'N/A'
         };
     },
     getHomeDatas: function() {

@@ -7,7 +7,7 @@ require('js/highcharts.js');
 require('./Graph.css');
 
 module.exports = React.createClass({
-    stdData: {victoires:[], defaites:[], ratio:[]},
+    stdData: {victoires:[], defaites:[], ratio:[], dates: []},
     graphData: {},
     chart: false,
     mixins: [
@@ -35,9 +35,10 @@ module.exports = React.createClass({
         } else {
             var ret = JSON.parse(JSON.stringify(this.stdData));
 
-            data.victoires.forEach(function(datum, i){
+            data.dates.forEach(function(datum, i){
                 if(this.getCondition(datum)){
-                    ret.victoires.push(datum);
+                    ret.dates.push(datum);
+                    ret.victoires.push(data.victoires[i]);
                     ret.defaites.push(data.defaites[i]);
                     ret.ratio.push(data.ratio[i]);
                 }
@@ -48,15 +49,17 @@ module.exports = React.createClass({
     },
     getCondition: function(datum) {
         var date = new Date();
+        var tmp = datum.split('-');
+        var date2 = Date.UTC(tmp[0], tmp[1] - 1, tmp[2]);
         var condition = true;
 
         if(this.props.period == "ThisMonth") {
             var utc = Date.UTC(date.getFullYear(), date.getMonth(), 1);
-            condition = datum[0] >= utc;
+            condition = date2 >= utc;
         } else if(this.props.period == "LastMonth") {
             var start = Date.UTC(date.getFullYear(), date.getMonth() - 1, 1);
             var stop = Date.UTC(date.getFullYear(), date.getMonth(), 0);
-            condition = datum[0] >= start && datum[0] <= stop;
+            condition = date2 >= start && date2 <= stop;
         }
         return condition;
     },
@@ -70,11 +73,7 @@ module.exports = React.createClass({
                 credits: { enabled: false },
                 title: { text: null },
                 xAxis: {
-                    type: 'datetime',
-                    dateTimeLabelFormats: {
-                        month: '%e. %b',
-                        year: '%b'
-                    },
+                    categories: this.graphData.dates,
                     title: {text: null},
                 },
                 yAxis: [
@@ -102,7 +101,8 @@ module.exports = React.createClass({
                     name: 'Score',
                     yAxis: 1,
                     data: this.graphData.ratio,
-                }]
+                }],
+                tooltip: { shared: true }
             });
         } else {
             if(this.chart){

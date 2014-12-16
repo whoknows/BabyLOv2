@@ -14,18 +14,18 @@ module.exports = Reflux.createStore({
         }.bind(this));
     },
     formatData: function(response){
-        var data = {'victoires':[], 'defaites':[], 'ratio':[]};
+        var data = {'victoires':[], 'defaites':[], 'ratio':[], 'dates':[]};
         var sumTotal = 0;
 
         response.userdata.forEach(function(row){
             var tmp = row.date.split('-');
-            var date = Date.UTC(parseInt(tmp[0]), parseInt(tmp[1]) - 1, parseInt(tmp[2]));
 
             sumTotal += response.total[tmp[0] + '.' + tmp[1]];
 
-            data.victoires.push([date, parseInt(row.won)]);
-            data.defaites.push([date, parseInt(row.total - row.won)]);
-            data.ratio.push([date, this.getScore(row, sumTotal)]);
+            data.dates.push(row.date);
+            data.victoires.push(parseInt(row.won));
+            data.defaites.push(parseInt(row.total - row.won));
+            data.ratio.push(this.getScore(row, sumTotal));
         }.bind(this));
 
         return data;
