@@ -6,6 +6,7 @@ require('./Graph.css');
 module.exports = React.createClass({
     currentGraph: null,
     generateGraph: function() {
+        Highcharts.setOptions({global:{ useUTC: false }});
         $('#gameChart').highcharts({
             chart: { zoomType: 'x' },
             credits: { enabled: false },
