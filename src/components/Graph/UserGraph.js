@@ -19,7 +19,7 @@ module.exports = React.createClass({
         };
     },
     componentWillReceiveProps: function(nextProps) {
-        if(nextProps.user != this.props.user || this.props.period != nextProps.period){
+        if(nextProps.user != this.props.user || this.props.period != nextProps.period || this.props.cumule != nextProps.cumule){
             UsersGraphAction.loadData(nextProps.user);
         }
     },

@@ -33,7 +33,7 @@ module.exports = Reflux.createStore({
                 ret.dates.push(datum.date);
                 ret.victoires.push(won);
                 ret.defaites.push(lost);
-                ret.ratio.push(this.getScore(won, won+lost, parseInt(this.usersGraph.total[tmp[0] + '.' + tmp[1]])));
+                ret.ratio.push(this.getScore(won, won+lost, this.getTotal(period, tmp)));
             }
         }.bind(this));
 
@@ -57,6 +57,18 @@ module.exports = Reflux.createStore({
         }
 
         return 0;
+    },
+    getTotal: function(period, tmp){
+        if (period !== "") {
+            return parseInt(this.usersGraph.total[tmp[0] + '.' + tmp[1]]);
+        } else {
+            var total = 0;
+
+            for(var i in this.usersGraph.total){
+                total += parseInt(this.usersGraph.total[i]);
+            }
+            return total;
+        }
     },
     getScore: function (won, total, global) {
         var ratio = won / total;
