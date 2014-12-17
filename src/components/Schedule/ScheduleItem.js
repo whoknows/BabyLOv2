@@ -12,7 +12,7 @@ module.exports = React.createClass({
     userScheduled: false,
     /*mixins: [Reflux.listenTo(MatchmakingStore,"onMatchmakingChange")],*/
     getInitialState: function(){
-        return {teams: []};
+        return {teams: MatchmakingStore.getTeams()};
     },
     componentWillReceiveProps: function(nextProps){
         if(nextProps.users.length == 4){
@@ -47,7 +47,7 @@ module.exports = React.createClass({
         return this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
-                return <UserImage key={userid} className={["removable", this.getTeam(userid)]} handleClick={this.userClickHandler.bind(null, this.props.creneau, userid)} user={userid}></UserImage>;
+                return <UserImage key={userid} className={"removable " + this.getTeam(userid)} handleClick={this.userClickHandler.bind(null, this.props.creneau, userid)} user={userid}></UserImage>;
             }
 
             return <UserImage key={userid} className={this.getTeam(userid)} user={userid}></UserImage>;
@@ -61,7 +61,7 @@ module.exports = React.createClass({
                 return 'team2';
             }
         } else {
-            return '';
+            return undefined;
         }
     },
     getButton: function () {

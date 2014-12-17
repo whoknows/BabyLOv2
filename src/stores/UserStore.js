@@ -86,6 +86,7 @@ module.exports = Reflux.createStore({
         this.users.some(function(u) {
             if(u.id == id) {
                 user = u;
+
                 return true;
             }
         });

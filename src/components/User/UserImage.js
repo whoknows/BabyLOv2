@@ -9,10 +9,18 @@ require('components/User/UserImage.css');
 
 module.exports = React.createClass({
     mixins:[
-        Navigation
+        Navigation,
+        Reflux.listenTo(UserStore,"onUserChange")
     ],
-    getDefaultProps: function() {
-        return {className:''};
+    getInitialState: function(){
+        return {
+            user: UserStore.getUserById(this.props.user)
+        };
+    },
+    onUserChange: function() {
+        this.setState({
+            user: UserStore.getUserById(this.props.user)
+        });
     },
     handleClick: function() {
         if (this.props.handleClick) {
@@ -22,15 +30,13 @@ module.exports = React.createClass({
         }
     },
     render: function () {
-        var user = UserStore.getUserById(this.props.user);
-
-        if (user === null) {
+        if (!this.state.user || this.state.user === null) {
             return null;
         }
 
         return (
-            <span className={"userImage " + this.props.className} onClick={this.handleClick} data-id={user.id}>
-                <img src={user.gravatar} alt="gravatar" />{user.username}
+            <span className={"userImage " + this.props.className} onClick={this.handleClick} data-id={this.state.user.id}>
+                <img src={this.state.user.gravatar} alt="gravatar" />{this.state.user.username}
             </span>
         );
     }
