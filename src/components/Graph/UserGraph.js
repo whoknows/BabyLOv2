@@ -7,14 +7,16 @@ require('js/highcharts.js');
 require('./Graph.css');
 
 module.exports = React.createClass({
-    stdData: {victoires:[], defaites:[], ratio:[], dates: []},
     graphData: {},
     chart: false,
     mixins: [
-        Reflux.listenTo(UsersGraphStore,"onUsersGraphChange")
+        Reflux.listenTo(UsersGraphStore,"generateChart")
     ],
-    onUsersGraphChange: function() {
-        this.generateChart();
+    getDefaultProps: function(){
+        return {
+            period: "ThisMonth",
+            cumule: true
+        };
     },
     componentWillReceiveProps: function(nextProps) {
         if(nextProps.user != this.props.user || this.props.period != nextProps.period){
@@ -24,47 +26,8 @@ module.exports = React.createClass({
     componentWillMount: function() {
         UsersGraphAction.loadData(this.props.user);
     },
-    componentWillUnmount: function() {
-        //$('#userChart').highcharts().destroy();
-    },
-    filterData: function(data) {
-        if (data.length === 0) {
-            return false;
-        } else if (this.props.period === "") {
-            return data;
-        } else {
-            var ret = JSON.parse(JSON.stringify(this.stdData));
-
-            data.dates.forEach(function(datum, i){
-                if(this.getCondition(datum)){
-                    ret.dates.push(datum);
-                    ret.victoires.push(data.victoires[i]);
-                    ret.defaites.push(data.defaites[i]);
-                    ret.ratio.push(data.ratio[i]);
-                }
-            }.bind(this));
-
-            return JSON.stringify(ret) === JSON.stringify(this.stdData) ? false : ret;
-        }
-    },
-    getCondition: function(datum) {
-        var date = new Date();
-        var tmp = datum.split('-');
-        var date2 = Date.UTC(tmp[0], tmp[1] - 1, tmp[2]);
-        var condition = true;
-
-        if(this.props.period == "ThisMonth") {
-            var utc = Date.UTC(date.getFullYear(), date.getMonth(), 1);
-            condition = date2 >= utc;
-        } else if(this.props.period == "LastMonth") {
-            var start = Date.UTC(date.getFullYear(), date.getMonth() - 1, 1);
-            var stop = Date.UTC(date.getFullYear(), date.getMonth(), 0);
-            condition = date2 >= start && date2 <= stop;
-        }
-        return condition;
-    },
     generateChart: function(){
-        this.graphData = this.filterData(UsersGraphStore.getUsersGraph());
+        this.graphData = UsersGraphStore.getFilteredData(this.props.period, this.props.cumule);
 
         if (this.graphData) {
             this.chart = true;
@@ -93,11 +56,11 @@ module.exports = React.createClass({
                     data: this.graphData.victoires,
                 },{
                     type: 'column',
-                    name: 'Victoires',
+                    name: 'Défaites',
                     color: '#F05050',
                     data: this.graphData.defaites,
                 },{
-                    type: 'line',
+                    type: 'spline',
                     name: 'Score',
                     yAxis: 1,
                     data: this.graphData.ratio,

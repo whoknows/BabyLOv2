@@ -9,31 +9,59 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            this.usersGraph = this.formatData(response);
+            this.usersGraph = response;
             this.trigger();
         }.bind(this));
     },
-    formatData: function(response){
-        var data = {'victoires':[], 'defaites':[], 'ratio':[], 'dates':[]};
-        var sumTotal = 0;
+    getFilteredData: function(period, cumule) {
+        if(!period){
+            period = "";
+        }
 
-        response.userdata.forEach(function(row){
-            var tmp = row.date.split('-');
+        return this.filterData(period, cumule);
+    },
+    filterData: function(period, cumule){
+        var ret = {victoires:[], defaites:[], ratio:[], dates: []};
 
-            sumTotal += response.total[tmp[0] + '.' + tmp[1]];
+        this.usersGraph.userdata.forEach(function(datum, i){
+            var tmp = datum.date.split('-');
+            if(this.getCondition(tmp, period)){
 
-            data.dates.push(row.date);
-            data.victoires.push(parseInt(row.won));
-            data.defaites.push(parseInt(row.total - row.won));
-            data.ratio.push(this.getScore(row, sumTotal));
+                var lost = (cumule ? this.sumLast(ret.defaites) : 0) + (parseInt(datum.total) - parseInt(datum.won));
+                var won = (cumule ? this.sumLast(ret.victoires) : 0) + parseInt(datum.won);
+
+                ret.dates.push(datum.date);
+                ret.victoires.push(won);
+                ret.defaites.push(lost);
+                ret.ratio.push(this.getScore(won, won+lost, parseInt(this.usersGraph.total[tmp[0] + '.' + tmp[1]])));
+            }
         }.bind(this));
 
-        return data;
+        return ret.dates.length === 0 ? false : ret;
     },
-    getScore: function (row, total) {
-        var ratio = row.won / row.total;
+    getCondition: function(tmp, period) {
+        var date = new Date();
+        var date2 = Date.UTC(tmp[0], tmp[1] - 1, tmp[2]);
 
-        ratio = (ratio * UserStore.poidsRatio) + ((row.total / total) * (1 - UserStore.poidsRatio));
+        if(period == "ThisMonth") {
+            return date2 >= Date.UTC(date.getFullYear(), date.getMonth(), 1);
+        } else if(period == "LastMonth") {
+            return date2 >= Date.UTC(date.getFullYear(), date.getMonth() - 1, 1) && date2 <= Date.UTC(date.getFullYear(), date.getMonth(), 0);
+        }
+
+        return true;
+    },
+    sumLast: function(a){
+        if (a.length > 0) {
+            return a[a.length - 1];
+        }
+
+        return 0;
+    },
+    getScore: function (won, total, global) {
+        var ratio = won / total;
+
+        ratio = (ratio * UserStore.poidsRatio) + ((total / global) * (1 - UserStore.poidsRatio));
 
         var score = Math.round(ratio*100)/100;
 
