@@ -7,6 +7,12 @@ var ScheduleItem = require('components/Schedule/ScheduleItem.js');
 require('./ScheduleTable.css');
 
 module.exports = React.createClass({
+    mixins: [
+        Reflux.listenTo(ScheduleStore,"onScheduleChange")
+    ],
+    onScheduleChange: function(){
+        //TODO
+    },
     prepareData: function(data) {
         var heure = ScheduleStore.getCurrentTime();
         var returnData = [];

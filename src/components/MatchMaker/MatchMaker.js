@@ -1,18 +1,13 @@
 /** @jsx React.DOM */
 
 var UserStore = require('stores/UserStore.js');
-var MatchmakingActions = require('actions/MatchmakingActions.js');
-var MatchmakingStore = require('stores/MatchmakingStore.js');
 var UserImage = require('components/User/UserImage.js');
 var {Button, ListGroup, ListGroupItem, Panel} = require('react-bootstrap');
 
 module.exports = React.createClass({
-    mixins: [Reflux.listenTo(UserStore,"onUserChange"), Reflux.listenTo(MatchmakingStore,"onMatchmakingChange")],
+    mixins: [Reflux.listenTo(UserStore,"onUserChange")],
     getInitialState: function(){
         return {users: UserStore.getUsers(), teams:[], selectedUsers:[]};
-    },
-    onMatchmakingChange: function(){
-        this.setState({teams: MatchmakingStore.getTeams()});
     },
     onUserChange: function() {
         this.setState({users: UserStore.getUsers()});
@@ -49,7 +44,7 @@ module.exports = React.createClass({
     },
     handleSubmit: function(){
         if(this.state.selectedUsers.length == 4){
-            MatchmakingActions.doMatchMaking(this.state.selectedUsers);
+            this.setState({teams: UserStore.getMatchMaking(this.state.selectedUsers)});
         }
     },
     getTeams: function(){

@@ -117,5 +117,21 @@ module.exports = Reflux.createStore({
         var score = Math.round(ratio*100)/100;
 
         return isNaN(score) ? 0 : score;
+    },
+    getMatchMaking: function(users) {
+        if(users.length !== 4 || this.users.length === 0){
+            return [];
+        }
+
+        var data = users.map(function(userid){
+            return this.getUserById(userid);
+        }.bind(this)).sort(function(userA, userB){
+            return userA.gameData.score < userB.gameData.score ? 1 : -1;
+        });
+
+        return [
+            [data[0].id, data[3].id],
+            [data[1].id, data[2].id]
+        ];
     }
 });

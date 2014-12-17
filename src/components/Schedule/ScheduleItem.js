@@ -2,27 +2,27 @@
 
 var UserImage = require('components/User/UserImage.js');
 var {Button, ListGroup, ListGroupItem} = require('react-bootstrap');
+var UserStore = require('stores/UserStore.js');
 var ScheduleStore = require('stores/ScheduleStore.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var ScheduleAction = require('actions/ScheduleAction.js');
-var MatchmakingActions = require('actions/MatchmakingActions.js');
-var MatchmakingStore = require('stores/MatchmakingStore.js');
 
 module.exports = React.createClass({
     userScheduled: false,
+    mixins: [
+        Reflux.listenTo(UserStore,"onUsersChange")
+    ],
+    onUsersChange: function() {
+        if(this.props.users.length == 4){
+            this.setState({teams: UserStore.getMatchMaking(this.props.users)});
+        }
+    },
     getInitialState: function(){
-        return {teams: MatchmakingStore.getTeams()};
+        return {teams: UserStore.getMatchMaking(this.props.users)};
     },
     componentWillReceiveProps: function(nextProps){
-        this.triggerMatchMaking(nextProps);
-    },
-    componentWillMount: function(){
-        this.triggerMatchMaking(this.props);
-    },
-    triggerMatchMaking: function(nextProps){
         if(nextProps.users.length == 4){
-            MatchmakingActions.doMatchMaking(nextProps.users);
-            this.setState({teams: MatchmakingStore.getTeams()});
+            this.setState({teams: UserStore.getMatchMaking(nextProps.users)});
         }
     },
     setUserScheduled: function (us) {
@@ -50,8 +50,8 @@ module.exports = React.createClass({
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
                 return (
-                    <span className="outerRemovable">
-                        <UserImage key={userid} className={"removable " + this.getTeam(userid)} user={userid} />
+                    <span className="outerRemovable" key={userid}>
+                        <UserImage className={"removable " + this.getTeam(userid)} user={userid} />
                         <span className="innerRemovable" onClick={this.userClickHandler.bind(this, this.props.creneau, userid)}><i className="fa fa-remove"></i></span>
                     </span>
                 );
@@ -68,7 +68,7 @@ module.exports = React.createClass({
                 return 'team2';
             }
         } else {
-            return undefined;
+            return '';
         }
     },
     getButton: function () {
