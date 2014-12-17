@@ -8,6 +8,7 @@ module.exports = Reflux.createStore({
         if(users.length !== 4){
             return false;
         }
+
         var data = users.map(function(userid){
             return UserStore.getUserById(userid);
         }).sort(function(userA, userB){

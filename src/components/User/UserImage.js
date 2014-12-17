@@ -35,7 +35,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <span className={"userImage " + this.props.className} onClick={this.handleClick} data-id={this.state.user.id}>
+            <span {...this.props} className={"userImage " + this.props.className} onClick={this.handleClick} data-id={this.state.user.id}>
                 <img src={this.state.user.gravatar} alt="gravatar" />{this.state.user.username}
             </span>
         );

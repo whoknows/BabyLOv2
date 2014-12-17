@@ -2,44 +2,54 @@
     cursor: pointer;
     display:inline-block;
     height: 35px;
-    margin: 0 5px;
+    margin: 0 0 0 5px;
     padding-right: 5px;
     width: 110px;
 }
 
 .userImage img {
     background-color: white;
+    height:35px;
+    margin-right: 5px;
+    width:35px;
 }
 
 .userImage:hover {
     color: #23B7E5;
 }
 
-.userImage.removable:after {
-    content:"\f00d";
-    color: #f47f7f;
+.outerRemovable {
     display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    visibility:hidden;
-    padding-left: 4px;
-    font-size: 12px;
-    vertical-align: initial;
+    margin: 0 0 0 5px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 110px;
 }
 
-.userImage.removable:hover:after {
-    visibility: visible;
+.outerRemovable .userImage {
+    margin: 0;
+    width:100%;
 }
 
-.userImage.removable i {
-    margin-left: 9px;
-    display:none;
+.outerRemovable:hover > .innerRemovable {
+    right:0;
 }
 
-.userImage img {
-    height:35px;
-    margin-right: 5px;
-    width:35px;
+.innerRemovable {
+    background-color: #f05050;
+    color:white;
+    cursor:pointer;
+    display: block;
+    height: 35px;
+    position: absolute;
+    right: calc(35px - 100%);
+    text-align:center;
+    top:0;
+    transition: right 0.5s;
+    width: calc(100% - 35px);
+}
+
+.innerRemovable i.fa {
+    margin-top: 10px;
 }

@@ -10,18 +10,20 @@ var MatchmakingStore = require('stores/MatchmakingStore.js');
 
 module.exports = React.createClass({
     userScheduled: false,
-    /*mixins: [Reflux.listenTo(MatchmakingStore,"onMatchmakingChange")],*/
     getInitialState: function(){
         return {teams: MatchmakingStore.getTeams()};
     },
     componentWillReceiveProps: function(nextProps){
+        this.triggerMatchMaking(nextProps);
+    },
+    componentWillMount: function(){
+        this.triggerMatchMaking(this.props);
+    },
+    triggerMatchMaking: function(nextProps){
         if(nextProps.users.length == 4){
             MatchmakingActions.doMatchMaking(nextProps.users);
             this.setState({teams: MatchmakingStore.getTeams()});
         }
-    },
-    onMatchmakingChange: function(){
-        /**/
     },
     setUserScheduled: function (us) {
         this.userScheduled = us;
@@ -47,7 +49,12 @@ module.exports = React.createClass({
         return this.props.users.map(function(userid){
             if(userid == currentUser.id){
                 this.setUserScheduled(true);
-                return <UserImage key={userid} className={"removable " + this.getTeam(userid)} handleClick={this.userClickHandler.bind(null, this.props.creneau, userid)} user={userid}></UserImage>;
+                return (
+                    <span className="outerRemovable">
+                        <UserImage key={userid} className={"removable " + this.getTeam(userid)} user={userid} />
+                        <span className="innerRemovable" onClick={this.userClickHandler.bind(this, this.props.creneau, userid)}><i className="fa fa-remove"></i></span>
+                    </span>
+                );
             }
 
             return <UserImage key={userid} className={this.getTeam(userid)} user={userid}></UserImage>;
