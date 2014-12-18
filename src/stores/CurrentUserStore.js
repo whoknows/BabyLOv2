@@ -9,22 +9,21 @@ module.exports = Reflux.createStore({
     init: function(){
         CurrentUserAction.checkSession();
     },
-    /*onLoadUser: function(){
-        CurrentUserAction.loadSuUserStore.getUserById(this.userId);
-        this.trigger();
-    },*/
+    onLoadUsersSuccess: function(){
+        CurrentUserAction.loadSuccess(UserStore.getUserById(this.currentUser.id), false);
+    },
     onCheckSession: function(){
         $.ajax({
             url: '/Babylov2REST/isconnected',
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            CurrentUserAction.loadSuccess(response);
+            CurrentUserAction.loadSuccess(response, true);
         });
     },
     onLogin: function(login, password) {
         if(login === '' || password === ''){
-            CurrentUserAction.loadSuccess({message:'Champs vide.'});
+            CurrentUserAction.loadSuccess({message:'Champs vide.'}, true);
             return true;
         }
 
@@ -33,7 +32,8 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         }).then(function(response) {
-            CurrentUserAction.loadSuccess(response);
+            this.doLogin = true;
+            CurrentUserAction.loadSuccess(response, true);
         });
     },
     onLogout: function() {
@@ -42,12 +42,12 @@ module.exports = Reflux.createStore({
             type: 'GET',
             dataType: 'json'
         });
-        CurrentUserAction.loadSuccess(null);
+        CurrentUserAction.loadSuccess(null, true);
     },
-    onLoadSuccess: function(currentUser){
+    onLoadSuccess: function(currentUser, doLogin){
         this.currentUser = currentUser;
 
-        if(currentUser !== null && !this.currentUser.message){
+        if(currentUser !== null && !this.currentUser.message && doLogin){
             CurrentUserAction.loginSuccess();
         }
 

@@ -72,29 +72,35 @@ module.exports = React.createClass({
         return data;
     },
     validateForm: function(data){
-        if (typeof data.username === 'undefined'){
-            this.setState({success:"", error:"Vous devez spécifier un nom d'utilisateur."});
-            return false;
+        if (!data.username){
+            if(this.state.user.username){
+                data.username = this.state.user.username;
+            } else {
+                this.setState({success:"", error:"Vous devez spécifier un nom d'utilisateur."});
+                return false;
+            }
         } else if(this.props.admin) {
             // vérifier que l'user n'existe pas déjà dans le store
         } else {
             // vérifier en base fkit
         }
 
-        if (typeof data.password === 'undefined' || data.password === ''){
+        if (!this.state.user.id && (!data.password || data.password === '')){
             this.setState({success:"", error:"Vous devez spécifier un mot de passe."});
             return false;
+        } else if(data.password) {
+            if (data.password2 != data.password) {
+                this.setState({success:"", error:"Les deux mots de passe sont différents."});
+                return false;
+            } else if(data.password.length < 6) {
+                this.setState({success:"", error:"Le mot de passe est trop court (6 charactères min.)."});
+                return false;
+            }
         }
 
-        if (data.password2 != data.password) {
-            this.setState({success:"", error:"Les deux mots de passe sont différents."});
-            return false;
-        } else if(data.password.length < 6) {
-            this.setState({success:"", error:"Le mot de passe est trop court (6 charactères min.)."});
-            return false;
-        }
-
-        this.setState({error:"", success:"Votre compte à bien été créé, il est en attente d'activation par un administrateur."});
+        this.setState({error:"", success: (
+            data.id ? "Le compte à bien été mis à jour." : "Votre compte à bien été créé, il est en attente d'activation par un administrateur."
+        )});
 
         return true;
     },
@@ -104,10 +110,9 @@ module.exports = React.createClass({
         return (
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <Input type="hidden" ref="userid" readOnly value={this.state.user.id} />
-                <Input type="text" label="Username" onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
-                {/*CurrentUserStore.getCurrentUser().id == this.state.user.id  ?
-                    <Input type="password" label="Password" onChange={this.handleChange.bind(this, "oldpassword")} value={this.state.user.nothing} ref="oldpassword" placeholder="Mot de passe actuel" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
-                : null*/}
+                {this.props.admin || !this.props.user ?
+                    <Input type="text" label="Username" onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                : null }
 
                 <Input type="password" label="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.user.nothing} ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 <Input type="password" label="Confirm" onChange={this.handleChange.bind(this, "password2")} value={this.state.user.nothing} ref="password2" placeholder="Confirmation du mot de passe" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />

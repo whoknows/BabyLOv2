@@ -45,7 +45,7 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Table className="scheduleTable" hover>
+            <Table className="scheduleTable" responsive hover>
                 <thead><tr><th>Créneau</th><th>Joueurs</th></tr></thead>
                 <tbody>{this.generateTable(this.props.data)}</tbody>
             </Table>

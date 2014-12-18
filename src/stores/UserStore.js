@@ -39,8 +39,12 @@ module.exports = Reflux.createStore({
         }).then(function(response){
             this.users = this.users.map(function(u){
                 if(u.id == user.id){
-                    user.password = undefined;
-                    return user;
+                    u.username = user.username;
+                    u.email = user.email;
+                    u.roles = user.roles;
+                    u.enabled = user.enabled;
+
+                    return u;
                 }
                 return u;
             });

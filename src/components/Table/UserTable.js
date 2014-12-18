@@ -53,7 +53,7 @@ module.exports = React.createClass({
             return <th key={i}>{headum}</th>;
         });
 
-        return <Table hover>
+        return <Table responsive hover>
                 <thead><tr>{header}</tr></thead>
                 <tbody>{this.getRows()}</tbody>
             </Table>;

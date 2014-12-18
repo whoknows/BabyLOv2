@@ -9,10 +9,19 @@ var ColPanel = require('components/Home/ColPanel.js');
 module.exports = React.createClass({
     mixins: [Reflux.listenTo(CurrentUserStore,"onUsersChange")],
     onUserChange: function(){
-        this.setState({currentUser: CurrentUserStore.getCurrentUser()});
+        this.setState({currentUser: this.filterUser(CurrentUserStore.getCurrentUser())});
     },
     getInitialState: function(){
-        return {currentUser: CurrentUserStore.getCurrentUser()};
+        return {currentUser: this.filterUser(CurrentUserStore.getCurrentUser())};
+    },
+    filterUser: function(user){
+        return {
+            id: user.id,
+            enabled: user.enabled,
+            roles: user.roles,
+            email: user.email,
+            username: user.username
+        };
     },
     render: function () {
         return (
@@ -20,7 +29,7 @@ module.exports = React.createClass({
                 <h3>Gestion du compte</h3>
                 <div className="row">
                     <ColPanel key={2} col="12" icon="edit" title="Mettez vos informations à jour">
-                        <UserForm cancel={this.toggleForm} user={this.state.currentUser} width={9} />
+                        <UserForm cancel={this.toggleForm} user={this.state.currentUser} width={9} doAfterSubmit={function(){}} />
                     </ColPanel>
                 </div>
             </div>
