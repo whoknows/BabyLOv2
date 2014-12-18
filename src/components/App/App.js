@@ -26,7 +26,7 @@ module.exports = React.createClass({
     getDropdownContent: function(){
         var ret = [];
 
-        ret.push(<MenuItem key="userinfo"><i className="fa fa-user"></i>Gestion du compte</MenuItem>);
+        ret.push(<MenuItem key="userinfo" eventKey="profile"><i className="fa fa-user"></i>Gestion du compte</MenuItem>);
         if(CurrentUserStore.isAdmin()){
             ret.push(<MenuItem key="admin" eventKey="addgame"><i className="fa fa-plus"></i>Ajouter une partie</MenuItem>);
         }

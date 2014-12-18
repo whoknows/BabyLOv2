@@ -1,13 +1,12 @@
-var Reflux = require('reflux');
-var HomeGameActions = require('actions/GameAction.js');
+var HomeGameActions = require('actions/HomeGameAction.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
     listenables: [CurrentUserAction, HomeGameActions],
     onLoginSuccess: function(){
-        HomeGameActions.loadGames();
+        HomeGameActions.loadHomeGames();
     },
-    onLoadGames: function(){
+    onLoadHomeGames: function(){
         $.ajax({
             url: '/Babylov2REST/games',
             type: 'GET',

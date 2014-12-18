@@ -2,13 +2,18 @@
 
 var {Button, Input} = require('react-bootstrap');
 var UserAction = require('actions/UserAction.js');
+var CurrentUserStore = require('stores/CurrentUserStore.js');
 var sha1 = require('sha1');
 
 require('./UserForm.css');
 
 module.exports = React.createClass({
     getInitialState: function(){
-        return {user:{}, success:"", error:""};
+        return {
+            user: this.props.user ? this.props.user : {},
+            success:"",
+            error:""
+        };
     },
     getDefaultProps: function () {
         return {admin: false, width: 10};
@@ -100,6 +105,10 @@ module.exports = React.createClass({
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <Input type="hidden" ref="userid" readOnly value={this.state.user.id} />
                 <Input type="text" label="Username" onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                {/*CurrentUserStore.getCurrentUser().id == this.state.user.id  ?
+                    <Input type="password" label="Password" onChange={this.handleChange.bind(this, "oldpassword")} value={this.state.user.nothing} ref="oldpassword" placeholder="Mot de passe actuel" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                : null*/}
+
                 <Input type="password" label="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.user.nothing} ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 <Input type="password" label="Confirm" onChange={this.handleChange.bind(this, "password2")} value={this.state.user.nothing} ref="password2" placeholder="Confirmation du mot de passe" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 <Input type="email" label="Email" onChange={this.handleChange.bind(this, "email")} placeholder="Utiliser un email associé à un compte Gravatar" ref="email" value={this.state.user.email} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />

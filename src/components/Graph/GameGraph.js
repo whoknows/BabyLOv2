@@ -37,6 +37,7 @@ module.exports = React.createClass({
                 }
             },
             series: [{
+                cursor: 'pointer',
                 type: 'area',
                 name: 'Parties jouées',
                 data: this.props.data,
@@ -47,7 +48,11 @@ module.exports = React.createClass({
                         }.bind(this)
                     }
                 }
-            }]
+            }],
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+                shared: true
+            },
         });
     },
     getDefaultProps: function() {

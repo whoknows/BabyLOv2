@@ -65,7 +65,10 @@ module.exports = React.createClass({
                     yAxis: 1,
                     data: this.graphData.ratio,
                 }],
-                tooltip: { shared: true }
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">•</span> {series.name}: <b>{point.y}</b><br/>',
+                    shared: true
+                }
             });
         } else {
             if(this.chart){

@@ -1,1 +1,1 @@
-module.exports = Reflux.createActions(["loadGames"]);
+module.exports = Reflux.createActions(["loadHomeGames"]);

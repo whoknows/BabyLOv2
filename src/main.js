@@ -10,6 +10,7 @@ var Compare = require('components/Compare/Compare.js');
 var Schedule = require('components/Schedule/Schedule.js');
 var AddGame = require('components/AddGame/AddGame.js');
 var UserManager = require('components/User/UserManager.js');
+var Profile = require('components/Profile/Profile.js');
 var {Route, DefaultRoute, HistoryLocation, run} = require('react-router');
 
 var routes = (
@@ -22,6 +23,7 @@ var routes = (
             <Route name="schedule" handler={Schedule}/>
             <Route name="addgame" handler={AddGame}/>
             <Route name="usermanager" handler={UserManager}/>
+            <Route name="profile" handler={Profile}/>
         </Route>);
 
 document.addEventListener('DOMContentLoaded', function() {
