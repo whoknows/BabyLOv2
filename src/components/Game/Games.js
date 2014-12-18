@@ -5,12 +5,14 @@ var GameStore = require('stores/GameStore.js');
 var GameActions = require('actions/GameAction.js');
 var ColPanel = require('components/Home/ColPanel.js');
 var {Button, Input} = require('react-bootstrap');
+var {State} = require('react-router');
 
 require('./Game.css');
 
 module.exports = React.createClass({
     mixins: [
-        Reflux.listenTo(GameStore,"onGameChange")
+        Reflux.listenTo(GameStore,"onGameChange"),
+        State
     ],
     onGameChange: function() {
         this.setState({
@@ -18,25 +20,36 @@ module.exports = React.createClass({
         });
     },
     getInitialState: function () {
+        var dateString;
+
+        if(this.getParams().date){
+            dateString = this.getParams().date;
+        } else {
+            dateString = GameStore.getCurrentDate();
+        }
+
         return {
-            games: GameStore.getGames()
+            games: GameStore.getGames(),
+            date: dateString
         };
     },
     handleSubmit: function(e){
         e.preventDefault();
-        GameActions.loadGames(this.refs.date.getValue());
+        GameActions.loadGames(this.state.date);
+    },
+    handleChange: function(ref){
+        var s = {};
+        s[ref] = this.refs[ref].getValue().trim();
+        this.setState(s);
     },
     render: function () {
-        var date = new Date();
-        var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' : '') + date.getDate();
-
         return <div className="content-wrapper">
                     <h3>Parties</h3>
                     <div className="row">
                         <ColPanel col="12" icon="futbol-o" title="Dernières parties">
                             <div className="col-md-12">
                                 <form className="form-inline gameform" onSubmit={this.handleSubmit}>
-                                    <Input ref="date" type="date" placeholder="Date" defaultValue={dateString} />
+                                    <Input ref="date" type="date" placeholder="Date" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
                                     <Input type="submit" bsStyle="success" value="Valider" />
                                 </form>
                             </div>

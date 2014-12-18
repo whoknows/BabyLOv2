@@ -5,7 +5,7 @@ var AlertBar = require('./AlertBar.js');
 var UserTable = require('components/Table/UserTable.js');
 var UserStore = require('stores/UserStore.js');
 var GameTable = require('components/Table/GameTable.js');
-var GameStore = require('stores/GameStore.js');
+var HomeGameStore = require('stores/HomeGameStore.js');
 var ScheduleTable = require('components/Table/ScheduleTable.js');
 var ScheduleStore = require('stores/ScheduleStore.js');
 var HomeDataStore = require('stores/HomeDataStore.js');
@@ -17,7 +17,7 @@ module.exports = React.createClass({
     nbItem: 4,
     mixins: [
         Reflux.listenTo(UserStore,"onUserChange"),
-        Reflux.listenTo(GameStore,"onGameChange"),
+        Reflux.listenTo(HomeGameStore,"onGameChange"),
         Reflux.listenTo(HomeDataStore,"onHomeDataChange"),
         Reflux.listenTo(ScheduleStore,"onScheduleChange"),
         Reflux.listenTo(CurrentUserStore, "onCurrentUserChange")
@@ -25,7 +25,7 @@ module.exports = React.createClass({
     getInitialState: function() {
         return {
             currentUser: CurrentUserStore.getCurrentUser(),
-            games: GameStore.getGames(),
+            games: HomeGameStore.getGames(),
             users: UserStore.getUsers(),
             homeData: HomeDataStore.getHomeDatas(),
             schedule: ScheduleStore.getSchedule()
@@ -38,7 +38,7 @@ module.exports = React.createClass({
     },
     onGameChange: function() {
         this.setState({
-            games: GameStore.getGames()
+            games: HomeGameStore.getGames()
         });
     },
     onHomeDataChange: function() {

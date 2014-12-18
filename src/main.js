@@ -15,7 +15,7 @@ var {Route, DefaultRoute, HistoryLocation, run} = require('react-router');
 var routes = (
         <Route name="app" path="/Babylov2/" handler={App}>
             <DefaultRoute name="home" handler={Home}/>
-            <Route name="games" handler={Games}/>
+            <Route name="games" path="games/?:date?" handler={Games}/>
             <Route name="users" path="users/?:id?" handler={Users}/>
             <Route name="matchmaker" handler={MatchMaker}/>
             <Route name="compare" handler={Compare}/>

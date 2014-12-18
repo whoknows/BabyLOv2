@@ -1,14 +1,24 @@
 /** @jsx React.DOM */
 
+var {Navigation} = require('react-router');
+
 require('js/highcharts.js');
 require('./Graph.css');
 
 module.exports = React.createClass({
+    mixins:[Navigation],
     currentGraph: null,
     generateGraph: function() {
         Highcharts.setOptions({global:{ useUTC: false }});
         $('#gameChart').highcharts({
-            chart: { zoomType: 'x' },
+            chart: {
+                zoomType: 'x',
+                events: {
+                    click: function(e){
+                        this.transitionTo("games", {date: Highcharts.dateFormat('%d-%m-%Y', e.xAxis[0].value)});
+                    }
+                },
+            },
             credits: { enabled: false },
             title: { text: null },
             xAxis: {

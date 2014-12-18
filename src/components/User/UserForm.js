@@ -76,7 +76,7 @@ module.exports = React.createClass({
             // vérifier en base fkit
         }
 
-        if (typeof data.password === 'undefined' || data.password == ''){
+        if (typeof data.password === 'undefined' || data.password === ''){
             this.setState({success:"", error:"Vous devez spécifier un mot de passe."});
             return false;
         }

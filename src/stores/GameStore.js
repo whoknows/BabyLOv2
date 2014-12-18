@@ -1,12 +1,8 @@
 var Reflux = require('reflux');
 var GameActions = require('actions/GameAction.js');
-var CurrentUserAction = require('actions/CurrentUserAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: [CurrentUserAction, GameActions],
-    onLoginSuccess: function(){
-        GameActions.loadGames(null,4);
-    },
+    listenables: [GameActions],
     onSaveGame: function(form){
         $.ajax({
             url: '/Babylov2REST/games',
@@ -15,12 +11,15 @@ module.exports = Reflux.createStore({
             dataType: 'json'
         }).then(function(response) {
             form.id = response.id;
-            form.date = this.formatDate(form.date);
+            form.date = this.formatToDate(form.date);
             this.games.unshift(form);
             this.trigger();
         }.bind(this));
     },
-    formatDate: function(date){
+    formatFromDate: function(d){
+        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + (d.getDate() < 10 ? '0' : '') + d.getDate();
+    },
+    formatToDate: function(date){
         var d = date.split('-');
         j = d[2];
         d = new Date(d[0], (d[1]-1), j);
@@ -50,8 +49,7 @@ module.exports = Reflux.createStore({
         if(date){
             data.date = date;
         } else if(date !== null) {
-            data.date = new Date();
-            data.date = data.date.getFullYear() + '-' + (data.date.getMonth() + 1) + '-' + (data.date.getDate() < 10 ? '0' : '') + data.date.getDate();
+            data.date = this.formatFromDate(new Date());
         }
 
         $.ajax({
@@ -61,11 +59,16 @@ module.exports = Reflux.createStore({
             dataType: 'json'
         }).then(function(response) {
             this.games = response;
+            this.currentDate = data.date;
             this.trigger();
         }.bind(this));
     },
     getGames: function() {
         return this.games;
     },
+    getCurrentDate: function(){
+        return this.currentDate;
+    },
+    currentDate: '',
     games: []
 });
