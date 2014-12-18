@@ -11,14 +11,7 @@ module.exports = React.createClass({
     generateGraph: function() {
         Highcharts.setOptions({global:{ useUTC: false }});
         $('#gameChart').highcharts({
-            chart: {
-                zoomType: 'x',
-                events: {
-                    click: function(e){
-                        this.transitionTo("games", {date: Highcharts.dateFormat('%d-%m-%Y', e.xAxis[0].value)});
-                    }
-                },
-            },
+            chart: {zoomType: 'x'},
             credits: { enabled: false },
             title: { text: null },
             xAxis: {
@@ -46,7 +39,14 @@ module.exports = React.createClass({
             series: [{
                 type: 'area',
                 name: 'Parties jouées',
-                data: this.props.data
+                data: this.props.data,
+                point: {
+                    events: {
+                        click: function(point){
+                            this.transitionTo("games", {date: Highcharts.dateFormat('%Y-%m-%d', point.currentTarget.x)});
+                        }.bind(this)
+                    }
+                }
             }]
         });
     },

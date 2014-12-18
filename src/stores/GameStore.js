@@ -17,6 +17,9 @@ module.exports = Reflux.createStore({
         }.bind(this));
     },
     formatFromDate: function(d){
+        if(typeof d === 'undefined'){
+            d = new Date();
+        }
         return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + (d.getDate() < 10 ? '0' : '') + d.getDate();
     },
     formatToDate: function(date){
@@ -67,6 +70,9 @@ module.exports = Reflux.createStore({
         return this.games;
     },
     getCurrentDate: function(){
+        if(this.currentDate === ''){
+            this.currentDate = this.formatFromDate();
+        }
         return this.currentDate;
     },
     currentDate: '',

@@ -28,8 +28,14 @@ module.exports = React.createClass({
             dateString = GameStore.getCurrentDate();
         }
 
+        var gameStoreData = GameStore.getGames();
+
+        if(gameStoreData.length === 0){
+            GameActions.loadGames(dateString);
+        }
+
         return {
-            games: GameStore.getGames(),
+            games: gameStoreData,
             date: dateString
         };
     },
@@ -48,7 +54,7 @@ module.exports = React.createClass({
                     <div className="row">
                         <ColPanel col="12" icon="futbol-o" title="Dernières parties">
                             <div className="col-md-12">
-                                <form className="form-inline gameform" onSubmit={this.handleSubmit}>
+                                <form className="form-inline gameform" ref="gameform" onSubmit={this.handleSubmit}>
                                     <Input ref="date" type="date" placeholder="Date" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
                                     <Input type="submit" bsStyle="success" value="Valider" />
                                 </form>
