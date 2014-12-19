@@ -17,10 +17,10 @@ module.exports = React.createClass({
         };
     },
     componentWillReceiveProps: function(nextProps) {
-        UserDetailAction.loadData(nextProps.user);
+        UserDetailAction.loadData(nextProps.user, nextProps.period);
     },
     componentWillMount: function() {
-        UserDetailAction.loadData(this.props.user);
+        UserDetailAction.loadData(this.props.user, this.props.period);
     },
     onUserDetailChange: function () {
         this.setState({

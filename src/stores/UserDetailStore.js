@@ -1,4 +1,3 @@
-var Reflux = require('reflux');
 var UserDetailAction = require('actions/UserDetailAction.js');
 var UserAction = require('actions/UserAction.js');
 var UserStore = require('stores/UserStore.js');
@@ -10,8 +9,9 @@ module.exports = Reflux.createStore({
         this.userDetail = this.makeData(JSON.parse(JSON.stringify(this.tmp)));
         UserDetailAction.loadSuccess();
     },
-    onLoadData: function(user_id){
+    onLoadData: function(user_id, period){
         this.currentUser.id = user_id;
+        this.period = period;
         $.ajax({
             url: '/Babylov2REST/userdetail/'+user_id,
             type: 'GET',
@@ -46,19 +46,19 @@ module.exports = Reflux.createStore({
         };
     },
     getNbPlayed: function(){
-        return {text: "Nombre de parties jouées", value: 12};
+        return {text: "Nombre de parties jouées", value: this.currentUser.gameData['played' + this.period]};
     },
     getNbWon: function(){
-        return {text: "Nombre de parties gagnées", value: 12};
+        return {text: "Nombre de parties gagnées", value: this.currentUser.gameData['won' + this.period]};
     },
     getNbLost: function(){
-        return {text: "Nombre de parties perdues", value: 12};
+        return {text: "Nombre de parties perdues", value: this.currentUser.gameData['lost' + this.period]};
     },
     getScore: function(){
-        return {text: "Score", value: 12};
+        return {text: "Score", value: this.currentUser.gameData['score' + this.period]};
     },
     getRatio: function(){
-        return {text: "Ratio", value: 12};
+        return {text: "Ratio", value: this.currentUser.gameData['ratio' + this.period]};
     },
     getNbTaken: function(){
         return {text: "Nombre de buts marqués", value: 3};
@@ -88,6 +88,7 @@ module.exports = Reflux.createStore({
         return this.userDetail;
     },
     tmp: [],
+    period: '',
     currentUser: {},
     userDetail: []
 });
