@@ -55,11 +55,11 @@ module.exports = React.createClass({
                         <ColPanel col="12" icon="futbol-o" title="Dernières parties">
                             <div className="col-md-12">
                                 <form className="form-inline gameform" ref="gameform" onSubmit={this.handleSubmit}>
-                                    <Input ref="date" type="date" placeholder="Date" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
+                                    <Input ref="date" type="text" placeholder="Date" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
                                     <Input type="submit" bsStyle="success" value="Valider" />
                                 </form>
                             </div>
-                            <GameTable advancedDisplay={true} data={this.state.games}></GameTable>
+                            <GameTable advancedDisplay={true} data={this.state.games} />
                         </ColPanel>
                     </div>
                 </div>;

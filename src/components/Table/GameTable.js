@@ -62,7 +62,7 @@ module.exports = React.createClass({
         return this.state.admin && this.props.advancedDisplay;
     },
     render: function () {
-        return <Table hover responsive>
+        return <Table hover responsive={!this.props.advancedDisplay}>
                     <thead>
                     <tr>
                         <th>Date</th>
