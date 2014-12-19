@@ -8,14 +8,18 @@ var {Panel, Nav, NavItem} = require('react-bootstrap');
 require('./User.css');
 
 module.exports = React.createClass({
+    mixins: [Reflux.listenTo(UserStore, "onUserChange")],
     getInitialState: function() {
-        return {period: 'ThisMonth', cumule: true};
+        return {period: 'ThisMonth', cumule: true, user: UserStore.getUserById(this.props.user)};
     },
     componentDidMount: function () {
         this.scroll();
     },
     componentWillReceiveProps: function(newprops){
         this.scroll();
+    },
+    onUserChange: function(){
+        this.setState({user: UserStore.getUserById(this.props.user)});
     },
     scroll: function() {
         setTimeout(function(){
@@ -33,7 +37,9 @@ module.exports = React.createClass({
         }
     },
     render: function () {
-        return <Panel ref="userdetail" className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{UserStore.getUserById(this.props.user).username}</span>]}>
+        var username = this.state.user !== null ? this.state.user.username : '';
+
+        return <Panel ref="userdetail" className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{username}</span>]}>
                     <div className="row-fluid">
                         <div className="col-md-5">
                             <Nav bsStyle="pills" activeKey={this.state.period} onSelect={this.handlePeriod}>

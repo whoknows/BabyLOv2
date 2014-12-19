@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
 var UserDetailStore = require('stores/UserDetailStore.js');
+var UserDetailAction = require('actions/UserDetailAction.js');
 var ItemBadge = require('./ItemBadge.js');
 var {Panel, ListGroup, Nav, NavItem} = require('react-bootstrap');
 
@@ -16,21 +17,28 @@ module.exports = React.createClass({
         };
     },
     componentWillReceiveProps: function(nextProps) {
-        UserDetailStore.loadData(nextProps.user);
+        UserDetailAction.loadData(nextProps.user);
     },
     componentWillMount: function() {
-        UserDetailStore.loadData(this.props.user);
+        UserDetailAction.loadData(this.props.user);
     },
     onUserDetailChange: function () {
         this.setState({
             detail: UserDetailStore.getUserDetail()
         });
     },
+    getItems: function(){
+        var ret = [];
+        if(this.state.detail.length !== 0){
+            for(var i in this.state.detail.userDetail){
+                var item = this.state.detail.userDetail[i];
+                ret.push(<ItemBadge key={i} value={item.value} text={item.text} />);
+            }
+        }
+
+        return ret;
+    },
     render: function () {
-        return <ListGroup>
-                {this.state.detail.userDetail && this.state.detail.userDetail.map(function(item,i){
-                    return <ItemBadge key={i} value={item.value} text={item.text} />;
-                })}
-            </ListGroup>;
+        return <ListGroup>{this.getItems()}</ListGroup>;
     }
 });

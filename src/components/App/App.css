@@ -3,16 +3,8 @@
     vertical-align: bottom;
 }
 
-.brand a {
-    /*color: yellow!important;*/
-}
-
 .form-control {
     box-shadow: unset!important;
-}
-
-.navbar-inverse .navbar-nav > li > a > .brand {
-    color: #00D8FF!important;
 }
 
 .navbar {
@@ -21,6 +13,10 @@
 
 .nav i.fa {
     margin-right: 5px;
+}
+
+.tablerow .panel {
+    height: 315px;
 }
 
 .panel-heading {
@@ -35,12 +31,6 @@
 .content-wrapper {
     padding:0!important;
 }
-/*
-.content-wrapper > h3 {
-    margin: 0!important;
-    margin-bottom: 20px;
-    padding: 20px;
-}*/
 
 .pageloader {
     color: #607d8b;

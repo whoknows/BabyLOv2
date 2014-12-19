@@ -1,1 +1,1 @@
-module.exports = Reflux.createActions(["loadData", "loadSuccess", "loadFail"]);
+module.exports = Reflux.createActions(["loadData", "loadSuccess"]);

@@ -60,7 +60,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <AlertBar data={this.state.homeData.alertBar}></AlertBar>
-                <div key={1} className="row">
+                <div key={1} className="row tablerow">
                     <ColPanel key={1} col="4" icon="calendar" title="Planification">
                         <ScheduleTable slice={this.nbItem} data={this.state.schedule}></ScheduleTable>
                     </ColPanel>
