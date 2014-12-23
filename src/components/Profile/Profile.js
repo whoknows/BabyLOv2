@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 
-var {Input,Button} = require('react-bootstrap');
-var CurrentUserAction = require('actions/CurrentUserAction.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var UserForm = require('components/User/UserForm.js');
 var ColPanel = require('components/Home/ColPanel.js');
 
 module.exports = React.createClass({
-    mixins: [Reflux.listenTo(CurrentUserStore,"onUsersChange")],
-    onUserChange: function(){
+    mixins: [
+        Reflux.listenTo(CurrentUserStore, "onUsersChange")
+    ],
+    onUsersChange: function(){
         this.setState({currentUser: this.filterUser(CurrentUserStore.getCurrentUser())});
     },
     getInitialState: function(){
