@@ -76,9 +76,25 @@ module.exports = Reflux.createStore({
         };
     },
     getWorst: function() {
+        var users = this.users.sort(function(userA, userB){
+            var takenA = userA.gameData.takenThisMonth;
+            var gamesA = userA.gameData.playedThisMonth;
+            var avgA = Math.round((takenA !== 0 ? takenA / gamesA : 0)*100)/100;
+
+            var takenB = userB.gameData.takenThisMonth;
+            var gamesB = userB.gameData.playedThisMonth;
+            var avgB = Math.round((takenB !== 0 ? takenB / gamesB : 0)*100)/100;
+
+            return avgA < avgB ? 1 : -1;
+        });
+
+        var taken = users[0].gameData.takenThisMonth;
+        var games = users[0].gameData.playedThisMonth;
+        var avg = Math.round((taken !== 0 ? taken / games : 0)*100)/100;
+
         return {
-            desc : 'N/A',
-            value: 'N/A'
+            desc : avg + ' buts pris en moyenne par partie.',
+            value: users[0].username
         };
     },
     getHomeDatas: function() {

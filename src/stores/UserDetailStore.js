@@ -4,29 +4,20 @@ var UserStore = require('stores/UserStore.js');
 
 module.exports = Reflux.createStore({
     listenables: [UserAction, UserDetailAction],
-    onLoadUsersSuccess: function(){
-        this.currentUser = UserStore.getUserById(this.currentUser.id);
-        this.userDetail = this.makeData(JSON.parse(JSON.stringify(this.tmp)));
-        UserDetailAction.loadSuccess();
-    },
     onLoadData: function(user_id, period){
-        this.currentUser.id = user_id;
+        this.currentUser = UserStore.getUserById(user_id);
         this.period = period;
-        $.ajax({
-            url: '/Babylov2REST/userdetail/'+user_id,
-            type: 'GET',
-            dataType: 'json'
-        }).then(function(response) {
-            this.tmp = response;
-        }.bind(this));
+        if(this.currentUser !== null){
+            this.makeData();
+        }
     },
     onLoadSuccess: function(){
         this.trigger();
     },
-    makeData: function(data){
-        data.userDetail = this.calculUserDetail();
+    makeData: function(){
+        this.userDetail = {userDetail: this.calculUserDetail()};
 
-        return data;
+        UserDetailAction.loadSuccess();
     },
     calculUserDetail: function(){
         return {
@@ -35,10 +26,10 @@ module.exports = Reflux.createStore({
             2: this.getNbLost(),
             3: this.getScore(),
             4: this.getRatio(),
-            5: this.getNbTaken(),
-            6: this.getNbGiven(),
-            7: this.getNbTakenAvg(),
-            8: this.getNbGivenAvg(),
+            5: this.getNbGiven(),
+            6: this.getNbTaken(),
+            7: this.getNbGivenAvg(),
+            8: this.getNbTakenAvg(),
             9: this.getNemesis(),
             10: this.getWorstEnemy(),
             11: this.getBestMate(),
@@ -60,17 +51,23 @@ module.exports = Reflux.createStore({
     getRatio: function(){
         return {text: "Ratio", value: this.currentUser.gameData['ratio' + this.period]};
     },
-    getNbTaken: function(){
-        return {text: "Nombre de buts marqués", value: 3};
-    },
     getNbGiven: function(){
-        return {text: "Nombre de buts pris", value: 3};
+        return {text: "Nombre de buts marqués", value: this.currentUser.gameData['given' + this.period]};
     },
-    getNbTakenAvg: function(){
-        return {text: "Nombre moyen de buts marqués", value: 3};
+    getNbTaken: function(){
+        return {text: "Nombre de buts pris", value: this.currentUser.gameData['taken' + this.period]};
     },
     getNbGivenAvg: function(){
-        return {text: "Nombre moyen de buts pris", value: 3};
+        var given = this.currentUser.gameData['given' + this.period];
+        var games = this.currentUser.gameData['played' + this.period];
+
+        return {text: "Nombre moyen de buts marqués", value: Math.round((given !== 0 ? given / games : 0)*100)/100};
+    },
+    getNbTakenAvg: function(){
+        var taken = this.currentUser.gameData['taken' + this.period];
+        var games = this.currentUser.gameData['played' + this.period];
+
+        return {text: "Nombre moyen de buts pris", value: Math.round((taken !== 0 ? taken / games : 0)*100)/100};
     },
     getNemesis: function(){
         return {text: "Pire ennemi", value: 3};
