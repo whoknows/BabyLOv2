@@ -21,9 +21,7 @@ module.exports = React.createClass({
         return {teams: UserStore.getMatchMaking(this.props.users)};
     },
     componentWillReceiveProps: function(nextProps){
-        if(nextProps.users.length == 4){
-            this.setState({teams: UserStore.getMatchMaking(nextProps.users)});
-        }
+        this.setState({teams: UserStore.getMatchMaking(nextProps.users)});
     },
     setUserScheduled: function (us) {
         this.userScheduled = us;
