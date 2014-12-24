@@ -71,7 +71,7 @@ module.exports = React.createClass({
                         <BabyMenuItem icon="fa fa-star" dest="games" label="Parties"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-user" dest="users" label="Joueurs"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-cog" dest="matchmaker" label="Match Maker"></BabyMenuItem>
-                        <BabyMenuItem icon="fa fa-fire" dest="compare" label="Comparateur"></BabyMenuItem>
+                        <BabyMenuItem icon="fa fa-bolt" dest="compare" label="Comparateur"></BabyMenuItem>
                         <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav ref="nav" className="navbar-right">

@@ -3,6 +3,8 @@
 var {Button} = require('react-bootstrap');
 var Select = require('components/Select/Select.js');
 
+require('./Compare.css');
+
 module.exports = React.createClass({
     getInitialState: function(){
         return {users:[]};
@@ -22,7 +24,11 @@ module.exports = React.createClass({
                         <Select ref="p1" placeholder="Joueur 1" />
                     </div>
                     <div className="col-md-2">
-                        <Button bsStyle="success" onClick={this.handleClick} bsSize="large">Comparer les deux joueurs</Button>
+                        <Button className="compare-submit" bsStyle="danger" onClick={this.handleClick} bsSize="large">
+                            <i className="fa fa-bomb"></i>
+                            Comparer les deux joueurs
+                            <i className="fa fa-bomb"></i>
+                        </Button>
                     </div>
                     <div className="col-md-5">
                         <Select ref="p2" placeholder="Joueur 2" />
