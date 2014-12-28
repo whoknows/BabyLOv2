@@ -47,21 +47,21 @@ module.exports = Reflux.createStore({
             this.trigger();
         }.bind(this));
     },
-    onLoadGames: function(date){
-        if(!date && date !== '') {
-            date = this.formatFromDate(new Date());
-        } else if(date === ''){
-            date = undefined;
+    onLoadGames: function(formData){
+        if(!formData.date && formData.date !== '') {
+            formData.date = this.formatFromDate(new Date());
+        } else if(formData.date === ''){
+            formData.date = undefined;
         }
 
         $.ajax({
             url: '/Babylov2REST/games',
             type: 'GET',
-            data: {'date': date},
+            data: formData,
             dataType: 'json'
         }).then(function(response) {
             this.games = response;
-            this.currentDate = date;
+            this.currentDate = formData.date;
             this.trigger();
         }.bind(this));
     },

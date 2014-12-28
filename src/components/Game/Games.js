@@ -53,7 +53,7 @@ module.exports = React.createClass({
             data.mode = this.refs.mode.getValue();
         }
 
-        GameActions.loadGames(this.state.date);
+        GameActions.loadGames(data);
     },
     handleChange: function(ref){
         var s = {};
