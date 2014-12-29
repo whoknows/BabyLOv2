@@ -60,10 +60,36 @@ module.exports = Reflux.createStore({
             data: formData,
             dataType: 'json'
         }).then(function(response) {
-            this.games = response;
+            this.games = this.filterGames(formData, response);
             this.currentDate = formData.date;
             this.trigger();
         }.bind(this));
+    },
+    filterGames: function(formData, games){
+        var filteredGames = [];
+
+        if (formData.users) {
+            if (formData.users.length === 2) {
+                games.forEach(function(game){
+                    if(formData.mode == "avec"){
+                        if((game.p1t1 == formData.users[0] && game.p2t1 == formData.users[1]) || (game.p1t2 == formData.users[0] && game.p2t2 == formData.users[1])){
+                            filteredGames.push(game);
+                        }
+                    } else {
+                        if ((formData.users.indexOf(game.p1t1) !== -1 && formData.users.indexOf(game.p1t2) !== -1) ||
+                            (formData.users.indexOf(game.p1t1) !== -1 && formData.users.indexOf(game.p2t2) !== -1) ||
+                            (formData.users.indexOf(game.p2t1) !== -1 && formData.users.indexOf(game.p1t2) !== -1) ||
+                            (formData.users.indexOf(game.p2t1) !== -1 && formData.users.indexOf(game.p2t2) !== -1) ){
+                            filteredGames.push(game);
+                        }
+                    }
+                });
+            }
+        } else {
+            filteredGames = games;
+        }
+
+        return filteredGames;
     },
     getGames: function() {
         return this.games;
