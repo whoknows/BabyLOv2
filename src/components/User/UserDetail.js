@@ -8,7 +8,7 @@ var {Panel, Nav, NavItem} = require('react-bootstrap');
 require('./User.css');
 
 module.exports = React.createClass({
-    mixins: [Reflux.listenTo(UserStore, "onUserChange")],
+    //mixins: [Reflux.listenTo(UserStore, "onUserChange")],
     getInitialState: function() {
         return {period: 'ThisMonth', cumule: true, user: UserStore.getUserById(this.props.user)};
     },
@@ -18,9 +18,9 @@ module.exports = React.createClass({
     componentWillReceiveProps: function(newprops){
         this.scroll();
     },
-    onUserChange: function(){
+    /*onUserChange: function(){
         this.setState({user: UserStore.getUserById(this.props.user)});
-    },
+    },*/
     scroll: function() {
         setTimeout(function(){
             this.refs.userdetail.getDOMNode().scrollIntoView();
@@ -37,7 +37,8 @@ module.exports = React.createClass({
         }
     },
     render: function () {
-        var username = this.state.user !== null ? this.state.user.username : '';
+        var usrtmp = UserStore.getUserById(this.props.user);
+        var username = usrtmp !== null ? usrtmp.username : '';
 
         return <Panel ref="userdetail" className="userDetailPanel" header={[<i key="icon" className="fa fa-user"></i>, "Statistiques détaillées : ", <span key="info" className="text-info">{username}</span>]}>
                     <div className="row-fluid">
