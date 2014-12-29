@@ -32,6 +32,10 @@
     padding:0!important;
 }
 
+.content-wrapper > h3 {
+    margin: -20px -15px 20px;
+}
+
 .pageloader {
     color: #607d8b;
     font-size: 100px;
