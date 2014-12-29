@@ -29,14 +29,10 @@ module.exports = React.createClass({
             dateString = GameStore.getCurrentDate();
         }
 
-        var gameStoreData = GameStore.getGames();
-
-        if(gameStoreData.length === 0){
-            GameActions.loadGames({date:dateString});
-        }
+        GameActions.loadGames({date:dateString});
 
         return {
-            games: gameStoreData,
+            games: GameStore.getGames(),
             date: dateString,
             formVisible: false
         };
