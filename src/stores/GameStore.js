@@ -72,7 +72,8 @@ module.exports = Reflux.createStore({
             if (formData.users.length === 2) {
                 games.forEach(function(game){
                     if(formData.mode == "avec"){
-                        if((game.p1t1 == formData.users[0] && game.p2t1 == formData.users[1]) || (game.p1t2 == formData.users[0] && game.p2t2 == formData.users[1])){
+                        if ((formData.users.indexOf(game.p1t1) !== -1 && formData.users.indexOf(game.p2t1) !== -1) ||
+                            (formData.users.indexOf(game.p1t2) !== -1 && formData.users.indexOf(game.p2t2) !== -1)){
                             filteredGames.push(game);
                         }
                     } else {

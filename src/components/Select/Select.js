@@ -16,7 +16,7 @@ module.exports = React.createClass({
     getUserList: function(){
         return UserStore.getUsers().filter(function(user){
                 return user.enabled;
-        }.bind(this))
+        }.bind(this));
     },
     getDefaultProps: function() {
         return {
@@ -53,11 +53,11 @@ module.exports = React.createClass({
             );
         }.bind(this));
 
-        var title;
-        if(this.state.selectedUserId){
-            var classe = "hasUserImage";
+        var title, classe;
+        if (this.state.selectedUserId) {
+            classe = "hasUserImage";
             title = <UserImage nolink user={this.state.selectedUserId} />;
-        }else{
+        } else {
             title = this.props.placeholder;
         }
 
