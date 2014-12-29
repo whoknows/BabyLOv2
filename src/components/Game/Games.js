@@ -32,7 +32,7 @@ module.exports = React.createClass({
         var gameStoreData = GameStore.getGames();
 
         if(gameStoreData.length === 0){
-            GameActions.loadGames(dateString);
+            GameActions.loadGames({date:dateString});
         }
 
         return {
