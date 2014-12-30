@@ -20,7 +20,9 @@ module.exports = React.createClass({
     getInitialState: function(){
         return {users: UserStore.getUsers()};
     },
-    resetForm: function() {
+    resetForm: function(e) {
+        e.preventDefault();
+
         this.setState({currentUser: undefined});
     },
     makeUserList: function(){

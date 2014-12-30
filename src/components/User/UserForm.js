@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
 var {Button, Input} = require('react-bootstrap');
+var {RaisedButton} = require('material-ui');
 var UserAction = require('actions/UserAction.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var sha1 = require('sha1');
@@ -130,9 +131,9 @@ module.exports = React.createClass({
 
                 <div className="form-group">
                     <div className={"col-md-offset-2 col-md-" + this.props.width}>
-                        <Button type="submit" bsStyle="success">{buttonLabel}</Button>
+                        <RaisedButton primary={true} label={buttonLabel} />
                         {this.props.cancel ?
-                            <Button className="button-cancel" onClick={this.props.cancel}>Annuler</Button>
+                            <RaisedButton className="button-cancel" onClick={this.props.cancel} label="Annuler" />
                         : null}
                     </div>
                 </div>

@@ -4,7 +4,8 @@ var GameTable = require('components/Table/GameTable.js');
 var GameStore = require('stores/GameStore.js');
 var GameActions = require('actions/GameAction.js');
 var ColPanel = require('components/Home/ColPanel.js');
-var {Button, Input} = require('react-bootstrap');
+var {Input} = require('react-bootstrap');
+var {RaisedButton} = require('material-ui');
 var {State} = require('react-router');
 var Select = require('components/Select/Select.js');
 
@@ -87,7 +88,7 @@ module.exports = React.createClass({
                             <div className="col-md-12">
                                 <form className="form-inline gameform" ref="gameform" onSubmit={this.handleSubmit}>
                                     <Input ref="date" type="text" placeholder="Date" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
-                                    <Input type="submit" bsStyle="success" value="Valider" />
+                                    <RaisedButton label="Valider" secondary={true}/>
                                     <a href="#" onClick={this.handleDisplay}>Recherche avancée</a>
                                     {this.state.formVisible ? this.getForm() : null}
                                 </form>

@@ -2,6 +2,7 @@
 
 var UserImage = require('components/User/UserImage.js');
 var {Button, ListGroup, ListGroupItem} = require('react-bootstrap');
+var {RaisedButton} = require('material-ui');
 var UserStore = require('stores/UserStore.js');
 var ScheduleStore = require('stores/ScheduleStore.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
@@ -75,7 +76,7 @@ module.exports = React.createClass({
         } else if (this.props.creneau < ScheduleStore.getCurrentTime()) {
             return <i className="moveMe">Le créneau est déjà passé.</i>;
         } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
-            return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="success">GO</Button>;
+            return <RaisedButton data-schedule={this.props.creneau} onClick={this.clickHandler} secondary={true} label="GO" />;
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
         }

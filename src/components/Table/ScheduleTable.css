@@ -1,5 +1,6 @@
-.scheduleTable td button {
+.scheduleTable .mui-raised-button {
     float: right;
+    min-width: 0;
     /*margin: 1px;*/
 }
 

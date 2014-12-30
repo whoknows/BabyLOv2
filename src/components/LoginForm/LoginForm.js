@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
 var UserImage = require('components/User/UserImage.js');
-var {Input,Button} = require('react-bootstrap');
+var {Input} = require('react-bootstrap');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 var UserForm = require('components/User/UserForm.js');
+var {RaisedButton} = require('material-ui');
 
 require('./LoginForm.css');
 
@@ -27,9 +28,9 @@ module.exports = React.createClass({
                 <form onSubmit={this.handleConnection}>
                     <Input ref="login" type="text" autoFocus placeholder="Nom d'utilisateur" />
                     <Input ref="password" type="password" placeholder="Mot de passe" />
-                    <Button type="submit" bsStyle="success">Se connecter</Button>
+                    <RaisedButton label="Se connecter" secondary={true}/>
                     {/*<a onClick={this.toggleForm}>Demander un compte</a>*/}
-                    <div className="text-danger error-message">{this.props.message}</div>
+                    <span className="text-danger error-message">{this.props.message}</span>
                 </form>
             );
         } else {
