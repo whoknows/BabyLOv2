@@ -56,7 +56,7 @@ module.exports = React.createClass({
         var title, classe;
         if (this.state.selectedUserId) {
             classe = "hasUserImage";
-            title = <UserImage nolink user={this.state.selectedUserId} />;
+            title = <UserImage key={this.state.selectedUserId} nolink user={this.state.selectedUserId} />;
         } else {
             title = this.props.placeholder;
         }
