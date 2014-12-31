@@ -84,15 +84,19 @@ module.exports = React.createClass({
         return <div className="content-wrapper">
                     <h3>Parties</h3>
                     <div className="row">
-                        <ColPanel col="12" icon="futbol-o" title="Dernières parties">
-                            <div className="col-md-12">
-                                <form className="form-inline gameform" ref="gameform" onSubmit={this.handleSubmit}>
-                                    <Input ref="date" type="text" placeholder="Date" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
-                                    <RaisedButton label="Valider" secondary={true}/>
-                                    <a href="#" onClick={this.handleDisplay}>Recherche avancée</a>
+                        <ColPanel col="12" icon="search" title="Recherche de parties">
+                            <div className="col-md-7 gameform">
+                                <form ref="gameform" onSubmit={this.handleSubmit}>
+                                    <Input ref="date" className="select-date" type="text" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
                                     {this.state.formVisible ? this.getForm() : null}
+                                    <RaisedButton label="Valider" secondary={true}/>
+                                    <a href="#" onClick={this.handleDisplay}>
+                                    Recherche{this.state.formVisible ? " standard" : " avancée"}
+                                    </a>
                                 </form>
                             </div>
+                        </ColPanel>
+                        <ColPanel col="12" icon="futbol-o" title="Parties jouées">
                             <GameTable advancedDisplay={true} data={this.state.games} />
                         </ColPanel>
                     </div>

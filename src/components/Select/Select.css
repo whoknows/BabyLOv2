@@ -24,3 +24,22 @@
     max-height: 400px;
     overflow-x: auto;
 }
+
+.select-wrapper .dropdown-menu {
+    width: 100%;
+    padding-top:0;
+}
+
+.fuckyoudropdown {
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.fuckyoudropdown input {
+    border-radius: 0;
+    border: 0px;
+    border-bottom: 2px solid #CCC;
+    height:50px;
+    font-size: 16px;
+    padding: 6px 35px;
+}

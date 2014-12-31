@@ -64,9 +64,11 @@ module.exports = React.createClass({
         return (
             <div className="select-wrapper">
                 <DropdownButton className={classe} title={title}>
-                    <MenuItem>
-                        <Input ref="filter" type="text" placeholder="Nom du joueur" value={this.state.filter} onClick={function(e){e.stopPropagation();}} onChange={this.handleFilterChange} />
-                    </MenuItem>
+                    <li>
+                        <a href="javascript:void(0)" className="fuckyoudropdown">
+                            <Input ref="filter" type="text" placeholder="Nom du joueur" value={this.state.filter} onChange={this.handleFilterChange} />
+                        </a>
+                    </li>
                     {menuItems}
                 </DropdownButton>
             </div>

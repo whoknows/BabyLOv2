@@ -2,17 +2,24 @@
     max-height: 450px;
 }
 
-.gameform .btn {
-    margin: 0 5px;
+.gameform {
+    margin: 10px 0 20px;
+}
+
+.gameform .dropdown-toggle {
+    margin-top:0!important;
 }
 
 .select-container * {
     width: 100%!important;
 }
 
+.gameform .select-date {
+    height: 50px;
+}
+
 .middle-select {
     height:50px;
-    margin-top: 10px;
     padding-left: 10px;
     width:100%;
 }
