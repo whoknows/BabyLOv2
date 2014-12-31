@@ -8,8 +8,13 @@ var {Input} = require('react-bootstrap');
 var {RaisedButton} = require('material-ui');
 var {State} = require('react-router');
 var Select = require('components/Select/Select.js');
+var DatePicker = require('components/DatePicker/DatePicker.js');
 
 require('./Game.css');
+
+function isSameDay(a, b) {
+    return a.startOf('day').isSame(b.startOf('day'));
+}
 
 module.exports = React.createClass({
     mixins: [
@@ -94,6 +99,7 @@ module.exports = React.createClass({
                                     Recherche{this.state.formVisible ? " standard" : " avancée"}
                                     </a>
                                 </form>
+                                <DatePicker />
                             </div>
                         </ColPanel>
                         <ColPanel col="12" icon="futbol-o" title="Parties jouées">
