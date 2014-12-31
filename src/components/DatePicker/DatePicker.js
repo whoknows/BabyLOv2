@@ -42,9 +42,7 @@ module.exports = React.createClass({
                 return isSameDay(moment(), day);
             },
             selected: function (day) {
-                var value = valueToDate(this.state.value);
-
-                return !value ? false : isSameDay(value, day);
+                return isSameDay(valueToDate(this.state.value), day);
             }.bind(this)
         };
 
