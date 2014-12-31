@@ -45,7 +45,7 @@ module.exports = React.createClass({
     },
     handleSubmit: function(e){
         e.preventDefault();
-        var data = {date: this.state.date};
+        var data = {date: this.refs.date.getValue()};
 
         if (this.state.formVisible) {
             data.users = [
@@ -92,14 +92,13 @@ module.exports = React.createClass({
                         <ColPanel col="12" icon="search" title="Recherche de parties">
                             <div className="col-md-7 gameform">
                                 <form ref="gameform" onSubmit={this.handleSubmit}>
-                                    <Input ref="date" className="select-date" type="text" onChange={this.handleChange.bind(this, 'date')} value={this.state.date} />
+                                    <DatePicker ref="date" inputClass="select-date" />
                                     {this.state.formVisible ? this.getForm() : null}
                                     <RaisedButton label="Valider" secondary={true}/>
                                     <a href="#" onClick={this.handleDisplay}>
                                     Recherche{this.state.formVisible ? " standard" : " avancée"}
                                     </a>
                                 </form>
-                                <DatePicker />
                             </div>
                         </ColPanel>
                         <ColPanel col="12" icon="futbol-o" title="Parties jouées">

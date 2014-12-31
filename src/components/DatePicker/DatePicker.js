@@ -1,5 +1,6 @@
 var DayPicker = require('react-day-picker');
 var moment = require('moment');
+var {Input} = require('react-bootstrap');
 
 require('./DatePicker.css');
 
@@ -17,14 +18,23 @@ function isSameDay(a, b) {
 }
 
 module.exports = React.createClass({
+    getDefaultProps: function(){
+        return {inputClass: ''};
+    },
     getInitialState: function(){
-        return {value: dateToValue(moment())};
+        return {value: dateToValue(moment()), visible: false};
     },
     onDayClick: function(day, modifiers, e) {
         this.setState({ value: dateToValue(day) });
     },
-    handleMonthChange: function(month) {
-        console.log('Switched to ' + month.format('MMMM YYYY'));
+    handleInputChange: function(e) {
+        this.setState({ value: e.target.value });
+    },
+    toggleDatepicker: function() {
+        this.setState({visible: !this.state.visible});
+    },
+    getValue: function(){
+        return this.state.value;
     },
     render: function() {
         var modifiers = {
@@ -33,15 +43,16 @@ module.exports = React.createClass({
             },
             selected: function (day) {
                 var value = valueToDate(this.state.value);
-                if (!value)
-                    return false;
-                else
-                    return isSameDay(value, day);
+
+                return !value ? false : isSameDay(value, day);
             }.bind(this)
         };
 
         return (
-            <DayPicker modifiers={modifiers} enableOutsideDays={true} onDayClick={this.onDayClick} />
+            <div className="datepicker-wrapper">
+                <Input type="text" ref="datepicker" className={this.props.inputClass} value={this.state.value} onClick={this.toggleDatepicker} onChange={this.handleInputChange} />
+                {this.state.visible ? <DayPicker modifiers={modifiers} enableOutsideDays={true} onDayClick={this.onDayClick} /> : null}
+            </div>
         );
     }
 });

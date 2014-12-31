@@ -1,5 +1,9 @@
 /* Daypicker styles */
 
+.datepicker-wrapper input {
+    cursor: pointer;
+}
+
 .daypicker {
   border-collapse: collapse;
   border-spacing: 0;
@@ -45,12 +49,12 @@
 }
 /*
 .daypicker__nav--right {
-  background-image: url("~/external/img/right.svg");
+  background-image: url("/Babylov2/external/img/right.svg");
 }
 .daypicker__nav--left {
-  background-image: url("~/external/img/left.svg");
-}
-*/
+  background-image: url("/Babylov2/external/img/left.svg");
+}*/
+
 /* Modifiers */
 .daypicker__day--outside {
   color: #dce0e0 !important;
