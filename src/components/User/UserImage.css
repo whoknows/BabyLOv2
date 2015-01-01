@@ -41,7 +41,7 @@
 }
 
 .innerRemovable {
-    background-color: #f05050;
+    background-color: rgba(236, 33, 33,0.7);
     color:white;
     cursor:pointer;
     display: block;
@@ -50,7 +50,7 @@
     right: calc(35px - 100%);
     text-align:center;
     top:0;
-    transition: right 0.5s;
+    transition: right 0.2s;
     width: calc(100% - 35px);
 }
 
