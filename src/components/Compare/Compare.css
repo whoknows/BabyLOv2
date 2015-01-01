@@ -1,7 +1,10 @@
 .compare-submit {
-    height: 48px;
-    margin-top: 11px;
+    margin-top: 10px;
     width: 100%;
+}
+
+.compare-submit button {
+    height: 48px;
 }
 
 .compare-submit .fa-bomb {

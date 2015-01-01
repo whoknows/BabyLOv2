@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var UserImage = require('components/User/UserImage.js');
-var {Button, ListGroup, ListGroupItem} = require('react-bootstrap');
+var {ListGroup, ListGroupItem} = require('react-bootstrap');
 var {RaisedButton} = require('material-ui');
 var UserStore = require('stores/UserStore.js');
 var ScheduleStore = require('stores/ScheduleStore.js');
