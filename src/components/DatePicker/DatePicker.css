@@ -1,76 +1,22 @@
-/* Daypicker styles */
-
 .datepicker-wrapper input {
     cursor: pointer;
 }
 
-.daypicker {
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin: 24px auto;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+.date-picker {
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 0 10px #CCC;
+    top: 60px;
+    left: 15px;
 }
 
-.daypicker__weekday {
-  width: 36px;
-  line-height: 36px;
-  font-size: 0.875em;
-  color: #82888a;
-  font-weight: normal;
+.date-picker .dp-cell {
+    border: none;
 }
 
-.daypicker__day {
-  width: 36px;
-  line-height: 36px;
-  border: 1px solid #dce0e0;
-  cursor: pointer;
-}
-
-/* Caption & navigation buttons */
-
-.daypicker__caption {
-  line-height: 36px;
-}
-
-.daypicker__nav {
-  display: block;
-  border: 0;
-  background-color: transparent;
-  position: relative;
-  height: 36px;
-  width: 36px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 25%;
-  cursor: pointer;
-}
-/*
-.daypicker__nav--right {
-  background-image: url("/Babylov2/external/img/right.svg");
-}
-.daypicker__nav--left {
-  background-image: url("/Babylov2/external/img/left.svg");
-}*/
-
-/* Modifiers */
-.daypicker__day--outside {
-  color: #dce0e0 !important;
-}
-
-.daypicker__day--disabled {
-  cursor: default;
-  color: #dce0e0;
-  background-color: #F1F1F1;
-}
-
-.daypicker__day--today {
-  color: red;
-}
-
-.daypicker__day--selected:not(.daypicker__day--other-month) {
-  color: white;
-  background-color: #FF0000;
+.date-picker .dp-cell.dp-value {
+    background: #00aac0;
+    color:white;
 }
