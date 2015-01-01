@@ -76,7 +76,7 @@ module.exports = React.createClass({
         } else if (this.props.creneau < ScheduleStore.getCurrentTime()) {
             return <i className="moveMe">Le créneau est déjà passé.</i>;
         } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
-            return <RaisedButton data-schedule={this.props.creneau} onClick={this.clickHandler} secondary={true} label="GO" />;
+            return <RaisedButton schedule={this.props.creneau} onClick={this.clickHandler} secondary={true} label="GO" />;
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
         }
@@ -89,13 +89,18 @@ module.exports = React.createClass({
     },
     render: function () {
         if (this.props.vertical) {
-            return <ListGroup>
-                       {this.getUserList().map(function(user,i){
-                           return <ListGroupItem key={i}>{user}</ListGroupItem>;
-                       }), this.getButton()}
-                   </ListGroup>;
+            return (
+                <ListGroup>
+                    {this.getUserList().map(function(userItem,i){
+                       if (userItem.type == "i") {
+                           return userItem;
+                       }
+                       return <ListGroupItem key={i}>{userItem}</ListGroupItem>;
+                    }), this.getButton()}
+                </ListGroup>
+            );
         }
 
-        return <div className="scheduleItem">{this.getUserList()} {this.getButton()}</div>;
+        return (<div className="scheduleItem">{this.getUserList()} {this.getButton()}</div>);
     }
 });

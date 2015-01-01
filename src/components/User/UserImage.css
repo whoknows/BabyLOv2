@@ -14,6 +14,10 @@
     width:35px;
 }
 
+.userImage span {
+    vertical-align:middle;
+}
+
 .userImage:hover {
     color: #23B7E5;
 }
