@@ -76,7 +76,7 @@ module.exports = React.createClass({
         } else if (this.props.creneau < ScheduleStore.getCurrentTime()) {
             return <i className="moveMe">Le créneau est déjà passé.</i>;
         } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
-            return <RaisedButton schedule={this.props.creneau} onClick={this.clickHandler} secondary={true} label="GO" />;
+            return <RaisedButton data-schedule={this.props.creneau} onClick={this.clickHandler} secondary={true} label="GO" />;
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
         }
@@ -85,7 +85,12 @@ module.exports = React.createClass({
         ScheduleAction.unparticipate(schedule, user);
     },
     clickHandler: function (e) {
-        ScheduleAction.participate(e.target.dataset.schedule, CurrentUserStore.getCurrentUser().id);
+        var schedule = e.target.dataset.schedule;
+        if(!schedule){
+            schedule = e.target.parentNode.dataset.schedule;
+        }
+
+        ScheduleAction.participate(schedule, CurrentUserStore.getCurrentUser().id);
     },
     render: function () {
         if (this.props.vertical) {
