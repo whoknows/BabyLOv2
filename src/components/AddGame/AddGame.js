@@ -1,12 +1,17 @@
 /** @jsx React.DOM */
 
-var {Input,Button} = require('react-bootstrap');
+var {Input} = require('react-bootstrap');
+var {RaisedButton} = require('material-ui');
 var Select = require('components/Select/Select.js');
 var UserStore = require('stores/UserStore.js');
 var UserImage = require('components/User/UserImage.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var GameAction = require('actions/GameAction.js');
 var Unauthorised = require('components/Unauthorised/Unauthorised.js');
+var DatePicker = require('components/DatePicker/DatePicker.js');
+var ColPanel = require('components/Home/ColPanel.js');
+
+require('./AddGame.css');
 
 module.exports = React.createClass({
     getInitialState: function(){
@@ -29,31 +34,31 @@ module.exports = React.createClass({
     },
     checkForm: function(form){
         if(form.date === ""){
-            this.setState({errorMessage: "Une date doit être spécifiée."});
+            this.setState({errorMessage: "Une date doit être spécifiée.", successMessage:""});
             return false;
         }
 
         if(typeof form.p1t1 == 'undefined' || typeof form.p2t1 == 'undefined' || typeof form.p1t2 == 'undefined' || typeof form.p2t2 == 'undefined'){
-            this.setState({errorMessage: "Tous les joueurs doivent être renseignés."});
+            this.setState({errorMessage: "Tous les joueurs doivent être renseignés.", successMessage:""});
             return false;
         }
 
         if(form.p1t1 == form.p2t1 || form.p1t2 == form.p2t2){
-            this.setState({errorMessage: "Même joueur présent dans la même équipe."});
+            this.setState({errorMessage: "Même joueur présent dans la même équipe.", successMessage:""});
             return false;
         }
 
         if(form.p1t1 == form.p1t2 || form.p1t1 == form.p2t2 || form.p2t1 == form.p1t2 || form.p2t1 == form.p2t2){
-            this.setState({errorMessage: "Même joueur présent dans deux équipes."});
+            this.setState({errorMessage: "Même joueur présent dans deux équipes.", successMessage:""});
             return false;
         }
 
         if(form.st1 == form.st2){
-            this.setState({errorMessage: "Les deux équipes ne peuvent pas avoir le même score."});
+            this.setState({errorMessage: "Les deux équipes ne peuvent pas avoir le même score.", successMessage:""});
             return false;
         }
 
-        this.setState({successMessage: "Partie enregistrée."});
+        this.setState({successMessage: "Partie enregistrée.", errorMessage:""});
         return true;
     },
     render: function () {
@@ -61,27 +66,23 @@ module.exports = React.createClass({
             return <Unauthorised />;
         }
 
-        var date = new Date();
-        var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' : '') + date.getDate();
-
         var options = [];
         for(var i=0; i<=10; i++){
             options.push(<option key={i} value={i}>{i}</option>);
         }
 
         return (
-            <div className="content-wrapper">
-                <h3>Ajouter une partie</h3>
+            <ColPanel col="12" icon="plus" title="Ajouter une partie">
                 <div className="row-fluid">
                     <div className="col-md-12">
                         <h4>Date</h4>
                         <div className="row">
-                            <div className="col-md-3">
-                                <Input ref="date" type="date" placeholder="Date" defaultValue={dateString} />
+                            <div className="col-md-6">
+                                <DatePicker ref="date" inputClass="select-date" />
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 form-container">
                         <h4>Equipe 1</h4>
                         <div className="row">
                             <div className="col-md-12">
@@ -96,15 +97,14 @@ module.exports = React.createClass({
                                 </Input>
                             </div>
                             {/*<div className="col-md-12"><Button bsStyle="info" bsSize="large">Gagnant</Button></div>*/}
-                            <div className="col-md-12 gimemargin-vertical">
-                                <Button bsStyle="success" onClick={this.handleSubmit} bsSize="large">Enregistrer la partie</Button>
-                                <br />
+                            <div className="col-md-12 validation-container">
+                                <RaisedButton onClick={this.handleSubmit} primary={true} label="Enregistrer la partie" />
                                 <span className="text-danger">{this.state.errorMessage}</span>
                                 <span className="text-success">{this.state.successMessage}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 form-container">
                         <h4>Equipe 2</h4>
                         <div className="row">
                             <div className="col-md-12">
@@ -122,7 +122,7 @@ module.exports = React.createClass({
                         </div>
                     </div>
                 </div>
-            </div>
+            </ColPanel>
         );
     }
 });
