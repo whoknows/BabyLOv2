@@ -6,7 +6,7 @@
     height: 250px;
     width: 250px;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     box-shadow: 0 0 10px #CCC;
     top: 60px;
     left: 15px;
@@ -19,4 +19,15 @@
 .date-picker .dp-cell.dp-value {
     background: #00aac0;
     color:white;
+}
+
+.modal-overlay {
+    background: rgba(0,0,0,0.5);
+    display: inline-block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }

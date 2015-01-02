@@ -29,7 +29,8 @@ module.exports = React.createClass({
             <div className="datepicker-wrapper">
                 <Input type="text" ref="datepicker" className={this.props.inputClass} value={this.state.value} onClick={this.toggleDatepicker} onChange={this.handleInputChange} />
                 {this.state.visible ?
-                    <DatePicker hideFooter={true} date={this.state.value} onChange={this.onChange} />
+                    [<DatePicker hideFooter={true} date={this.state.value} onChange={this.onChange} />,
+                    <div className="modal-overlay" onClick={this.toggleDatepicker}></div>]
                 : null}
             </div>
         );
