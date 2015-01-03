@@ -66,6 +66,7 @@ module.exports = React.createClass({
                 <DropdownButton className={classe} title={title}>
                     <li>
                         <a href="javascript:void(0)" className="fuckyoudropdown">
+                            <i className="fa fa-search"></i>
                             <Input ref="filter" type="text" placeholder="Nom du joueur" value={this.state.filter} onChange={this.handleFilterChange} />
                         </a>
                     </li>
