@@ -3684,7 +3684,7 @@ hr {
   animation: flat-button-ripple-click 0.7s ease 0s;
 }
 .mui-flat-button .mui-flat-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes flat-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes flat-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes flat-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
@@ -3712,7 +3712,7 @@ margin-top:calc(-50% + 18px);
   animation: ripple-button-focus 1.5s ease 0s infinite;
 }
 .mui-flat-button.mui-is-keyboard-focused .mui-flat-button-focus-ripple lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes ripple-button-focus{ 0%, 100% { -webkit-transform: scale(0.75); } 50% { -webkit-transform: scale(0.85); }}
 @-moz-keyframes ripple-button-focus{ 0%, 100% { -moz-transform: scale(0.75); } 50% { -moz-transform: scale(0.85); }}
 @-o-keyframes ripple-button-focus{ 0%, 100% { -o-transform: scale(0.75); } 50% { -o-transform: scale(0.85); }}
@@ -3742,7 +3742,7 @@ margin-top:calc(-50% + 18px);
   animation: flat-primary-button-ripple-click 0.7s ease 0s;
 }
 .mui-flat-button.mui-is-primary .mui-flat-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes flat-primary-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(217, 0, 74, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes flat-primary-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(217, 0, 74, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes flat-primary-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(217, 0, 74, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
@@ -3765,7 +3765,7 @@ margin-top:calc(-50% + 18px);
   animation: flat-secondary-button-ripple-click 0.7s ease 0s;
 }
 .mui-flat-button.mui-is-secondary .mui-flat-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes flat-secondary-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 98, 110, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes flat-secondary-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 98, 110, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes flat-secondary-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 98, 110, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
@@ -3812,7 +3812,7 @@ margin-top:calc(-50% + 18px);
   opacity: 1;
 }
 .mui-floating-action-button .mui-floating-action-button-container.mui-is-keyboard-focused .mui-floating-action-button-focus-ripple lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes floating-action-button-focus-ripple{ 0%, 100% { -webkit-transform: scale(0.75); } 50% { -webkit-transform: scale(1); }}
 @-moz-keyframes floating-action-button-focus-ripple{ 0%, 100% { -moz-transform: scale(0.75); } 50% { -moz-transform: scale(1); }}
 @-o-keyframes floating-action-button-focus-ripple{ 0%, 100% { -o-transform: scale(0.75); } 50% { -o-transform: scale(1); }}
@@ -3850,7 +3850,7 @@ margin-top:calc(-50% + 18px);
   animation: floating-action-button-ripple-click 0.5s ease 0s;
 }
 .mui-floating-action-button .mui-floating-action-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes floating-action-button-ripple-click{ 0% { -webkit-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -webkit-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes floating-action-button-ripple-click{ 0% { -moz-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -moz-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes floating-action-button-ripple-click{ 0% { -o-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -o-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
@@ -3892,7 +3892,7 @@ margin-top:calc(-50% + 18px);
   animation: floating-action-button-mini-ripple-click 0.5s ease 0s;
 }
 .mui-floating-action-button.mui-is-mini .mui-floating-action-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes floating-action-button-mini-ripple-click{ 0% { -webkit-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -webkit-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes floating-action-button-mini-ripple-click{ 0% { -moz-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -moz-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes floating-action-button-mini-ripple-click{ 0% { -o-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -o-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
@@ -3925,7 +3925,7 @@ margin-top:calc(-50% + 18px);
   animation: floating-action-button-secondary-ripple-click 0.5s ease 0s;
 }
 .mui-floating-action-button.mui-is-secondary .mui-floating-action-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes floating-action-button-secondary-ripple-click{ 0% { -webkit-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -webkit-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes floating-action-button-secondary-ripple-click{ 0% { -moz-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -moz-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes floating-action-button-secondary-ripple-click{ 0% { -o-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -o-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
@@ -3942,7 +3942,7 @@ margin-top:calc(-50% + 18px);
   animation: floating-action-button-mini-secondary-ripple-click 0.5s ease 0s;
 }
 .mui-floating-action-button.mui-is-secondary.mui-is-mini .mui-floating-action-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes floating-action-button-mini-secondary-ripple-click{ 0% { -webkit-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -webkit-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes floating-action-button-mini-secondary-ripple-click{ 0% { -moz-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -moz-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes floating-action-button-mini-secondary-ripple-click{ 0% { -o-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { -o-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
@@ -3975,7 +3975,7 @@ margin-top:calc(-50% + 18px);
   animation: icon-button-ripple-animation 0.7s ease 0s;
 }
 .mui-icon-button .mui-icon-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes icon-button-ripple-animation{ 0% { -webkit-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { -webkit-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes icon-button-ripple-animation{ 0% { -moz-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { -moz-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes icon-button-ripple-animation{ 0% { -o-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { -o-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
@@ -4018,7 +4018,7 @@ margin-top:calc(-50% + 18px);
   opacity: 1;
 }
 .mui-icon-button.mui-is-keyboard-focused .mui-icon-button-focus-ripple lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes ripple-icon-button-focus{ 0%, 100% { -webkit-transform: scale(0.75); } 50% { -webkit-transform: scale(1); }}
 @-moz-keyframes ripple-icon-button-focus{ 0%, 100% { -moz-transform: scale(0.75); } 50% { -moz-transform: scale(1); }}
 @-o-keyframes ripple-icon-button-focus{ 0%, 100% { -o-transform: scale(0.75); } 50% { -o-transform: scale(1); }}
@@ -4035,7 +4035,7 @@ margin-top:calc(-50% + 18px);
   animation: icon-button-ripple-animation-dark 0.7s ease 0s;
 }
 .mui-dark-theme .mui-icon-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes icon-button-ripple-animation-dark{ 0% { -webkit-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(255, 255, 255, 0.3); }  100% { -webkit-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes icon-button-ripple-animation-dark{ 0% { -moz-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(255, 255, 255, 0.3); }  100% { -moz-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes icon-button-ripple-animation-dark{ 0% { -o-transform: scale(0); background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(255, 255, 255, 0.3); }  100% { -o-transform: scale(1); background-color: rgba(0, 0, 0, 0); }}
@@ -4330,10 +4330,10 @@ margin-top:calc(-50% + 18px);
 .mui-input.mui-disabled {
   opacity: 0.4;
 }
-::-webkit-input-placeholder {
+/*::-webkit-input-placeholder {
   position: absolute !important;
   top: -20px !important;
-}
+}*/
 .mui-left-nav .mui-left-nav-menu {
   height: 100%;
   position: fixed;
@@ -4428,7 +4428,7 @@ margin-top:calc(-50% + 18px);
   animation: 'menu-item-ripple-animation' 0.7s ease 0s;
 }
 .mui-menu .mui-menu-item .mui-ripple.mui-show lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes menu-item-ripple-animation{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: #cccccc; }  100% { width: 250px; height: 250px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes menu-item-ripple-animation{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: #cccccc; }  100% { width: 250px; height: 250px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes menu-item-ripple-animation{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: #cccccc; }  100% { width: 250px; height: 250px; background-color: rgba(0, 0, 0, 0); }}
@@ -4681,7 +4681,7 @@ margin-top:calc(-50% + 18px);
   padding-top: 0;
 }
 .mui-raised-button .mui-raised-button-container.mui-is-keyboard-focused .mui-raised-button-focus-ripple lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes ripple-button-focus{ 0%, 100% { -webkit-transform: scale(0.75); } 50% { -webkit-transform: scale(0.85); }}
 @-moz-keyframes ripple-button-focus{ 0%, 100% { -moz-transform: scale(0.75); } 50% { -moz-transform: scale(0.85); }}
 @-o-keyframes ripple-button-focus{ 0%, 100% { -o-transform: scale(0.75); } 50% { -o-transform: scale(0.85); }}
@@ -4694,7 +4694,7 @@ margin-top:calc(-50% + 18px);
   animation: raised-button-ripple-click 0.7s ease 0s;
 }
 .mui-raised-button .mui-raised-button-container .mui-raised-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes raised-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes raised-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes raised-button-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.1); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
@@ -4740,7 +4740,7 @@ margin-top:calc(-50% + 18px);
   animation: raised-button-primary-ripple-click 0.7s ease 0s;
 }
 .mui-raised-button.mui-is-primary .mui-raised-button-container .mui-raised-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes raised-button-primary-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes raised-button-primary-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes raised-button-primary-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
@@ -4768,7 +4768,7 @@ margin-top:calc(-50% + 18px);
   animation: raised-button-secondary-ripple-click 0.7s ease 0s;
 }
 .mui-raised-button.mui-is-secondary .mui-raised-button-container .mui-raised-button-ripple.mui-is-visible lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes raised-button-secondary-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-moz-keyframes raised-button-secondary-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
 @-o-keyframes raised-button-secondary-ripple-click{ 0% { background-color: rgba(0, 0, 0, 0); } 50% { background-color: rgba(0, 0, 0, 0.15); }  100% { width: 150px; height: 150px; background-color: rgba(0, 0, 0, 0); }}
