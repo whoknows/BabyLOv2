@@ -4,12 +4,11 @@
 
 .date-picker {
     height: 250px;
-    width: 250px;
-    position: absolute;
-    z-index: 2;
-    box-shadow: 0 0 10px #CCC;
-    top: 60px;
     left: 15px;
+    position: absolute;
+    top: 60px;
+    width: 250px;
+    z-index: 2;
 }
 
 .date-picker .dp-cell {
