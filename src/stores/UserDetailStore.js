@@ -70,16 +70,24 @@ module.exports = Reflux.createStore({
         return {text: "Nombre moyen de buts pris", value: Math.round((taken !== 0 ? taken / games : 0)*100)/100};
     },
     getNemesis: function(){
-        return {text: "Pire ennemi", value: 3};
+        var username = UserStore.getUserById(this.currentUser.gameData['bestOponent' + this.period]).username;
+
+        return {text: "Pire ennemi", value: username};
     },
     getWorstEnemy: function(){
-        return {text: "Moins bon adversaire", value: 3};
+        var username = UserStore.getUserById(this.currentUser.gameData['worstOponent' + this.period]).username;
+
+        return {text: "Moins bon adversaire", value: username};
     },
     getBestMate: function(){
-        return {text: "Meilleur partenaire", value: 3};
+        var username = UserStore.getUserById(this.currentUser.gameData['bestMate' + this.period]).username;
+
+        return {text: "Meilleur partenaire", value: username};
     },
     getWorstMate: function(){
-        return {text: "Moins bon partenaire", value: 3};
+        var username = UserStore.getUserById(this.currentUser.gameData['worstMate' + this.period]).username;
+
+        return {text: "Moins bon partenaire", value: username};
     },
     getUserDetail: function() {
         return this.userDetail;
