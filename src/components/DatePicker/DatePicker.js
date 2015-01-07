@@ -7,10 +7,10 @@ require('./DatePicker.css');
 
 module.exports = React.createClass({
     getDefaultProps: function(){
-        return {inputClass: ''};
+        return {inputClass: '', value:moment().format("YYYY-MM-DD")};
     },
     getInitialState: function(){
-        return {value: moment().format("YYYY-MM-DD"), visible: false};
+        return {value: this.props.value, visible: false};
     },
     handleInputChange: function(e) {
         this.setState({value: e.target.value});

@@ -91,7 +91,7 @@ module.exports = React.createClass({
                         <ColPanel col="12" icon="search" title="Recherche de parties">
                             <div className="col-md-7 gameform">
                                 <form ref="gameform" onSubmit={this.handleSubmit}>
-                                    <DatePicker ref="date" inputClass="select-date" />
+                                    <DatePicker ref="date" inputClass="select-date" value={this.state.date} />
                                     {this.state.formVisible ? this.getForm() : null}
                                     <Button bsStyle="primary" type="submit">Valider</Button>
                                     <a href="#" onClick={this.handleDisplay}>
