@@ -169,7 +169,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #2196f3;
+  background-color: #23B7E5;
   border-color: transparent;
 }
 .btn-primary:hover,
@@ -482,9 +482,9 @@ fieldset[disabled] .btn-link:focus {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .btn-primary {
-  background-image: -webkit-radial-gradient(circle, #2196f3 80%, #0d87e9 81%);
-  background-image: -o-radial-gradient(circle, #2196f3 80%, #0d87e9 81%);
-  background-image: radial-gradient(circle, #2196f3 80%, #0d87e9 81%);
+  background-image: -webkit-radial-gradient(circle, #23B7E5 80%, #51C6EA 81%);
+  background-image: -o-radial-gradient(circle, #23B7E5 80%, #51C6EA 81%);
+  background-image: radial-gradient(circle, #23B7E5 80%, #51C6EA 81%);
   background-repeat: no-repeat;
   -webkit-background-size: 200% 200%;
           background-size: 200%;
@@ -496,13 +496,13 @@ fieldset[disabled] .btn-link:focus {
 .btn-primary:hover {
   -webkit-background-size: 100% 100%;
           background-size: 100%;
-  border-color: #0d87e9;
+  border-color: #51C6EA;
 }
 .btn-primary:active {
-  background-color: #0d87e9;
-  background-image: -webkit-radial-gradient(circle, #0d87e9 10%, #2196f3 11%);
-  background-image: -o-radial-gradient(circle, #0d87e9 10%, #2196f3 11%);
-  background-image: radial-gradient(circle, #0d87e9 10%, #2196f3 11%);
+  background-color: #1797BE;
+  background-image: -webkit-radial-gradient(circle, #1797BE 10%, #23B7E5 11%);
+  background-image: -o-radial-gradient(circle, #1797BE 10%, #23B7E5 11%);
+  background-image: radial-gradient(circle, #1797BE 10%, #23B7E5 11%);
   background-repeat: no-repeat;
   -webkit-background-size: 1000% 1000%;
           background-size: 1000%;
