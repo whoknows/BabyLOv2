@@ -10,6 +10,7 @@ module.exports = React.createClass({
         return {users:[]};
     },
     handleClick: function(){
+        alert("Le comparateur n'est pas encore terminé.");
         console.log(
             this.refs.p1.getValue(),
             this.refs.p2.getValue()
