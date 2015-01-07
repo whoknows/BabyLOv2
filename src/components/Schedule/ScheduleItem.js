@@ -75,7 +75,7 @@ module.exports = React.createClass({
         } else if (this.props.creneau < ScheduleStore.getCurrentTime()) {
             return <i className="moveMe">Le créneau est déjà passé.</i>;
         } else if(this.isEmpty() || (!this.userScheduled && !this.isFull())){
-            return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="info">GO</Button>;
+            return <Button data-schedule={this.props.creneau} onClick={this.clickHandler} bsStyle="primary">GO</Button>;
         } else if (this.isFull() && this.props.vertical) {
             return <i className="moveMe">Le créneau est plein.</i>;
         }
