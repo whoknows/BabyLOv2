@@ -130,7 +130,7 @@ module.exports = React.createClass({
 
                 <div className="form-group">
                     <div className={"col-md-offset-2 col-md-" + this.props.width}>
-                        <Button bsStyle="success">{buttonLabel}</Button>
+                        <Button bsStyle="success" type="submit">{buttonLabel}</Button>
                         {this.props.cancel ?
                             <Button bsStyle="default" className="button-cancel" onClick={this.props.cancel}>Annuler</Button>
                         : null}
