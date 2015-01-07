@@ -38,6 +38,9 @@ module.exports = React.createClass({
 
         return ret;
     },
+    triggerHelper: function() {
+        console.log('to do');
+    },
     handleSelect: function(to){
         if(to){
             this.refs.navbar.refs.nav.refs.dropdown.setDropdownState(false);
@@ -63,7 +66,6 @@ module.exports = React.createClass({
 
         return (
             <header className="topnavbar-wrapper">
-                {/*<Navbar className="topnavbar" fluid>*/}
                 <Navbar ref="navbar" inverse fluid>
                     <Nav>
                         <NavItem className="brand"><img src="external/img/react.png" height="20" width="20" alt="logo" />BabyLOv3</NavItem>
@@ -75,6 +77,18 @@ module.exports = React.createClass({
                         <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav ref="nav" className="navbar-right">
+                        <NavItem onClick={this.triggerHelper}><i className="fa fa-question-circle"></i>&nbsp;</NavItem>
+                        <DropdownButton title={<i className="fa fa-list" key="1"></i>}>
+                            <MenuItem key="12"><strong>Reste à faire</strong></MenuItem>
+                            <MenuItem key="22" divider />
+                            <MenuItem key="1">Module Comparateur</MenuItem>
+                            <MenuItem key="2" divider />
+                            <MenuItem key="3">Demande de création de compte</MenuItem>
+                            <MenuItem key="4" divider />
+                            <MenuItem key="5">Manuel utilisateur</MenuItem>
+                            <MenuItem key="6" divider />
+                            <MenuItem key="7">Optimisation de la récupération des données utilisateur</MenuItem>
+                        </DropdownButton>
                         <DropdownButton ref="dropdown" onSelect={this.handleSelect} title={[<img key="img" className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
                             {this.getDropdownContent()}
                         </DropdownButton>
