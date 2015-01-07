@@ -2,8 +2,12 @@
     margin-bottom: 30px;
 }
 
-.validation-container span {
-    margin-left: 15px;
+.validation-container {
+    margin-top: 25px;
+}
+
+.validation-container button {
+    margin-right: 15px;
 }
 
 .select-date {

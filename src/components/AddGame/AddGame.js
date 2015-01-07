@@ -14,7 +14,7 @@ require('./AddGame.css');
 
 module.exports = React.createClass({
     getInitialState: function(){
-        return {errorMessage: "", successMessage: ""};
+        return {errorMessage: "", successMessage: "", st1:0, st2:0};
     },
     handleSubmit: function(){
         var form = {
@@ -30,6 +30,22 @@ module.exports = React.createClass({
         if(this.checkForm(form)){
             GameAction.saveGame(form);
         }
+
+        setTimeout(function(){
+            this.setState({successMessage: "", errorMessage:""});
+        }.bind(this), 2000);
+    },
+    handleChange: function(ref) {
+        var data = this.state;
+        data[ref] = this.refs[ref].getValue();
+
+        this.setState(data);
+    },
+    handleWinner: function(ref) {
+        var data = this.state;
+        data[ref] = 10;
+
+        this.setState(data);
     },
     checkForm: function(form){
         if(form.date === ""){
@@ -58,6 +74,7 @@ module.exports = React.createClass({
         }
 
         this.setState({successMessage: "Partie enregistrée.", errorMessage:""});
+
         return true;
     },
     render: function () {
@@ -91,11 +108,11 @@ module.exports = React.createClass({
                                 <Select ref="p2t1" placeholder="Joueur 2" />
                             </div>
                             <div className="col-md-12">
-                                <Input type="select" ref="st1" label='Score'>
+                                <Input type="select" ref="st1" label='Score' value={this.state.st1} onChange={this.handleChange.bind(this, 'st1')}>
                                     {options}
                                 </Input>
+                                <Button bsStyle="primary" onClick={this.handleWinner.bind(this, 'st1')}>Gagnant</Button>
                             </div>
-                            {/*<div className="col-md-12"><Button bsStyle="info" bsSize="large">Gagnant</Button></div>*/}
                             <div className="col-md-12 validation-container">
                                 <Button onClick={this.handleSubmit} bsStyle="success">Enregistrer la partie</Button>
                                 <span className="text-danger">{this.state.errorMessage}</span>
@@ -113,11 +130,11 @@ module.exports = React.createClass({
                                 <Select ref="p2t2" placeholder="Joueur 2" />
                             </div>
                             <div className="col-md-12">
-                                <Input type="select" ref="st2" label='Score'>
+                                <Input type="select" ref="st2" label='Score' value={this.state.st2}  onChange={this.handleChange.bind(this, 'st2')}>
                                     {options}
                                 </Input>
+                                <Button bsStyle="primary" onClick={this.handleWinner.bind(this, 'st2')}>Gagnant</Button>
                             </div>
-                            {/*<div className="col-md-12"><Button bsStyle="info" bsSize="large">Gagnant</Button></div>*/}
                         </div>
                     </div>
                 </div>
