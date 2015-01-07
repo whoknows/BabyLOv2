@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
-var {Input} = require('react-bootstrap');
-var {RaisedButton} = require('material-ui');
+var {Input, Button} = require('react-bootstrap');
 var Select = require('components/Select/Select.js');
 var UserStore = require('stores/UserStore.js');
 var UserImage = require('components/User/UserImage.js');
@@ -98,7 +97,7 @@ module.exports = React.createClass({
                             </div>
                             {/*<div className="col-md-12"><Button bsStyle="info" bsSize="large">Gagnant</Button></div>*/}
                             <div className="col-md-12 validation-container">
-                                <RaisedButton onClick={this.handleSubmit} primary={true} label="Enregistrer la partie" />
+                                <Button onClick={this.handleSubmit} bsStyle="success">Enregistrer la partie</Button>
                                 <span className="text-danger">{this.state.errorMessage}</span>
                                 <span className="text-success">{this.state.successMessage}</span>
                             </div>

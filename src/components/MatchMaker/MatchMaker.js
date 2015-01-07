@@ -3,7 +3,6 @@
 var UserStore = require('stores/UserStore.js');
 var UserImage = require('components/User/UserImage.js');
 var {Button, ListGroup, ListGroupItem, Panel} = require('react-bootstrap');
-var {RaisedButton} = require('material-ui');
 
 module.exports = React.createClass({
     mixins: [Reflux.listenTo(UserStore,"onUserChange")],
@@ -86,7 +85,7 @@ module.exports = React.createClass({
                         <ListGroup>{this.getUserList()}</ListGroup>
                     </div>
                     <div className="col-md-2 centered-children">
-                        <RaisedButton primary={true} onClick={this.handleSubmit} label="Go matchmaking" />
+                        <Button bsStyle="primary" type="submit" onClick={this.handleSubmit}>Go matchmaking</Button>
                     </div>
                     <div className="col-md-4">
                         {this.getTeams()}

@@ -4,8 +4,7 @@ var GameTable = require('components/Table/GameTable.js');
 var GameStore = require('stores/GameStore.js');
 var GameActions = require('actions/GameAction.js');
 var ColPanel = require('components/Home/ColPanel.js');
-var {Input} = require('react-bootstrap');
-var {RaisedButton} = require('material-ui');
+var {Input, Button} = require('react-bootstrap');
 var {State} = require('react-router');
 var Select = require('components/Select/Select.js');
 var DatePicker = require('components/DatePicker/DatePicker.js');
@@ -94,7 +93,7 @@ module.exports = React.createClass({
                                 <form ref="gameform" onSubmit={this.handleSubmit}>
                                     <DatePicker ref="date" inputClass="select-date" />
                                     {this.state.formVisible ? this.getForm() : null}
-                                    <RaisedButton label="Valider" secondary={true}/>
+                                    <Button bsStyle="primary" type="submit">Valider</Button>
                                     <a href="#" onClick={this.handleDisplay}>
                                     Recherche{this.state.formVisible ? " standard" : " avancée"}
                                     </a>

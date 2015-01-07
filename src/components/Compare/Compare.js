@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var {RaisedButton} = require('material-ui');
+var {Button} = require('react-bootstrap');
 var Select = require('components/Select/Select.js');
 
 require('./Compare.css');
@@ -24,7 +24,7 @@ module.exports = React.createClass({
                         <Select ref="p1" placeholder="Joueur 1" />
                     </div>
                     <div className="col-md-2">
-                        <RaisedButton className="compare-submit" primary={true} onClick={this.handleClick} label="Comparer les deux joueurs" />
+                        <Button bsStyle="danger" type="submit" className="compare-submit" onClick={this.handleClick}>Comparer les deux joueurs</Button>
                     </div>
                     <div className="col-md-5">
                         <Select ref="p2" placeholder="Joueur 2" />
