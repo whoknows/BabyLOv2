@@ -24,6 +24,7 @@ module.exports = React.createClass({
     ],
     getInitialState: function() {
         return {
+            image: true,
             currentUser: CurrentUserStore.getCurrentUser(),
             games: HomeGameStore.getGames(),
             users: UserStore.getUsers(),
@@ -56,6 +57,9 @@ module.exports = React.createClass({
             currentUser:CurrentUserStore.getCurrentUser()
         });
     },
+    hideImg: function() {
+        this.setState({image:false});
+    },
     render: function () {
         return (
             <div>
@@ -79,6 +83,7 @@ module.exports = React.createClass({
                         <UserGraph user={this.state.currentUser.id} period="ThisMonth" />
                     </ColPanel>
                 </div>
+            {this.state.image ? <div className="img-overlay" onClick={this.hideImg}><img src="http://i.imgur.com/KK3QlyG.png" alt="charlol" /></div> : null}
             </div>
         );
     }
