@@ -1,9 +1,13 @@
 var HomeGameActions = require('actions/HomeGameAction.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
+var GameActions = require('actions/GameAction.js');
 
 module.exports = Reflux.createStore({
-    listenables: [CurrentUserAction, HomeGameActions],
+    listenables: [CurrentUserAction, HomeGameActions, GameActions],
     onLoginSuccess: function(){
+        HomeGameActions.loadHomeGames();
+    },
+    onSaveGame: function(){
         HomeGameActions.loadHomeGames();
     },
     onLoadHomeGames: function(){
