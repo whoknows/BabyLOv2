@@ -10,3 +10,27 @@
 .compare-submit .fa-bomb {
     margin: 0 5px;
 }
+
+.compare-data .progress {
+    margin-top: 5px;
+    margin-bottom:0;
+}
+
+.compare-data .label {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.compare-data-left .progress-bar {
+    float:right;
+}
+
+.compare-data-center {
+    text-align: center;
+}
+
+.compare .list-group-item {
+    height: 50px;
+    line-height: 25px;
+}

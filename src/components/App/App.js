@@ -77,7 +77,7 @@ module.exports = React.createClass({
                         <BabyMenuItem icon="fa fa-calendar" dest="schedule" label="Planification"></BabyMenuItem>
                     </Nav>
                     <Nav ref="nav" className="navbar-right">
-                        <NavItem onClick={this.triggerHelper}><i className="fa fa-question-circle"></i>&nbsp;</NavItem>
+                        {/*<NavItem onClick={this.triggerHelper}><i className="fa fa-question-circle"></i>&nbsp;</NavItem>*/}
                         <DropdownButton title={<i className="fa fa-list" key="1"></i>}>
                             <MenuItem key="12"><strong>Reste à faire</strong></MenuItem>
                             <MenuItem key="22" divider />
