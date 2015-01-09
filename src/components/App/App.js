@@ -2,10 +2,11 @@
 
 var Reflux = require('expose?Reflux!reflux');
 var React = require('expose?React!react');
-var {Navbar, Nav, DropdownButton, MenuItem, NavItem} = require('react-bootstrap');
+var {Navbar, Nav, DropdownButton, MenuItem, NavItem, Label} = require('react-bootstrap');
 var BabyMenuItem = require('components/BabyMenuItem/BabyMenuItem.js');
 var MenuItemLink = require('components/App/MenuItemLink.js');
 var LoginForm = require('components/LoginForm/LoginForm.js');
+var UserStore = require('stores/UserStore.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
 var CurrentUserAction = require('actions/CurrentUserAction.js');
 var {RouteHandler, Navigation} = require('react-router');
@@ -47,6 +48,18 @@ module.exports = React.createClass({
             this.transitionTo(to);
         }
     },
+    getNewUsers: function(){
+        if(CurrentUserStore.isSuperAdmin()){
+            var users = UserStore.getNewUsers();
+
+            return users.length === 0 ? null : (
+                <DropdownButton onSelect={function(){this.transitionTo("usermanager");}.bind(this)} title={[<i className="fa fa-user" key="100"></i>, <Label bsStyle="danger">{users.length}</Label>]}>
+                    {users.map(function(user){
+                        return <MenuItem key={user.id}>{user.username}</MenuItem>;
+                    })}
+                </DropdownButton>);
+        }
+    },
     render: function () {
         if(typeof this.state.currentUser === 'undefined'){
             return <div className="pageloader"><i className="fa fa-circle-o-notch fa-spin"></i></div>;
@@ -85,6 +98,7 @@ module.exports = React.createClass({
                             <MenuItem key="6" divider />
                             <MenuItem key="7">Optimisation de la récupération des données utilisateur</MenuItem>
                         </DropdownButton>
+                        {this.getNewUsers()}
                         <DropdownButton ref="dropdown" onSelect={this.handleSelect} title={[<img key="img" className="image-left" src={this.state.currentUser.gravatar} height="20" width="20" />, "Bonjour " + this.state.currentUser.username]}>
                             {this.getDropdownContent()}
                         </DropdownButton>

@@ -148,5 +148,16 @@ module.exports = Reflux.createStore({
             [data[0].id, data[3].id],
             [data[1].id, data[2].id]
         ];
+    },
+    getNewUsers: function(){
+        var users = [];
+
+        this.users.forEach(function(user){
+            if(user.roles[0] === "" && user.enabled != "1"){
+                users.push(user);
+            }
+        });
+
+        return users;
     }
 });
