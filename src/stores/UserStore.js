@@ -99,7 +99,7 @@ module.exports = Reflux.createStore({
         var user = null;
 
         this.users.some(function(u) {
-            if(u[field].toLowerCase() == value.toLowerCase()) {
+            if((isNaN(value) && u[field].toLowerCase() == value.toLowerCase()) || u[field] == value) {
                 user = u;
 
                 return true;
