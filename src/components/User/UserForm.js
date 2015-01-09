@@ -41,6 +41,10 @@ module.exports = React.createClass({
         e.preventDefault();
         Promise.resolve(this.validateForm(this.state.user)).then(function(isValid){
             if(isValid){
+                this.setState({error:"", success: (
+                    this.state.user.id ? "Le compte à bien été mis à jour." : "Votre compte à bien été créé, il est en attente d'activation par un administrateur."
+                )});
+
                 var data = this.cleanForm(JSON.parse(JSON.stringify(this.state.user)));
 
                 if(data.id){
@@ -107,10 +111,6 @@ module.exports = React.createClass({
                 return true;
             }.bind(this));
         }
-
-        this.setState({error:"", success: (
-            data.id ? "Le compte à bien été mis à jour." : "Votre compte à bien été créé, il est en attente d'activation par un administrateur."
-        )});
 
         return true;
     },
