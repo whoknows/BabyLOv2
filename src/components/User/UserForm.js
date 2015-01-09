@@ -121,11 +121,11 @@ module.exports = React.createClass({
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <Input type="hidden" ref="userid" readOnly value={this.state.user.id} />
                 {this.props.admin || !this.props.user ?
-                    <Input type="text" label="Username" autoComplete={false} onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                    <Input type="text" label="Username" autoComplete="off" onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 : null }
 
-                <Input type="password" autoComplete={false} label="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.user.nothing} ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
-                <Input type="password" label="Confirm" autoComplete={false} onChange={this.handleChange.bind(this, "password2")} value={this.state.user.nothing} ref="password2" placeholder="Confirmation du mot de passe" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="password" autoComplete="off" label="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.user.nothing} ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="password" label="Confirm" autoComplete="off" onChange={this.handleChange.bind(this, "password2")} value={this.state.user.nothing} ref="password2" placeholder="Confirmation du mot de passe" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 <Input type="email" label="Email" onChange={this.handleChange.bind(this, "email")} placeholder="Utiliser un email associé à un compte Gravatar" ref="email" value={this.state.user.email} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 {this.props.admin ?
                 <div>

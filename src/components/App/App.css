@@ -660,7 +660,6 @@ fieldset[disabled] .btn-link:focus {
 }
 body {
   -webkit-font-smoothing: antialiased;
-  letter-spacing: .1px;
   text-rendering: optimizeLegibility;
 }
 p {
@@ -669,7 +668,6 @@ p {
 input,
 button {
   -webkit-font-smoothing: antialiased;
-  letter-spacing: .1px;
   text-rendering: optimizeLegibility;
 }
 a {
