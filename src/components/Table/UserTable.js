@@ -33,7 +33,7 @@ module.exports = React.createClass({
             return user.enabled == "1" || user.id == CurrentUserStore.getCurrentUser().id;
         }.bind(this)).sort(function(userA, userB){
             var p = this.getPeriod();
-            return userA.gameData['score' + p] < userB.gameData['score' + p] ? 1 : -1;
+            return userA.gameData[this.props.mode + p] < userB.gameData[this.props.mode + p] ? 1 : -1;
         }.bind(this));
 
         return Array.prototype.slice.apply(data, this.props.slice ? [0, this.props.slice] : undefined).map(function(user){
@@ -44,7 +44,7 @@ module.exports = React.createClass({
                 </td>
                 <td className="text-success">{user.gameData['won' + p]}</td>
                 <td className="text-danger">{user.gameData['lost' + p]}</td>
-                <td><b>{user.gameData['score' + p]}</b></td>
+                <td><b>{user.gameData[this.props.mode + p]}</b></td>
             </tr>;
         }.bind(this));
     },
