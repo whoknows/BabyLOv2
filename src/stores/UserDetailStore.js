@@ -70,24 +70,35 @@ module.exports = Reflux.createStore({
         return {text: "Nombre moyen de buts pris", value: Math.round((taken !== 0 ? taken / games : 0)*100)/100};
     },
     getNemesis: function(){
-        var username = UserStore.getUserById(this.currentUser.gameData['bestOponent' + this.period]).username;
+        var user = UserStore.getUserById(this.currentUser.gameData['bestOponent' + this.period]);
 
-        return {text: "Pire ennemi", value: username};
+        return {text: "Pire ennemi", value: this.getUserNameOrNA(user)};
     },
     getWorstEnemy: function(){
-        var username = UserStore.getUserById(this.currentUser.gameData['worstOponent' + this.period]).username;
+        var user = UserStore.getUserById(this.currentUser.gameData['worstOponent' + this.period]);
 
-        return {text: "Moins bon adversaire", value: username};
+        return {text: "Moins bon adversaire", value: this.getUserNameOrNA(user)};
     },
     getBestMate: function(){
-        var username = UserStore.getUserById(this.currentUser.gameData['bestMate' + this.period]).username;
+        var user = UserStore.getUserById(this.currentUser.gameData['bestMate' + this.period]);
 
-        return {text: "Meilleur partenaire", value: username};
+        return {text: "Meilleur partenaire", value: this.getUserNameOrNA(user)};
     },
     getWorstMate: function(){
-        var username = UserStore.getUserById(this.currentUser.gameData['worstMate' + this.period]).username;
+        var user = UserStore.getUserById(this.currentUser.gameData['worstMate' + this.period]);
 
-        return {text: "Moins bon partenaire", value: username};
+        return {text: "Moins bon partenaire", value: this.getUserNameOrNA(user)};
+    },
+    getUserNameOrNA: function(user){
+        if(user === null){
+            return 'N/A';
+        }
+
+        if(user.username){
+            return user.username;
+        }
+
+        return 'N/A';
     },
     getUserDetail: function() {
         return this.userDetail;
