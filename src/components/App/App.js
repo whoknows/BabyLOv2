@@ -81,8 +81,6 @@ module.exports = React.createClass({
                         <DropdownButton title={<i className="fa fa-list" key="1"></i>}>
                             <MenuItem key="12"><strong>Reste à faire</strong></MenuItem>
                             <MenuItem key="22" divider />
-                            <MenuItem key="1">Module Comparateur</MenuItem>
-                            <MenuItem key="4" divider />
                             <MenuItem key="5">Manuel utilisateur</MenuItem>
                             <MenuItem key="6" divider />
                             <MenuItem key="7">Optimisation de la récupération des données utilisateur</MenuItem>
