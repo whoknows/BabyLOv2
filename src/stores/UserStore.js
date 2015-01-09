@@ -77,6 +77,14 @@ module.exports = Reflux.createStore({
             UserAction.loadUsersSuccess(response);
         });
     },
+    userExists: function(username) {
+        return $.ajax({
+            url:'/Babylov2REST/userexists',
+            type: 'GET',
+            dataType: 'json',
+            data: {user: username}
+        });
+    },
     onLoadUsersSuccess: function(response){
         this.users = this.formatResponse(response);
         this.trigger();
@@ -85,10 +93,13 @@ module.exports = Reflux.createStore({
         return this.users;
     },
     getUserById: function(id) {
+        return this.getUserBy('id', id);
+    },
+    getUserBy: function(field, value) {
         var user = null;
 
         this.users.some(function(u) {
-            if(u.id == id) {
+            if(u[field].toLowerCase() == value.toLowerCase()) {
                 user = u;
 
                 return true;

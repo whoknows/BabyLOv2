@@ -28,7 +28,7 @@ module.exports = React.createClass({
                     <Input ref="login" type="text" autoFocus placeholder="Nom d'utilisateur" />
                     <Input ref="password" type="password" placeholder="Mot de passe" />
                     <Button bsStyle="primary" type="submit">Se connecter</Button>
-                    {/*<a onClick={this.toggleForm}>Demander un compte</a>*/}
+                    <a onClick={this.toggleForm}>Demander un compte</a>
                     <span className="text-danger error-message">{this.props.message}</span>
                 </form>
             );

@@ -3,6 +3,7 @@
 var {Button, Input} = require('react-bootstrap');
 var UserAction = require('actions/UserAction.js');
 var CurrentUserStore = require('stores/CurrentUserStore.js');
+var UserStore = require('stores/UserStore.js');
 var sha1 = require('sha1');
 
 require('./UserForm.css');
@@ -38,25 +39,25 @@ module.exports = React.createClass({
     },
     handleSubmit: function(e){
         e.preventDefault();
+        Promise.resolve(this.validateForm(this.state.user)).then(function(isValid){
+            if(isValid){
+                var data = this.cleanForm(JSON.parse(JSON.stringify(this.state.user)));
 
-        if(this.validateForm(this.state.user)){
+                if(data.id){
+                    UserAction.saveUser(data);
+                } else {
+                    UserAction.addUser(data);
+                }
 
-            var data = this.cleanForm(JSON.parse(JSON.stringify(this.state.user)));
-
-            if(data.id){
-                UserAction.saveUser(data);
-            } else {
-                UserAction.addUser(data);
+                if (this.props.doAfterSubmit) {
+                    this.props.doAfterSubmit();
+                } else {
+                    setTimeout(function(){
+                        this.setState({user: {}});
+                    }.bind(this), 2000);
+                }
             }
-
-            if (this.props.doAfterSubmit) {
-                this.props.doAfterSubmit();
-            } else {
-                setTimeout(function(){
-                    this.setState({user: {}});
-                }.bind(this), 2000);
-            }
-        }
+        }.bind(this));
     },
     cleanForm: function(data) {
         data.password2 = undefined;
@@ -72,19 +73,6 @@ module.exports = React.createClass({
         return data;
     },
     validateForm: function(data){
-        if (!data.username){
-            if(this.state.user.username){
-                data.username = this.state.user.username;
-            } else {
-                this.setState({success:"", error:"Vous devez spécifier un nom d'utilisateur."});
-                return false;
-            }
-        } else if(this.props.admin) {
-            // vérifier que l'user n'existe pas déjà dans le store
-        } else {
-            // vérifier en base fkit
-        }
-
         if (!this.state.user.id && (!data.password || data.password === '')){
             this.setState({success:"", error:"Vous devez spécifier un mot de passe."});
             return false;
@@ -96,6 +84,28 @@ module.exports = React.createClass({
                 this.setState({success:"", error:"Le mot de passe est trop court (6 charactères min.)."});
                 return false;
             }
+        }
+
+        if (!data.username){
+            if(this.state.user.username){
+                data.username = this.state.user.username;
+            } else {
+                this.setState({success:"", error:"Vous devez spécifier un nom d'utilisateur."});
+                return false;
+            }
+        } else if(this.props.admin) {
+            if(UserStore.getUserBy('username', data.username) !== null){
+                this.setState({success:"", error:"Ce nom d'utilisateur est déjà pris."});
+                return false;
+            }
+        } else {
+            return UserStore.userExists(data.username).then(function(userExists){
+                if(userExists === true){
+                    this.setState({success:"", error:"Ce nom d'utilisateur est déjà pris."});
+                    return false;
+                }
+                return true;
+            }.bind(this));
         }
 
         this.setState({error:"", success: (
@@ -111,11 +121,11 @@ module.exports = React.createClass({
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <Input type="hidden" ref="userid" readOnly value={this.state.user.id} />
                 {this.props.admin || !this.props.user ?
-                    <Input type="text" label="Username" onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                    <Input type="text" label="Username" autoComplete={false} onChange={this.handleChange.bind(this, "username")} placeholder="Sera utilisé comme identifiant de connexion" ref="username" value={this.state.user.username} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 : null }
 
-                <Input type="password" label="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.user.nothing} ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
-                <Input type="password" label="Confirm" onChange={this.handleChange.bind(this, "password2")} value={this.state.user.nothing} ref="password2" placeholder="Confirmation du mot de passe" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="password" autoComplete={false} label="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.user.nothing} ref="password" placeholder="Au moins 6 charactères" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
+                <Input type="password" label="Confirm" autoComplete={false} onChange={this.handleChange.bind(this, "password2")} value={this.state.user.nothing} ref="password2" placeholder="Confirmation du mot de passe" labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 <Input type="email" label="Email" onChange={this.handleChange.bind(this, "email")} placeholder="Utiliser un email associé à un compte Gravatar" ref="email" value={this.state.user.email} labelClassName="col-md-2" wrapperClassName={"col-md-" + this.props.width} />
                 {this.props.admin ?
                 <div>
