@@ -13,6 +13,10 @@
 
 /*** LOLOL ***/
 
+.alert {
+    box-shadow: 0 2px 6px #888;
+}
+
 .brand img, .image-left {
     margin-right: 5px;
     vertical-align: bottom;

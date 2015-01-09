@@ -24,7 +24,7 @@ module.exports = React.createClass({
     ],
     getInitialState: function() {
         return {
-            image: true,
+            image: false,
             currentUser: CurrentUserStore.getCurrentUser(),
             games: HomeGameStore.getGames(),
             users: UserStore.getUsers(),
