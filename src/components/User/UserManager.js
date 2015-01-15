@@ -21,14 +21,12 @@ module.exports = React.createClass({
         return {users: UserStore.getUsers()};
     },
     resetForm: function(e) {
-        e.preventDefault();
-
         this.setState({currentUser: undefined});
     },
     makeUserList: function(){
         return this.state.users.map(function(user){
             var icon = "fa fa-" + (user.enabled == "1" ? "check" : "close");
-            //console.log(user);
+
             return (
                 <tr key={user.id}>
                     <td className="hasUserImage"><UserImage user={user.id} /></td>

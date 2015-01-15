@@ -20,7 +20,7 @@ module.exports = React.createClass({
         return {admin: false, width: 10};
     },
     componentWillReceiveProps: function(nextProps){
-        this.setState({user: nextProps.user ? nextProps.user : {}});
+        this.setState({user: nextProps.user ? JSON.parse(JSON.stringify(nextProps.user)) : {}});
     },
     handleChange: function(ref){
         var data = this.state.user;
@@ -39,6 +39,7 @@ module.exports = React.createClass({
     },
     handleSubmit: function(e){
         e.preventDefault();
+
         Promise.resolve(this.validateForm(this.state.user)).then(function(isValid){
             if(isValid){
                 this.setState({error:"", success: (
@@ -77,7 +78,7 @@ module.exports = React.createClass({
         return data;
     },
     validateForm: function(data){
-        if (!this.state.user.id && (!data.password || data.password === '')){
+        if (!data.id && (!data.password || data.password === '')){
             this.setState({success:"", error:"Vous devez spécifier un mot de passe."});
             return false;
         } else if(data.password) {
@@ -90,26 +91,28 @@ module.exports = React.createClass({
             }
         }
 
-        if (!data.username){
-            if(this.state.user.username){
-                data.username = this.state.user.username;
-            } else {
-                this.setState({success:"", error:"Vous devez spécifier un nom d'utilisateur."});
-                return false;
-            }
-        } else if(this.props.admin) {
-            if(UserStore.getUserBy('username', data.username) !== null){
-                this.setState({success:"", error:"Ce nom d'utilisateur est déjà pris."});
-                return false;
-            }
-        } else {
-            return UserStore.userExists(data.username).then(function(userExists){
-                if(userExists === true){
+        if (!data.id || this.props.user.username != data.username) {
+            if (!data.username){
+                if(this.state.user.username){
+                    data.username = this.state.user.username;
+                } else {
+                    this.setState({success:"", error:"Vous devez spécifier un nom d'utilisateur."});
+                    return false;
+                }
+            } else if(this.props.admin) {
+                if(UserStore.getUserBy('username', data.username) !== null){
                     this.setState({success:"", error:"Ce nom d'utilisateur est déjà pris."});
                     return false;
                 }
-                return true;
-            }.bind(this));
+            } else {
+                return UserStore.userExists(data.username).then(function(userExists){
+                    if(userExists === true){
+                        this.setState({success:"", error:"Ce nom d'utilisateur est déjà pris."});
+                        return false;
+                    }
+                    return true;
+                }.bind(this));
+            }
         }
 
         return true;
