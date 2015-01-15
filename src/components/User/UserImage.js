@@ -36,7 +36,7 @@ module.exports = React.createClass({
 
         return (
             <span {...this.props} className={"userImage " + this.props.className} onClick={this.handleClick} data-id={this.state.user.id}>
-                <img src={this.state.user.gravatar} alt="gravatar" />{this.state.user.username}
+                <img src={this.state.user.gravatar} className={this.state.user.roles.indexOf('ROLE_ADMIN') != -1 ? 'isAdmin' : null} alt="gravatar" />{this.state.user.username}
             </span>
         );
     }

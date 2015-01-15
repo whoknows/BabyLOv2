@@ -57,3 +57,7 @@
 .innerRemovable i.fa {
     margin-top: 10px;
 }
+
+.isAdmin {
+    border-bottom: 2px solid gold;
+}
